@@ -4,546 +4,566 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NurseRemote — Telehealth & Remote Nursing Jobs</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>TeleRN — Remote & Telehealth Nursing Jobs</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #FAF7F2;
-    --ink: #1A1612;
-    --teal: #0D6E6E;
-    --teal-light: #12A09A;
-    --gold: #C9A84C;
-    --muted: #8A8178;
-    --card-bg: #FFFFFF;
-    --border: #E8E2D9;
+    --bg: #060B14;
+    --surface: #0D1520;
+    --surface2: #121D2E;
+    --border: rgba(255,255,255,0.08);
+    --accent: #00E5A0;
+    --accent2: #0EA5E9;
+    --text: #F0F4FF;
+    --muted: #8492A6;
+    --card: #0F1B2D;
   }
 
 - { margin: 0; padding: 0; box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
-font-family: ‘DM Sans’, sans-serif;
-background: var(–cream);
-color: var(–ink);
+font-family: ‘Instrument Sans’, sans-serif;
+background: var(–bg);
+color: var(–text);
 min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* ANIMATED BACKGROUND */
+body::before {
+content: ‘’;
+position: fixed;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(ellipse at 20% 20%, rgba(0,229,160,0.04) 0%, transparent 50%),
+radial-gradient(ellipse at 80% 80%, rgba(14,165,233,0.04) 0%, transparent 50%);
+pointer-events: none;
+z-index: 0;
 }
 
 /* NAV */
 nav {
+position: sticky;
+top: 0;
+z-index: 100;
 display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 20px 60px;
+background: rgba(6,11,20,0.85);
+backdrop-filter: blur(20px);
 border-bottom: 1px solid var(–border);
-background: var(–cream);
-position: sticky;
-top: 0;
-z-index: 100;
-backdrop-filter: blur(8px);
 }
 
 .logo {
-font-family: ‘Playfair Display’, serif;
-font-size: 22px;
-font-weight: 700;
-color: var(–teal);
-letter-spacing: -0.5px;
+font-family: ‘Syne’, sans-serif;
+font-size: 24px;
+font-weight: 800;
+letter-spacing: -1px;
+color: var(–text);
 }
 
-.logo span { color: var(–gold); }
+.logo span {
+color: var(–accent);
+}
 
-nav ul {
+.nav-links {
 display: flex;
-gap: 36px;
+align-items: center;
+gap: 32px;
 list-style: none;
 }
 
-nav ul a {
+.nav-links a {
 text-decoration: none;
 color: var(–muted);
 font-size: 14px;
 font-weight: 500;
-letter-spacing: 0.3px;
 transition: color 0.2s;
+cursor: pointer;
 }
 
-nav ul a:hover { color: var(–ink); }
+.nav-links a:hover { color: var(–text); }
 
-.nav-cta {
-background: var(–teal);
-color: white !important;
-padding: 10px 22px;
-border-radius: 6px;
-font-weight: 600 !important;
+.nav-btn {
+background: var(–accent);
+color: #060B14 !important;
+padding: 10px 24px;
+border-radius: 8px;
+font-weight: 700 !important;
 font-size: 13px !important;
-transition: background 0.2s !important;
+transition: all 0.2s !important;
+cursor: pointer;
 }
 
-.nav-cta:hover { background: var(–teal-light) !important; color: white !important; }
+.nav-btn:hover {
+background: #00ffb3 !important;
+transform: translateY(-1px);
+box-shadow: 0 8px 24px rgba(0,229,160,0.3);
+}
 
 /* HERO */
 .hero {
-padding: 90px 60px 70px;
+position: relative;
+z-index: 1;
+padding: 100px 60px 80px;
 max-width: 1200px;
 margin: 0 auto;
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 80px;
-align-items: center;
+text-align: center;
 }
 
-.hero-eyebrow {
-display: inline-block;
-background: #E8F4F4;
-color: var(–teal);
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-padding: 6px 14px;
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: rgba(0,229,160,0.1);
+border: 1px solid rgba(0,229,160,0.25);
+color: var(–accent);
+padding: 8px 18px;
 border-radius: 100px;
-margin-bottom: 24px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-bottom: 32px;
+animation: fadeDown 0.6s ease forwards;
+}
+
+.hero-badge::before {
+content: ‘●’;
+font-size: 8px;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.3; }
+}
+
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
 .hero h1 {
-font-family: ‘Playfair Display’, serif;
-font-size: 54px;
-line-height: 1.1;
-font-weight: 700;
-margin-bottom: 22px;
-color: var(–ink);
+font-family: ‘Syne’, sans-serif;
+font-size: 72px;
+font-weight: 800;
+line-height: 1.0;
+letter-spacing: -2px;
+margin-bottom: 24px;
+animation: fadeUp 0.6s 0.2s ease both;
 }
 
-.hero h1 em {
-font-style: italic;
-color: var(–teal);
+.hero h1 .gradient {
+background: linear-gradient(135deg, var(–accent), var(–accent2));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
 }
 
 .hero p {
-font-size: 17px;
-line-height: 1.7;
+font-size: 20px;
 color: var(–muted);
-margin-bottom: 36px;
+max-width: 600px;
+margin: 0 auto 48px;
+line-height: 1.7;
 font-weight: 300;
+animation: fadeUp 0.6s 0.3s ease both;
 }
 
 .hero-actions {
 display: flex;
-gap: 14px;
-align-items: center;
+gap: 16px;
+justify-content: center;
+margin-bottom: 64px;
+animation: fadeUp 0.6s 0.4s ease both;
 }
 
 .btn-primary {
-background: var(–teal);
-color: white;
-padding: 14px 28px;
-border-radius: 8px;
-font-size: 15px;
-font-weight: 600;
-cursor: pointer;
-border: none;
-transition: all 0.2s;
-text-decoration: none;
-}
-
-.btn-primary:hover { background: var(–teal-light); transform: translateY(-1px); }
-
-.btn-outline {
-background: transparent;
-color: var(–teal);
-padding: 14px 28px;
-border-radius: 8px;
-font-size: 15px;
-font-weight: 600;
-cursor: pointer;
-border: 2px solid var(–teal);
-transition: all 0.2s;
-text-decoration: none;
-}
-
-.btn-outline:hover { background: var(–teal); color: white; }
-
-.hero-stats {
-display: flex;
-gap: 32px;
-margin-top: 48px;
-padding-top: 36px;
-border-top: 1px solid var(–border);
-}
-
-.stat-item { }
-.stat-num {
-font-family: ‘Playfair Display’, serif;
-font-size: 28px;
-font-weight: 700;
-color: var(–teal);
-}
-.stat-label {
-font-size: 12px;
-color: var(–muted);
-font-weight: 500;
-margin-top: 2px;
-}
-
-/* HERO VISUAL */
-.hero-visual {
-position: relative;
-}
-
-.featured-job-card {
-background: white;
-border-radius: 16px;
-padding: 28px;
-box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-margin-bottom: 16px;
-border: 1px solid var(–border);
-animation: floatUp 0.6s ease forwards;
-opacity: 0;
-transform: translateY(20px);
-}
-
-.featured-job-card:nth-child(1) { animation-delay: 0.3s; }
-.featured-job-card:nth-child(2) { animation-delay: 0.5s; }
-.featured-job-card:nth-child(3) { animation-delay: 0.7s; }
-
-@keyframes floatUp {
-to { opacity: 1; transform: translateY(0); }
-}
-
-.card-top {
-display: flex;
-align-items: flex-start;
-justify-content: space-between;
-margin-bottom: 14px;
-}
-
-.company-logo {
-width: 44px;
-height: 44px;
+background: var(–accent);
+color: #060B14;
+padding: 16px 36px;
 border-radius: 10px;
+font-size: 16px;
+font-weight: 700;
+border: none;
+cursor: pointer;
+transition: all 0.2s;
+font-family: ‘Instrument Sans’, sans-serif;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+}
+
+.btn-primary:hover {
+background: #00ffb3;
+transform: translateY(-2px);
+box-shadow: 0 12px 32px rgba(0,229,160,0.35);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(–text);
+padding: 16px 36px;
+border-radius: 10px;
+font-size: 16px;
+font-weight: 600;
+border: 1px solid var(–border);
+cursor: pointer;
+transition: all 0.2s;
+font-family: ‘Instrument Sans’, sans-serif;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+}
+
+.btn-secondary:hover {
+border-color: rgba(255,255,255,0.25);
+background: rgba(255,255,255,0.05);
+transform: translateY(-2px);
+}
+
+/* STATS */
+.stats {
+display: flex;
+justify-content: center;
+gap: 60px;
+padding: 40px;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 20px;
+max-width: 800px;
+margin: 0 auto;
+animation: fadeUp 0.6s 0.5s ease both;
+}
+
+.stat { text-align: center; }
+
+.stat-num {
+font-family: ‘Syne’, sans-serif;
+font-size: 36px;
+font-weight: 800;
+color: var(–accent);
+letter-spacing: -1px;
+}
+
+.stat-label {
+font-size: 13px;
+color: var(–muted);
+margin-top: 4px;
+font-weight: 500;
+}
+
+/* SEARCH */
+.search-section {
+position: relative;
+z-index: 1;
+padding: 60px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.search-box {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 8px;
+display: flex;
+gap: 8px;
+align-items: center;
+transition: border-color 0.2s;
+}
+
+.search-box:focus-within {
+border-color: rgba(0,229,160,0.4);
+box-shadow: 0 0 0 4px rgba(0,229,160,0.08);
+}
+
+.search-box input {
+flex: 1;
+background: transparent;
+border: none;
+padding: 14px 16px;
+color: var(–text);
+font-size: 15px;
+font-family: ‘Instrument Sans’, sans-serif;
+outline: none;
+}
+
+.search-box input::placeholder { color: var(–muted); }
+
+.search-divider {
+width: 1px;
+height: 32px;
+background: var(–border);
+}
+
+.search-box select {
+background: transparent;
+border: none;
+color: var(–muted);
+font-size: 14px;
+font-family: ‘Instrument Sans’, sans-serif;
+outline: none;
+padding: 14px 16px;
+cursor: pointer;
+min-width: 160px;
+}
+
+.search-box select option { background: var(–surface2); }
+
+.search-btn {
+background: var(–accent);
+color: #060B14;
+border: none;
+padding: 14px 32px;
+border-radius: 10px;
+font-size: 15px;
+font-weight: 700;
+font-family: ‘Instrument Sans’, sans-serif;
+cursor: pointer;
+transition: all 0.2s;
+white-space: nowrap;
+}
+
+.search-btn:hover {
+background: #00ffb3;
+transform: translateY(-1px);
+box-shadow: 0 8px 24px rgba(0,229,160,0.3);
+}
+
+.filter-pills {
+display: flex;
+gap: 10px;
+margin-top: 16px;
+flex-wrap: wrap;
+}
+
+.pill {
+background: var(–surface2);
+border: 1px solid var(–border);
+color: var(–muted);
+padding: 8px 18px;
+border-radius: 100px;
+font-size: 13px;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.pill:hover, .pill.active {
+background: rgba(0,229,160,0.1);
+border-color: rgba(0,229,160,0.3);
+color: var(–accent);
+}
+
+/* JOB LISTINGS */
+.listings {
+position: relative;
+z-index: 1;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 60px 80px;
+display: grid;
+grid-template-columns: 260px 1fr;
+gap: 40px;
+}
+
+/* SIDEBAR */
+.sidebar {
+position: sticky;
+top: 100px;
+height: fit-content;
+}
+
+.sidebar-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 24px;
+margin-bottom: 16px;
+}
+
+.sidebar-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 16px;
+letter-spacing: 0.5px;
+}
+
+.filter-group { margin-bottom: 20px; }
+
+.filter-label {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 10px;
+display: block;
+}
+
+.filter-item {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 8px;
+cursor: pointer;
+}
+
+.filter-item input[type=“checkbox”] {
+width: 16px;
+height: 16px;
+accent-color: var(–accent);
+cursor: pointer;
+}
+
+.filter-item span { font-size: 13px; color: var(–muted); }
+.filter-item .cnt { margin-left: auto; font-size: 11px; color: rgba(255,255,255,0.2); }
+
+/* JOBS */
+.jobs-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+.jobs-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 22px;
+font-weight: 700;
+}
+
+.jobs-count { color: var(–muted); font-size: 14px; margin-top: 2px; }
+
+.sort-select {
+background: var(–surface);
+border: 1px solid var(–border);
+color: var(–muted);
+padding: 8px 16px;
+border-radius: 8px;
+font-size: 13px;
+font-family: ‘Instrument Sans’, sans-serif;
+outline: none;
+cursor: pointer;
+}
+
+.sort-select option { background: var(–surface2); }
+
+/* JOB CARD */
+.job-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 24px;
+margin-bottom: 12px;
+display: grid;
+grid-template-columns: 52px 1fr auto;
+gap: 16px;
+align-items: start;
+cursor: pointer;
+transition: all 0.25s;
+position: relative;
+overflow: hidden;
+}
+
+.job-card::before {
+content: ‘’;
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 3px;
+background: transparent;
+transition: background 0.2s;
+}
+
+.job-card:hover {
+border-color: rgba(0,229,160,0.25);
+background: var(–surface);
+transform: translateY(-2px);
+box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.job-card:hover::before { background: var(–accent); }
+
+.job-card.featured {
+border-color: rgba(0,229,160,0.2);
+background: linear-gradient(135deg, rgba(0,229,160,0.04), var(–card));
+}
+
+.job-card.featured::before { background: var(–accent); }
+
+.company-icon {
+width: 52px;
+height: 52px;
+border-radius: 12px;
 display: flex;
 align-items: center;
 justify-content: center;
-font-weight: 700;
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
 font-size: 16px;
 color: white;
+flex-shrink: 0;
 }
 
-.logo-teal { background: var(–teal); }
-.logo-gold { background: var(–gold); }
-.logo-dark { background: #2D4A6B; }
-
-.new-badge {
-background: #FEF3C7;
-color: #92400E;
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.8px;
-text-transform: uppercase;
-padding: 3px 8px;
-border-radius: 4px;
-}
-
-.card-title {
-font-family: ‘Playfair Display’, serif;
+.job-title {
+font-family: ‘Syne’, sans-serif;
 font-size: 17px;
-font-weight: 600;
-color: var(–ink);
+font-weight: 700;
+color: var(–text);
 margin-bottom: 4px;
 }
 
-.card-company {
+.job-company {
 font-size: 13px;
 color: var(–muted);
 margin-bottom: 14px;
 }
 
-.card-tags {
+.job-tags {
 display: flex;
 gap: 8px;
 flex-wrap: wrap;
+align-items: center;
 }
 
 .tag {
 font-size: 12px;
 font-weight: 500;
-padding: 4px 10px;
+padding: 4px 12px;
 border-radius: 100px;
 border: 1px solid var(–border);
 color: var(–muted);
 }
 
 .tag-salary {
-background: #E8F4F4;
-color: var(–teal);
-border-color: transparent;
+color: var(–accent);
+border-color: rgba(0,229,160,0.2);
+background: rgba(0,229,160,0.08);
 font-weight: 600;
 }
 
-/* SEARCH BAR */
-.search-section {
-background: var(–teal);
-padding: 50px 60px;
-}
-
-.search-inner {
-max-width: 1200px;
-margin: 0 auto;
-}
-
-.search-label {
-color: rgba(255,255,255,0.7);
-font-size: 13px;
-font-weight: 500;
-letter-spacing: 0.5px;
-margin-bottom: 16px;
-text-transform: uppercase;
-}
-
-.search-bar {
-display: flex;
-background: white;
-border-radius: 12px;
-overflow: hidden;
-box-shadow: 0 8px 40px rgba(0,0,0,0.2);
-}
-
-.search-bar input {
-flex: 1;
-border: none;
-padding: 18px 24px;
-font-size: 15px;
-font-family: ‘DM Sans’, sans-serif;
-color: var(–ink);
-outline: none;
-background: transparent;
-}
-
-.search-divider {
-width: 1px;
-background: var(–border);
-margin: 12px 0;
-}
-
-.search-bar select {
-border: none;
-padding: 18px 24px;
-font-size: 15px;
-font-family: ‘DM Sans’, sans-serif;
-color: var(–ink);
-outline: none;
-background: transparent;
-cursor: pointer;
-min-width: 180px;
-}
-
-.search-btn {
-background: var(–gold);
-color: white;
-border: none;
-padding: 18px 36px;
-font-size: 15px;
-font-weight: 600;
-font-family: ‘DM Sans’, sans-serif;
-cursor: pointer;
-transition: background 0.2s;
-}
-
-.search-btn:hover { background: #B8963D; }
-
-.search-filters {
-display: flex;
-gap: 12px;
-margin-top: 16px;
-}
-
-.filter-pill {
-background: rgba(255,255,255,0.15);
-color: white;
-border: 1px solid rgba(255,255,255,0.25);
-padding: 6px 16px;
-border-radius: 100px;
-font-size: 13px;
-font-weight: 500;
-cursor: pointer;
-transition: all 0.2s;
-}
-
-.filter-pill:hover, .filter-pill.active {
-background: white;
-color: var(–teal);
-}
-
-/* JOB LISTINGS */
-.listings-section {
-max-width: 1200px;
-margin: 0 auto;
-padding: 70px 60px;
-display: grid;
-grid-template-columns: 280px 1fr;
-gap: 50px;
-}
-
-.sidebar h3 {
-font-family: ‘Playfair Display’, serif;
-font-size: 18px;
-margin-bottom: 24px;
-color: var(–ink);
-}
-
-.filter-group {
-margin-bottom: 30px;
-}
-
-.filter-group label {
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 1px;
-text-transform: uppercase;
-color: var(–muted);
-display: block;
-margin-bottom: 12px;
-}
-
-.filter-option {
-display: flex;
-align-items: center;
-gap: 10px;
-margin-bottom: 10px;
-cursor: pointer;
-}
-
-.filter-option input[type=“checkbox”] {
-width: 16px;
-height: 16px;
-accent-color: var(–teal);
-cursor: pointer;
-}
-
-.filter-option span {
-font-size: 14px;
-color: var(–ink);
-}
-
-.filter-option .count {
-margin-left: auto;
-font-size: 12px;
-color: var(–muted);
-}
-
-/* JOB LIST */
-.jobs-header {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 24px;
-}
-
-.jobs-header h2 {
-font-family: ‘Playfair Display’, serif;
-font-size: 24px;
-}
-
-.jobs-header span {
-color: var(–muted);
-font-size: 14px;
-}
-
-.sort-select {
-border: 1px solid var(–border);
-padding: 8px 16px;
-border-radius: 6px;
-font-size: 13px;
-font-family: ‘DM Sans’, sans-serif;
-color: var(–ink);
-background: white;
-cursor: pointer;
-outline: none;
-}
-
-.job-card {
-background: white;
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 26px 28px;
-margin-bottom: 14px;
-display: grid;
-grid-template-columns: 52px 1fr auto;
-gap: 18px;
-align-items: start;
-cursor: pointer;
-transition: all 0.2s;
-text-decoration: none;
-color: inherit;
-display: grid;
-}
-
-.job-card:hover {
-border-color: var(–teal);
-box-shadow: 0 4px 20px rgba(13, 110, 110, 0.1);
-transform: translateY(-1px);
-}
-
-.job-card.featured {
-border-color: var(–gold);
-background: linear-gradient(135deg, #FFFDF5 0%, #FFFFF 100%);
-}
-
-.job-logo {
-width: 52px;
-height: 52px;
-border-radius: 10px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: 700;
-font-size: 18px;
-color: white;
-flex-shrink: 0;
-}
-
-.job-info {}
-
-.job-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 18px;
-font-weight: 600;
-color: var(–ink);
-margin-bottom: 4px;
-}
-
-.job-company {
-font-size: 14px;
-color: var(–muted);
-margin-bottom: 12px;
-}
-
-.job-meta {
-display: flex;
-gap: 8px;
-flex-wrap: wrap;
-align-items: center;
-}
-
-.meta-tag {
-font-size: 12px;
-padding: 3px 10px;
-border-radius: 100px;
-border: 1px solid var(–border);
-color: var(–muted);
-font-weight: 500;
-}
-
-.meta-salary {
-color: var(–teal);
-border-color: #C8E8E8;
-background: #F0F9F9;
-font-weight: 600;
-}
-
-.meta-featured {
-color: #92400E;
-background: #FEF3C7;
-border-color: transparent;
+.tag-featured {
+color: #F59E0B;
+border-color: rgba(245,158,11,0.2);
+background: rgba(245,158,11,0.08);
 font-weight: 600;
 }
 
@@ -551,36 +571,57 @@ font-weight: 600;
 display: flex;
 flex-direction: column;
 align-items: flex-end;
-gap: 10px;
+gap: 12px;
 }
 
-.job-date {
-font-size: 12px;
-color: var(–muted);
-white-space: nowrap;
-}
+.job-date { font-size: 12px; color: var(–muted); white-space: nowrap; }
 
 .apply-btn {
-background: var(–teal);
-color: white;
+background: var(–accent);
+color: #060B14;
 border: none;
-padding: 9px 20px;
-border-radius: 6px;
+padding: 10px 22px;
+border-radius: 8px;
 font-size: 13px;
-font-weight: 600;
-font-family: ‘DM Sans’, sans-serif;
+font-weight: 700;
+font-family: ‘Instrument Sans’, sans-serif;
 cursor: pointer;
-transition: background 0.2s;
+transition: all 0.2s;
 white-space: nowrap;
 }
 
-.apply-btn:hover { background: var(–teal-light); }
+.apply-btn:hover {
+background: #00ffb3;
+transform: translateY(-1px);
+box-shadow: 0 6px 20px rgba(0,229,160,0.3);
+}
 
-/* EMPLOYER CTA */
+.save-btn {
+background: transparent;
+color: var(–muted);
+border: 1px solid var(–border);
+padding: 9px 16px;
+border-radius: 8px;
+font-size: 13px;
+font-weight: 500;
+font-family: ‘Instrument Sans’, sans-serif;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.save-btn:hover {
+border-color: rgba(255,255,255,0.2);
+color: var(–text);
+}
+
+/* EMPLOYER SECTION */
 .employer-section {
-background: var(–ink);
-padding: 80px 60px;
-color: white;
+position: relative;
+z-index: 1;
+background: var(–surface);
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 100px 60px;
 }
 
 .employer-inner {
@@ -593,123 +634,225 @@ align-items: center;
 }
 
 .employer-section h2 {
-font-family: ‘Playfair Display’, serif;
-font-size: 40px;
-line-height: 1.2;
-margin-bottom: 18px;
+font-family: ‘Syne’, sans-serif;
+font-size: 48px;
+font-weight: 800;
+line-height: 1.1;
+letter-spacing: -1.5px;
+margin-bottom: 20px;
 }
 
-.employer-section h2 em {
-font-style: italic;
-color: var(–gold);
+.employer-section h2 span {
+background: linear-gradient(135deg, var(–accent), var(–accent2));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
 }
 
 .employer-section p {
-color: rgba(255,255,255,0.65);
-font-size: 16px;
+color: var(–muted);
+font-size: 17px;
 line-height: 1.7;
-margin-bottom: 32px;
+margin-bottom: 36px;
 font-weight: 300;
 }
 
-.pricing-cards {
+.pricing-grid {
 display: flex;
 flex-direction: column;
-gap: 14px;
+gap: 12px;
 }
 
 .pricing-card {
-background: rgba(255,255,255,0.07);
-border: 1px solid rgba(255,255,255,0.12);
-border-radius: 12px;
-padding: 22px 24px;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 14px;
+padding: 20px 24px;
 display: flex;
 align-items: center;
 justify-content: space-between;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.pricing-card:hover {
+border-color: rgba(0,229,160,0.25);
+transform: translateX(4px);
 }
 
 .pricing-card.popular {
-background: rgba(201, 168, 76, 0.15);
-border-color: var(–gold);
+border-color: rgba(0,229,160,0.3);
+background: rgba(0,229,160,0.05);
 }
 
 .pricing-name {
-font-weight: 600;
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
 font-size: 16px;
 margin-bottom: 3px;
 }
 
-.pricing-desc {
-font-size: 13px;
-color: rgba(255,255,255,0.5);
-}
+.pricing-desc { font-size: 13px; color: var(–muted); }
 
 .pricing-price {
-font-family: ‘Playfair Display’, serif;
-font-size: 24px;
-font-weight: 700;
-color: var(–gold);
+font-family: ‘Syne’, sans-serif;
+font-size: 26px;
+font-weight: 800;
+color: var(–accent);
 }
 
-.pricing-price span {
-font-family: ‘DM Sans’, sans-serif;
+.pricing-price small {
+font-family: ‘Instrument Sans’, sans-serif;
 font-size: 13px;
-color: rgba(255,255,255,0.4);
 font-weight: 400;
+color: var(–muted);
 }
 
-/* FOOTER */
-footer {
-background: #111;
-color: rgba(255,255,255,0.5);
-padding: 40px 60px;
+/* MODAL */
+.modal-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.8);
+backdrop-filter: blur(8px);
+z-index: 1000;
+align-items: center;
+justify-content: center;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 40px;
+max-width: 560px;
+width: 90%;
+position: relative;
+animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+from { opacity: 0; transform: scale(0.95) translateY(20px); }
+to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+position: absolute;
+top: 20px;
+right: 20px;
+background: var(–surface2);
+border: 1px solid var(–border);
+color: var(–muted);
+width: 32px;
+height: 32px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 18px;
 display: flex;
 align-items: center;
-justify-content: space-between;
+justify-content: center;
+transition: all 0.2s;
 }
 
-.footer-logo {
-font-family: ‘Playfair Display’, serif;
-font-size: 18px;
-color: white;
+.modal-close:hover { color: var(–text); background: var(–card); }
+
+.modal h3 {
+font-family: ‘Syne’, sans-serif;
+font-size: 26px;
+font-weight: 800;
+margin-bottom: 8px;
 }
 
-.footer-logo span { color: var(–gold); }
+.modal-company { color: var(–muted); font-size: 15px; margin-bottom: 24px; }
 
-footer p { font-size: 13px; }
+.modal-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
 
-footer a {
-color: rgba(255,255,255,0.4);
-text-decoration: none;
+.modal-desc {
+color: var(–muted);
+font-size: 15px;
+line-height: 1.7;
+margin-bottom: 32px;
+padding: 20px;
+background: var(–card);
+border-radius: 12px;
+border: 1px solid var(–border);
+}
+
+.modal-actions { display: flex; gap: 12px; }
+
+/* POST JOB MODAL */
+.post-modal { max-width: 600px; }
+
+.form-group { margin-bottom: 20px; }
+
+.form-label {
+display: block;
 font-size: 13px;
-margin-left: 24px;
-transition: color 0.2s;
+font-weight: 600;
+color: var(–muted);
+margin-bottom: 8px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
 }
 
-footer a:hover { color: white; }
+.form-input {
+width: 100%;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 12px 16px;
+color: var(–text);
+font-size: 15px;
+font-family: ‘Instrument Sans’, sans-serif;
+outline: none;
+transition: border-color 0.2s;
+}
+
+.form-input:focus {
+border-color: rgba(0,229,160,0.4);
+box-shadow: 0 0 0 3px rgba(0,229,160,0.08);
+}
+
+/* TOAST */
+.toast {
+position: fixed;
+bottom: 32px;
+right: 32px;
+background: var(–accent);
+color: #060B14;
+padding: 14px 24px;
+border-radius: 12px;
+font-weight: 700;
+font-size: 14px;
+z-index: 2000;
+transform: translateY(100px);
+opacity: 0;
+transition: all 0.3s;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
 
 /* TRUST BAR */
 .trust-bar {
-background: white;
+position: relative;
+z-index: 1;
+padding: 28px 60px;
 border-top: 1px solid var(–border);
-border-bottom: 1px solid var(–border);
-padding: 20px 60px;
-}
-
-.trust-inner {
-max-width: 1200px;
-margin: 0 auto;
 display: flex;
 align-items: center;
-gap: 48px;
+gap: 40px;
+max-width: 1200px;
+margin: 0 auto;
 }
 
 .trust-label {
-font-size: 12px;
-font-weight: 600;
-letter-spacing: 0.8px;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1.5px;
 text-transform: uppercase;
-color: var(–muted);
+color: rgba(255,255,255,0.2);
 white-space: nowrap;
 }
 
@@ -721,100 +864,142 @@ flex-wrap: wrap;
 }
 
 .trust-logo {
-font-family: ‘Playfair Display’, serif;
-font-size: 15px;
-font-weight: 600;
-color: #C0B8AE;
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+color: rgba(255,255,255,0.15);
 letter-spacing: -0.3px;
 }
+
+/* FOOTER */
+footer {
+position: relative;
+z-index: 1;
+border-top: 1px solid var(–border);
+padding: 40px 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.footer-logo {
+font-family: ‘Syne’, sans-serif;
+font-size: 18px;
+font-weight: 800;
+color: var(–text);
+}
+
+.footer-logo span { color: var(–accent); }
+footer p { font-size: 13px; color: var(–muted); }
+
+footer a {
+color: var(–muted);
+text-decoration: none;
+font-size: 13px;
+margin-left: 24px;
+transition: color 0.2s;
+}
+
+footer a:hover { color: var(–text); }
+
+/* SCROLL ANIMATIONS */
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 
 </head>
 <body>
 
+<!-- TOAST -->
+
+<div class="toast" id="toast">✓ Application link copied!</div>
+
+<!-- JOB MODAL -->
+
+<div class="modal-overlay" id="jobModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('jobModal')">×</button>
+    <h3 id="modalTitle">Job Title</h3>
+    <p class="modal-company" id="modalCompany">Company</p>
+    <div class="modal-tags" id="modalTags"></div>
+    <div class="modal-desc" id="modalDesc">Loading job details...</div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="applyNow()" style="flex:1">Apply Now →</button>
+      <button class="save-btn" onclick="saveJob()">♡ Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- POST JOB MODAL -->
+
+<div class="modal-overlay" id="postModal">
+  <div class="modal post-modal">
+    <button class="modal-close" onclick="closeModal('postModal')">×</button>
+    <h3>Post a Job</h3>
+    <p class="modal-company">Reach 48,000+ remote nurses nationwide</p>
+    <div class="form-group">
+      <label class="form-label">Company Name</label>
+      <input class="form-input" type="text" placeholder="e.g. Teladoc Health">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Job Title</label>
+      <input class="form-input" type="text" placeholder="e.g. Remote ICU Tele-Nurse">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Salary Range</label>
+      <input class="form-input" type="text" placeholder="e.g. $80,000 – $100,000/yr">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Contact Email</label>
+      <input class="form-input" type="email" placeholder="hr@yourcompany.com">
+    </div>
+    <button class="btn-primary" style="width:100%; justify-content:center;" onclick="submitJob()">Post for $99 →</button>
+  </div>
+</div>
+
 <!-- NAV -->
 
 <nav>
-  <div class="logo">Nurse<span>Remote</span></div>
-  <ul>
-    <li><a href="#">Browse Jobs</a></li>
-    <li><a href="#">Specialties</a></li>
+  <div class="logo">Tele<span>RN</span></div>
+  <ul class="nav-links">
+    <li><a onclick="scrollTo('.listings')">Browse Jobs</a></li>
+    <li><a onclick="scrollTo('.employer-section')">For Employers</a></li>
     <li><a href="#">Salary Guide</a></li>
-    <li><a href="#">Resources</a></li>
-    <li><a href="#" class="nav-cta">Post a Job</a></li>
+    <li><a class="nav-btn" onclick="openModal('postModal')">Post a Job</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 
-<section>
-  <div class="hero">
-    <div class="hero-text">
-      <div class="hero-eyebrow">🩺 #1 Remote Nursing Job Board</div>
-      <h1>Your nursing career, <em>anywhere.</em></h1>
-      <p>The only job board built exclusively for telehealth and remote nursing. Connect with top healthcare employers offering fully remote positions across every specialty.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn-primary">Browse 1,200+ Jobs</a>
-        <a href="#" class="btn-outline">Post a Job</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">1,247</div>
-          <div class="stat-label">Active Jobs</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">340+</div>
-          <div class="stat-label">Employers</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">$95k</div>
-          <div class="stat-label">Avg. Salary</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">48hr</div>
-          <div class="stat-label">Avg. Response</div>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-badge">🩺 #1 Remote Nursing Job Board</div>
+  <h1>Find your <span class="gradient">remote</span><br>nursing career</h1>
+  <p>The only job board built exclusively for telehealth and remote nursing. Connect with top healthcare employers offering fully remote positions.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.querySelector('.search-section').scrollIntoView({behavior:'smooth'})">Browse 1,200+ Jobs →</button>
+    <button class="btn-secondary" onclick="openModal('postModal')">Post a Job</button>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" data-count="1247">0</div>
+      <div class="stat-label">Active Jobs</div>
     </div>
-    <div class="hero-visual">
-      <div class="featured-job-card">
-        <div class="card-top">
-          <div class="company-logo logo-teal">TH</div>
-          <span class="new-badge">New Today</span>
-        </div>
-        <div class="card-title">Remote ICU Tele-Nurse</div>
-        <div class="card-company">Teladoc Health · Full-time</div>
-        <div class="card-tags">
-          <span class="tag tag-salary">$88k–$105k/yr</span>
-          <span class="tag">ICU</span>
-          <span class="tag">100% Remote</span>
-        </div>
-      </div>
-      <div class="featured-job-card">
-        <div class="card-top">
-          <div class="company-logo logo-gold">AM</div>
-          <span class="new-badge">New Today</span>
-        </div>
-        <div class="card-title">Telehealth Pediatric RN</div>
-        <div class="card-company">Amazon Care · Part-time</div>
-        <div class="card-tags">
-          <span class="tag tag-salary">$75k–$90k/yr</span>
-          <span class="tag">Pediatrics</span>
-          <span class="tag">Flexible Hours</span>
-        </div>
-      </div>
-      <div class="featured-job-card">
-        <div class="card-top">
-          <div class="company-logo logo-dark">CV</div>
-        </div>
-        <div class="card-title">Remote Case Manager RN</div>
-        <div class="card-company">CVS Health · Full-time</div>
-        <div class="card-tags">
-          <span class="tag tag-salary">$80k–$98k/yr</span>
-          <span class="tag">Case Mgmt</span>
-          <span class="tag">Benefits</span>
-        </div>
-      </div>
+    <div class="stat">
+      <div class="stat-num" data-count="340">0</div>
+      <div class="stat-label">Employers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$95k</div>
+      <div class="stat-label">Avg. Salary</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">48hr</div>
+      <div class="stat-label">Avg. Response</div>
     </div>
   </div>
 </section>
@@ -822,134 +1007,80 @@ letter-spacing: -0.3px;
 <!-- TRUST BAR -->
 
 <div class="trust-bar">
-  <div class="trust-inner">
-    <span class="trust-label">Trusted by nurses at</span>
-    <div class="trust-logos">
-      <span class="trust-logo">Teladoc</span>
-      <span class="trust-logo">CVS Health</span>
-      <span class="trust-logo">Mayo Clinic</span>
-      <span class="trust-logo">Humana</span>
-      <span class="trust-logo">Kaiser Permanente</span>
-      <span class="trust-logo">UnitedHealth</span>
-    </div>
+  <span class="trust-label">Trusted by nurses at</span>
+  <div class="trust-logos">
+    <span class="trust-logo">Teladoc</span>
+    <span class="trust-logo">CVS Health</span>
+    <span class="trust-logo">Mayo Clinic</span>
+    <span class="trust-logo">Humana</span>
+    <span class="trust-logo">Kaiser</span>
+    <span class="trust-logo">UnitedHealth</span>
+    <span class="trust-logo">Amazon Care</span>
   </div>
 </div>
 
 <!-- SEARCH -->
 
 <section class="search-section">
-  <div class="search-inner">
-    <p class="search-label">Find your next remote position</p>
-    <div class="search-bar">
-      <input type="text" placeholder="Job title, keyword, or specialty...">
-      <div class="search-divider"></div>
-      <select>
-        <option>All Specialties</option>
-        <option>ICU / Critical Care</option>
-        <option>Pediatrics</option>
-        <option>Mental Health</option>
-        <option>Case Management</option>
-        <option>Oncology</option>
-        <option>Emergency</option>
-      </select>
-      <div class="search-divider"></div>
-      <select>
-        <option>Any Schedule</option>
-        <option>Full-time</option>
-        <option>Part-time</option>
-        <option>PRN / Contract</option>
-        <option>Per Diem</option>
-      </select>
-      <button class="search-btn">Search Jobs →</button>
-    </div>
-    <div class="search-filters">
-      <span class="filter-pill active">All</span>
-      <span class="filter-pill">$80k+</span>
-      <span class="filter-pill">$100k+</span>
-      <span class="filter-pill">New This Week</span>
-      <span class="filter-pill">No Nights</span>
-      <span class="filter-pill">Benefits Included</span>
-      <span class="filter-pill">Hiring Now</span>
-    </div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Job title, specialty, or keyword..." onkeyup="filterJobs()">
+    <div class="search-divider"></div>
+    <select id="specialtyFilter" onchange="filterJobs()">
+      <option value="">All Specialties</option>
+      <option value="ICU">ICU / Critical Care</option>
+      <option value="Pediatrics">Pediatrics</option>
+      <option value="Mental Health">Mental Health</option>
+      <option value="Case Management">Case Management</option>
+      <option value="Oncology">Oncology</option>
+    </select>
+    <div class="search-divider"></div>
+    <select id="typeFilter" onchange="filterJobs()">
+      <option value="">Any Schedule</option>
+      <option value="Full-time">Full-time</option>
+      <option value="Part-time">Part-time</option>
+      <option value="Contract">Contract</option>
+    </select>
+    <button class="search-btn" onclick="filterJobs()">Search Jobs →</button>
+  </div>
+  <div class="filter-pills">
+    <span class="pill active" onclick="setPill(this, '')">All Jobs</span>
+    <span class="pill" onclick="setPill(this, '80k')">$80k+</span>
+    <span class="pill" onclick="setPill(this, '100k')">$100k+</span>
+    <span class="pill" onclick="setPill(this, 'new')">New This Week</span>
+    <span class="pill" onclick="setPill(this, 'nonights')">No Nights</span>
+    <span class="pill" onclick="setPill(this, 'benefits')">Benefits</span>
   </div>
 </section>
 
-<!-- JOB LISTINGS -->
+<!-- LISTINGS -->
 
-<section class="listings-section">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h3>Filter Jobs</h3>
-
-```
-<div class="filter-group">
-  <label>Employment Type</label>
-  <div class="filter-option">
-    <input type="checkbox" checked> <span>Full-time</span> <span class="count">847</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Part-time</span> <span class="count">214</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Contract</span> <span class="count">156</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>PRN / Per Diem</span> <span class="count">89</span>
-  </div>
-</div>
-
-<div class="filter-group">
-  <label>Specialty</label>
-  <div class="filter-option">
-    <input type="checkbox"> <span>ICU / Critical Care</span> <span class="count">203</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Mental Health</span> <span class="count">178</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Case Management</span> <span class="count">164</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Pediatrics</span> <span class="count">121</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Oncology</span> <span class="count">98</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Med-Surg</span> <span class="count">87</span>
-  </div>
-</div>
-
-<div class="filter-group">
-  <label>License Required</label>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Compact State License</span> <span class="count">612</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>Single State OK</span> <span class="count">389</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>NP License</span> <span class="count">246</span>
-  </div>
-</div>
-
-<div class="filter-group">
-  <label>Salary Range</label>
-  <div class="filter-option">
-    <input type="checkbox"> <span>$60k – $80k</span> <span class="count">184</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>$80k – $100k</span> <span class="count">431</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>$100k – $130k</span> <span class="count">298</span>
-  </div>
-  <div class="filter-option">
-    <input type="checkbox"> <span>$130k+</span> <span class="count">112</span>
-  </div>
-</div>
-```
-
+<section class="listings">
+  <aside class="sidebar fade-in">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Filter Jobs</div>
+      <div class="filter-group">
+        <span class="filter-label">Employment Type</span>
+        <div class="filter-item"><input type="checkbox" checked onchange="filterJobs()"> <span>Full-time</span> <span class="cnt">847</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>Part-time</span> <span class="cnt">214</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>Contract</span> <span class="cnt">156</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>PRN / Per Diem</span> <span class="cnt">89</span></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Specialty</span>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>ICU / Critical Care</span> <span class="cnt">203</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>Mental Health</span> <span class="cnt">178</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>Case Management</span> <span class="cnt">164</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>Pediatrics</span> <span class="cnt">121</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>Oncology</span> <span class="cnt">98</span></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Salary Range</span>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>$60k – $80k</span> <span class="cnt">184</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>$80k – $100k</span> <span class="cnt">431</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>$100k – $130k</span> <span class="cnt">298</span></div>
+        <div class="filter-item"><input type="checkbox" onchange="filterJobs()"> <span>$130k+</span> <span class="cnt">112</span></div>
+      </div>
+    </div>
   </aside>
 
   <!-- JOB LIST -->
@@ -957,161 +1088,55 @@ letter-spacing: -0.3px;
   <div>
     <div class="jobs-header">
       <div>
-        <h2>Remote Nursing Jobs</h2>
-        <span>1,247 positions available</span>
+        <div class="jobs-title">Remote Nursing Jobs</div>
+        <div class="jobs-count" id="jobCount">1,247 positions available</div>
       </div>
       <select class="sort-select">
-        <option>Sort: Most Recent</option>
-        <option>Sort: Highest Salary</option>
-        <option>Sort: Most Relevant</option>
+        <option>Most Recent</option>
+        <option>Highest Salary</option>
+        <option>Most Relevant</option>
       </select>
     </div>
 
 ```
-<!-- Job Cards -->
-<div class="job-card featured">
-  <div class="job-logo" style="background: var(--teal);">TH</div>
-  <div class="job-info">
-    <div class="job-title">Remote ICU Tele-Nurse, RN</div>
-    <div class="job-company">Teladoc Health · New York, NY (Remote)</div>
-    <div class="job-meta">
-      <span class="meta-tag meta-featured">⭐ Featured</span>
-      <span class="meta-tag meta-salary">$88,000 – $105,000/yr</span>
-      <span class="meta-tag">Full-time</span>
-      <span class="meta-tag">ICU</span>
-      <span class="meta-tag">Compact License OK</span>
-    </div>
-  </div>
-  <div class="job-action">
-    <span class="job-date">Today</span>
-    <button class="apply-btn">Apply Now</button>
-  </div>
-</div>
-
-<div class="job-card">
-  <div class="job-logo" style="background: #2D4A6B;">CV</div>
-  <div class="job-info">
-    <div class="job-title">Telehealth Case Manager, RN</div>
-    <div class="job-company">CVS Health / Aetna · Hartford, CT (Remote)</div>
-    <div class="job-meta">
-      <span class="meta-tag meta-salary">$80,000 – $97,000/yr</span>
-      <span class="meta-tag">Full-time</span>
-      <span class="meta-tag">Case Management</span>
-      <span class="meta-tag">Benefits</span>
-    </div>
-  </div>
-  <div class="job-action">
-    <span class="job-date">2 days ago</span>
-    <button class="apply-btn">Apply Now</button>
-  </div>
-</div>
-
-<div class="job-card">
-  <div class="job-logo" style="background: var(--gold);">AM</div>
-  <div class="job-info">
-    <div class="job-title">Remote Pediatric RN, Telehealth</div>
-    <div class="job-company">Amazon Care · Seattle, WA (Remote)</div>
-    <div class="job-meta">
-      <span class="meta-tag meta-salary">$78,000 – $94,000/yr</span>
-      <span class="meta-tag">Part-time</span>
-      <span class="meta-tag">Pediatrics</span>
-      <span class="meta-tag">Flexible</span>
-    </div>
-  </div>
-  <div class="job-action">
-    <span class="job-date">3 days ago</span>
-    <button class="apply-btn">Apply Now</button>
-  </div>
-</div>
-
-<div class="job-card">
-  <div class="job-logo" style="background: #5B6F47;">HU</div>
-  <div class="job-info">
-    <div class="job-title">Behavioral Health RN, Remote</div>
-    <div class="job-company">Humana · Louisville, KY (Remote)</div>
-    <div class="job-meta">
-      <span class="meta-tag meta-salary">$75,000 – $90,000/yr</span>
-      <span class="meta-tag">Full-time</span>
-      <span class="meta-tag">Mental Health</span>
-      <span class="meta-tag">No Nights</span>
-    </div>
-  </div>
-  <div class="job-action">
-    <span class="job-date">4 days ago</span>
-    <button class="apply-btn">Apply Now</button>
-  </div>
-</div>
-
-<div class="job-card">
-  <div class="job-logo" style="background: #7B3FA0;">UP</div>
-  <div class="job-info">
-    <div class="job-title">Remote Oncology Nurse Navigator</div>
-    <div class="job-company">UnitedHealth Group · Minneapolis, MN (Remote)</div>
-    <div class="job-meta">
-      <span class="meta-tag meta-salary">$95,000 – $118,000/yr</span>
-      <span class="meta-tag">Full-time</span>
-      <span class="meta-tag">Oncology</span>
-      <span class="meta-tag">NP Preferred</span>
-    </div>
-  </div>
-  <div class="job-action">
-    <span class="job-date">5 days ago</span>
-    <button class="apply-btn">Apply Now</button>
-  </div>
-</div>
-
-<div class="job-card">
-  <div class="job-logo" style="background: #C0392B;">MC</div>
-  <div class="job-info">
-    <div class="job-title">Telehealth Triage RN</div>
-    <div class="job-company">Mayo Clinic · Rochester, MN (Remote)</div>
-    <div class="job-meta">
-      <span class="meta-tag meta-salary">$82,000 – $99,000/yr</span>
-      <span class="meta-tag">Full-time</span>
-      <span class="meta-tag">Triage</span>
-      <span class="meta-tag">Evenings</span>
-    </div>
-  </div>
-  <div class="job-action">
-    <span class="job-date">1 week ago</span>
-    <button class="apply-btn">Apply Now</button>
-  </div>
+<div id="jobList">
+  <!-- Jobs injected by JS -->
 </div>
 ```
 
   </div>
 </section>
 
-<!-- EMPLOYER CTA -->
+<!-- EMPLOYER SECTION -->
 
 <section class="employer-section">
-  <div class="employer-inner">
+  <div class="employer-inner fade-in">
     <div>
-      <h2>Hire remote nurses <em>faster.</em></h2>
-      <p>Post to the only job board where every candidate is actively seeking remote or telehealth work. Reach 48,000+ qualified nurses who are ready to start now.</p>
-      <a href="#" class="btn-primary" style="display:inline-block;">Post Your First Job →</a>
+      <h2>Hire remote nurses <span>faster.</span></h2>
+      <p>Post to the only job board where every candidate is actively seeking remote or telehealth work. Reach 48,000+ qualified nurses ready to start now.</p>
+      <button class="btn-primary" onclick="openModal('postModal')">Post Your First Job →</button>
     </div>
-    <div class="pricing-cards">
-      <div class="pricing-card">
+    <div class="pricing-grid">
+      <div class="pricing-card" onclick="openModal('postModal')">
         <div>
           <div class="pricing-name">Single Listing</div>
-          <div class="pricing-desc">1 job post, 30-day visibility</div>
+          <div class="pricing-desc">1 job post · 30-day visibility</div>
         </div>
-        <div class="pricing-price">$99<span>/post</span></div>
+        <div class="pricing-price">$99<small>/post</small></div>
       </div>
-      <div class="pricing-card popular">
+      <div class="pricing-card popular" onclick="openModal('postModal')">
         <div>
           <div class="pricing-name">⭐ Employer Pack</div>
           <div class="pricing-desc">5 posts + featured placement</div>
         </div>
-        <div class="pricing-price">$349<span>/mo</span></div>
+        <div class="pricing-price">$349<small>/mo</small></div>
       </div>
-      <div class="pricing-card">
+      <div class="pricing-card" onclick="openModal('postModal')">
         <div>
           <div class="pricing-name">Unlimited</div>
           <div class="pricing-desc">Unlimited posts + branding</div>
         </div>
-        <div class="pricing-price">$699<span>/mo</span></div>
+        <div class="pricing-price">$699<small>/mo</small></div>
       </div>
     </div>
   </div>
@@ -1120,24 +1145,156 @@ letter-spacing: -0.3px;
 <!-- FOOTER -->
 
 <footer>
-  <div class="footer-logo">Nurse<span>Remote</span></div>
-  <p>© 2026 NurseRemote. The #1 telehealth nursing job board.</p>
+  <div class="footer-logo">Tele<span>RN</span></div>
+  <p>© 2026 TeleRN. The #1 telehealth nursing job board.</p>
   <div>
     <a href="#">About</a>
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
-    <a href="#">Contact</a>
+    <a href="#" onclick="openModal('postModal')">Post a Job</a>
   </div>
 </footer>
 
 <script>
-  // Filter pills toggle
-  document.querySelectorAll('.filter-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-    });
+const jobs = [
+  { id:1, title:'Remote ICU Tele-Nurse, RN', company:'Teladoc Health', location:'New York, NY (Remote)', salary:'$88,000 – $105,000/yr', type:'Full-time', specialty:'ICU', tags:['ICU','100% Remote','Compact License OK'], featured:true, date:'Today', color:'#0D6E6E', initials:'TH', desc:'Join Teladoc Health\'s award-winning telehealth team as a Remote ICU Tele-Nurse. You\'ll monitor critically ill patients using cutting-edge tele-ICU technology, collaborate with bedside teams nationwide, and deliver life-saving care from the comfort of your home office. Compact license required.' },
+  { id:2, title:'Telehealth Case Manager, RN', company:'CVS Health / Aetna', location:'Hartford, CT (Remote)', salary:'$80,000 – $97,000/yr', type:'Full-time', specialty:'Case Management', tags:['Case Management','Benefits','No Nights'], featured:false, date:'2 days ago', color:'#1E3A5F', initials:'CV', desc:'CVS Health is seeking a compassionate Case Manager RN to coordinate care for complex patients via telehealth. You\'ll develop care plans, connect patients with resources, and improve health outcomes across our large member population. Full benefits included.' },
+  { id:3, title:'Telehealth Pediatric RN', company:'Amazon Care', location:'Seattle, WA (Remote)', salary:'$78,000 – $94,000/yr', type:'Part-time', specialty:'Pediatrics', tags:['Pediatrics','Flexible Hours','Part-time'], featured:false, date:'3 days ago', color:'#FF9900', initials:'AC', desc:'Amazon Care is hiring a Pediatric RN to deliver virtual care to children and families through our innovative telehealth platform. This part-time role offers maximum flexibility — you set your own schedule within available slots. Perfect for experienced pediatric nurses seeking work-life balance.' },
+  { id:4, title:'Behavioral Health RN, Remote', company:'Humana', location:'Louisville, KY (Remote)', salary:'$75,000 – $90,000/yr', type:'Full-time', specialty:'Mental Health', tags:['Mental Health','No Nights','Full Benefits'], featured:false, date:'4 days ago', color:'#2E7D32', initials:'HU', desc:'Humana\'s Behavioral Health team needs an experienced RN to provide telephonic care management and crisis support to members with mental health and substance use disorders. No nights or weekends required. Competitive salary plus comprehensive benefits package.' },
+  { id:5, title:'Remote Oncology Nurse Navigator', company:'UnitedHealth Group', location:'Minneapolis, MN (Remote)', salary:'$95,000 – $118,000/yr', type:'Full-time', specialty:'Oncology', tags:['Oncology','NP Preferred','$100k+'], featured:false, date:'5 days ago', color:'#7B3FA0', initials:'UH', desc:'UnitedHealth Group is searching for an Oncology Nurse Navigator to guide cancer patients through their treatment journey via telehealth. This high-impact role requires oncology experience and strong communication skills. NP preferred but not required. Excellent compensation.' },
+  { id:6, title:'Telehealth Triage RN', company:'Mayo Clinic', location:'Rochester, MN (Remote)', salary:'$82,000 – $99,000/yr', type:'Full-time', specialty:'ICU', tags:['Triage','Evening Shifts','Compact License'], featured:false, date:'1 week ago', color:'#B71C1C', initials:'MC', desc:'Mayo Clinic seeks a Triage RN to handle after-hours telehealth calls and urgent care consultations for our patients nationwide. This evening role is perfect for experienced RNs who thrive in fast-paced environments. Compact license required. Mayo Clinic benefits included.' },
+];
+
+let currentJob = null;
+
+function renderJobs(filtered) {
+  const list = filtered || jobs;
+  const container = document.getElementById('jobList');
+  document.getElementById('jobCount').textContent = list.length.toLocaleString() + ' positions available';
+  container.innerHTML = list.map(j => `
+    <div class="job-card ${j.featured ? 'featured' : ''}" onclick="openJob(${j.id})">
+      <div class="company-icon" style="background:${j.color}">${j.initials}</div>
+      <div>
+        <div class="job-title">${j.title}</div>
+        <div class="job-company">${j.company} · ${j.location}</div>
+        <div class="job-tags">
+          ${j.featured ? '<span class="tag tag-featured">⭐ Featured</span>' : ''}
+          <span class="tag tag-salary">${j.salary}</span>
+          <span class="tag">${j.type}</span>
+          ${j.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="job-action">
+        <span class="job-date">${j.date}</span>
+        <button class="apply-btn" onclick="event.stopPropagation(); applyToJob(${j.id})">Apply Now</button>
+        <button class="save-btn" onclick="event.stopPropagation(); saveJobById(${j.id})">♡</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterJobs() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const specialty = document.getElementById('specialtyFilter').value;
+  const type = document.getElementById('typeFilter').value;
+  const filtered = jobs.filter(j => {
+    const matchQ = !q || j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.specialty.toLowerCase().includes(q);
+    const matchS = !specialty || j.specialty === specialty;
+    const matchT = !type || j.type === type;
+    return matchQ && matchS && matchT;
   });
+  renderJobs(filtered);
+}
+
+function setPill(el, filter) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function openJob(id) {
+  currentJob = jobs.find(j => j.id === id);
+  document.getElementById('modalTitle').textContent = currentJob.title;
+  document.getElementById('modalCompany').textContent = currentJob.company + ' · ' + currentJob.location;
+  document.getElementById('modalDesc').textContent = currentJob.desc;
+  document.getElementById('modalTags').innerHTML = `
+    <span class="tag tag-salary">${currentJob.salary}</span>
+    <span class="tag">${currentJob.type}</span>
+    ${currentJob.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+  `;
+  openModal('jobModal');
+}
+
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function applyNow() {
+  showToast('✓ Application link copied!');
+  closeModal('jobModal');
+}
+
+function applyToJob(id) {
+  showToast('✓ Application link copied!');
+}
+
+function saveJob() {
+  showToast('♡ Job saved!');
+}
+
+function saveJobById(id) {
+  showToast('♡ Job saved!');
+}
+
+function submitJob() {
+  showToast('🎉 Job posted successfully!');
+  closeModal('postModal');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCount(el) {
+  const target = parseInt(el.dataset.count);
+  let current = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) { el.textContent = target.toLocaleString(); clearInterval(timer); }
+    else el.textContent = Math.floor(current).toLocaleString();
+  }, 16);
+}
+
+const countObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); } });
+});
+
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+// Initial render
+renderJobs();
 </script>
 
 </body>
