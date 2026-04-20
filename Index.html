@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NurseRemote — Telehealth & Remote Nursing Jobs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --ink: #1A1612;
+    --teal: #0D6E6E;
+    --teal-light: #12A09A;
+    --gold: #C9A84C;
+    --muted: #8A8178;
+    --card-bg: #FFFFFF;
+    --border: #E8E2D9;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–cream);
+color: var(–ink);
+min-height: 100vh;
+}
+
+/* NAV */
+nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px 60px;
+border-bottom: 1px solid var(–border);
+background: var(–cream);
+position: sticky;
+top: 0;
+z-index: 100;
+backdrop-filter: blur(8px);
+}
+
+.logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 22px;
+font-weight: 700;
+color: var(–teal);
+letter-spacing: -0.5px;
+}
+
+.logo span { color: var(–gold); }
+
+nav ul {
+display: flex;
+gap: 36px;
+list-style: none;
+}
+
+nav ul a {
+text-decoration: none;
+color: var(–muted);
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0.3px;
+transition: color 0.2s;
+}
+
+nav ul a:hover { color: var(–ink); }
+
+.nav-cta {
+background: var(–teal);
+color: white !important;
+padding: 10px 22px;
+border-radius: 6px;
+font-weight: 600 !important;
+font-size: 13px !important;
+transition: background 0.2s !important;
+}
+
+.nav-cta:hover { background: var(–teal-light) !important; color: white !important; }
+
+/* HERO */
+.hero {
+padding: 90px 60px 70px;
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+}
+
+.hero-eyebrow {
+display: inline-block;
+background: #E8F4F4;
+color: var(–teal);
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+padding: 6px 14px;
+border-radius: 100px;
+margin-bottom: 24px;
+}
+
+.hero h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: 54px;
+line-height: 1.1;
+font-weight: 700;
+margin-bottom: 22px;
+color: var(–ink);
+}
+
+.hero h1 em {
+font-style: italic;
+color: var(–teal);
+}
+
+.hero p {
+font-size: 17px;
+line-height: 1.7;
+color: var(–muted);
+margin-bottom: 36px;
+font-weight: 300;
+}
+
+.hero-actions {
+display: flex;
+gap: 14px;
+align-items: center;
+}
+
+.btn-primary {
+background: var(–teal);
+color: white;
+padding: 14px 28px;
+border-radius: 8px;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+border: none;
+transition: all 0.2s;
+text-decoration: none;
+}
+
+.btn-primary:hover { background: var(–teal-light); transform: translateY(-1px); }
+
+.btn-outline {
+background: transparent;
+color: var(–teal);
+padding: 14px 28px;
+border-radius: 8px;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+border: 2px solid var(–teal);
+transition: all 0.2s;
+text-decoration: none;
+}
+
+.btn-outline:hover { background: var(–teal); color: white; }
+
+.hero-stats {
+display: flex;
+gap: 32px;
+margin-top: 48px;
+padding-top: 36px;
+border-top: 1px solid var(–border);
+}
+
+.stat-item { }
+.stat-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 28px;
+font-weight: 700;
+color: var(–teal);
+}
+.stat-label {
+font-size: 12px;
+color: var(–muted);
+font-weight: 500;
+margin-top: 2px;
+}
+
+/* HERO VISUAL */
+.hero-visual {
+position: relative;
+}
+
+.featured-job-card {
+background: white;
+border-radius: 16px;
+padding: 28px;
+box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+margin-bottom: 16px;
+border: 1px solid var(–border);
+animation: floatUp 0.6s ease forwards;
+opacity: 0;
+transform: translateY(20px);
+}
+
+.featured-job-card:nth-child(1) { animation-delay: 0.3s; }
+.featured-job-card:nth-child(2) { animation-delay: 0.5s; }
+.featured-job-card:nth-child(3) { animation-delay: 0.7s; }
+
+@keyframes floatUp {
+to { opacity: 1; transform: translateY(0); }
+}
+
+.card-top {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+margin-bottom: 14px;
+}
+
+.company-logo {
+width: 44px;
+height: 44px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 16px;
+color: white;
+}
+
+.logo-teal { background: var(–teal); }
+.logo-gold { background: var(–gold); }
+.logo-dark { background: #2D4A6B; }
+
+.new-badge {
+background: #FEF3C7;
+color: #92400E;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.8px;
+text-transform: uppercase;
+padding: 3px 8px;
+border-radius: 4px;
+}
+
+.card-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 17px;
+font-weight: 600;
+color: var(–ink);
+margin-bottom: 4px;
+}
+
+.card-company {
+font-size: 13px;
+color: var(–muted);
+margin-bottom: 14px;
+}
+
+.card-tags {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+}
+
+.tag {
+font-size: 12px;
+font-weight: 500;
+padding: 4px 10px;
+border-radius: 100px;
+border: 1px solid var(–border);
+color: var(–muted);
+}
+
+.tag-salary {
+background: #E8F4F4;
+color: var(–teal);
+border-color: transparent;
+font-weight: 600;
+}
+
+/* SEARCH BAR */
+.search-section {
+background: var(–teal);
+padding: 50px 60px;
+}
+
+.search-inner {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.search-label {
+color: rgba(255,255,255,0.7);
+font-size: 13px;
+font-weight: 500;
+letter-spacing: 0.5px;
+margin-bottom: 16px;
+text-transform: uppercase;
+}
+
+.search-bar {
+display: flex;
+background: white;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+}
+
+.search-bar input {
+flex: 1;
+border: none;
+padding: 18px 24px;
+font-size: 15px;
+font-family: ‘DM Sans’, sans-serif;
+color: var(–ink);
+outline: none;
+background: transparent;
+}
+
+.search-divider {
+width: 1px;
+background: var(–border);
+margin: 12px 0;
+}
+
+.search-bar select {
+border: none;
+padding: 18px 24px;
+font-size: 15px;
+font-family: ‘DM Sans’, sans-serif;
+color: var(–ink);
+outline: none;
+background: transparent;
+cursor: pointer;
+min-width: 180px;
+}
+
+.search-btn {
+background: var(–gold);
+color: white;
+border: none;
+padding: 18px 36px;
+font-size: 15px;
+font-weight: 600;
+font-family: ‘DM Sans’, sans-serif;
+cursor: pointer;
+transition: background 0.2s;
+}
+
+.search-btn:hover { background: #B8963D; }
+
+.search-filters {
+display: flex;
+gap: 12px;
+margin-top: 16px;
+}
+
+.filter-pill {
+background: rgba(255,255,255,0.15);
+color: white;
+border: 1px solid rgba(255,255,255,0.25);
+padding: 6px 16px;
+border-radius: 100px;
+font-size: 13px;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.filter-pill:hover, .filter-pill.active {
+background: white;
+color: var(–teal);
+}
+
+/* JOB LISTINGS */
+.listings-section {
+max-width: 1200px;
+margin: 0 auto;
+padding: 70px 60px;
+display: grid;
+grid-template-columns: 280px 1fr;
+gap: 50px;
+}
+
+.sidebar h3 {
+font-family: ‘Playfair Display’, serif;
+font-size: 18px;
+margin-bottom: 24px;
+color: var(–ink);
+}
+
+.filter-group {
+margin-bottom: 30px;
+}
+
+.filter-group label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–muted);
+display: block;
+margin-bottom: 12px;
+}
+
+.filter-option {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px;
+cursor: pointer;
+}
+
+.filter-option input[type=“checkbox”] {
+width: 16px;
+height: 16px;
+accent-color: var(–teal);
+cursor: pointer;
+}
+
+.filter-option span {
+font-size: 14px;
+color: var(–ink);
+}
+
+.filter-option .count {
+margin-left: auto;
+font-size: 12px;
+color: var(–muted);
+}
+
+/* JOB LIST */
+.jobs-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 24px;
+}
+
+.jobs-header h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: 24px;
+}
+
+.jobs-header span {
+color: var(–muted);
+font-size: 14px;
+}
+
+.sort-select {
+border: 1px solid var(–border);
+padding: 8px 16px;
+border-radius: 6px;
+font-size: 13px;
+font-family: ‘DM Sans’, sans-serif;
+color: var(–ink);
+background: white;
+cursor: pointer;
+outline: none;
+}
+
+.job-card {
+background: white;
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 26px 28px;
+margin-bottom: 14px;
+display: grid;
+grid-template-columns: 52px 1fr auto;
+gap: 18px;
+align-items: start;
+cursor: pointer;
+transition: all 0.2s;
+text-decoration: none;
+color: inherit;
+display: grid;
+}
+
+.job-card:hover {
+border-color: var(–teal);
+box-shadow: 0 4px 20px rgba(13, 110, 110, 0.1);
+transform: translateY(-1px);
+}
+
+.job-card.featured {
+border-color: var(–gold);
+background: linear-gradient(135deg, #FFFDF5 0%, #FFFFF 100%);
+}
+
+.job-logo {
+width: 52px;
+height: 52px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 18px;
+color: white;
+flex-shrink: 0;
+}
+
+.job-info {}
+
+.job-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 18px;
+font-weight: 600;
+color: var(–ink);
+margin-bottom: 4px;
+}
+
+.job-company {
+font-size: 14px;
+color: var(–muted);
+margin-bottom: 12px;
+}
+
+.job-meta {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+align-items: center;
+}
+
+.meta-tag {
+font-size: 12px;
+padding: 3px 10px;
+border-radius: 100px;
+border: 1px solid var(–border);
+color: var(–muted);
+font-weight: 500;
+}
+
+.meta-salary {
+color: var(–teal);
+border-color: #C8E8E8;
+background: #F0F9F9;
+font-weight: 600;
+}
+
+.meta-featured {
+color: #92400E;
+background: #FEF3C7;
+border-color: transparent;
+font-weight: 600;
+}
+
+.job-action {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+gap: 10px;
+}
+
+.job-date {
+font-size: 12px;
+color: var(–muted);
+white-space: nowrap;
+}
+
+.apply-btn {
+background: var(–teal);
+color: white;
+border: none;
+padding: 9px 20px;
+border-radius: 6px;
+font-size: 13px;
+font-weight: 600;
+font-family: ‘DM Sans’, sans-serif;
+cursor: pointer;
+transition: background 0.2s;
+white-space: nowrap;
+}
+
+.apply-btn:hover { background: var(–teal-light); }
+
+/* EMPLOYER CTA */
+.employer-section {
+background: var(–ink);
+padding: 80px 60px;
+color: white;
+}
+
+.employer-inner {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+}
+
+.employer-section h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: 40px;
+line-height: 1.2;
+margin-bottom: 18px;
+}
+
+.employer-section h2 em {
+font-style: italic;
+color: var(–gold);
+}
+
+.employer-section p {
+color: rgba(255,255,255,0.65);
+font-size: 16px;
+line-height: 1.7;
+margin-bottom: 32px;
+font-weight: 300;
+}
+
+.pricing-cards {
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.pricing-card {
+background: rgba(255,255,255,0.07);
+border: 1px solid rgba(255,255,255,0.12);
+border-radius: 12px;
+padding: 22px 24px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.pricing-card.popular {
+background: rgba(201, 168, 76, 0.15);
+border-color: var(–gold);
+}
+
+.pricing-name {
+font-weight: 600;
+font-size: 16px;
+margin-bottom: 3px;
+}
+
+.pricing-desc {
+font-size: 13px;
+color: rgba(255,255,255,0.5);
+}
+
+.pricing-price {
+font-family: ‘Playfair Display’, serif;
+font-size: 24px;
+font-weight: 700;
+color: var(–gold);
+}
+
+.pricing-price span {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 13px;
+color: rgba(255,255,255,0.4);
+font-weight: 400;
+}
+
+/* FOOTER */
+footer {
+background: #111;
+color: rgba(255,255,255,0.5);
+padding: 40px 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.footer-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 18px;
+color: white;
+}
+
+.footer-logo span { color: var(–gold); }
+
+footer p { font-size: 13px; }
+
+footer a {
+color: rgba(255,255,255,0.4);
+text-decoration: none;
+font-size: 13px;
+margin-left: 24px;
+transition: color 0.2s;
+}
+
+footer a:hover { color: white; }
+
+/* TRUST BAR */
+.trust-bar {
+background: white;
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 20px 60px;
+}
+
+.trust-inner {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+gap: 48px;
+}
+
+.trust-label {
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.8px;
+text-transform: uppercase;
+color: var(–muted);
+white-space: nowrap;
+}
+
+.trust-logos {
+display: flex;
+gap: 36px;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.trust-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 15px;
+font-weight: 600;
+color: #C0B8AE;
+letter-spacing: -0.3px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="logo">Nurse<span>Remote</span></div>
+  <ul>
+    <li><a href="#">Browse Jobs</a></li>
+    <li><a href="#">Specialties</a></li>
+    <li><a href="#">Salary Guide</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#" class="nav-cta">Post a Job</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section>
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">🩺 #1 Remote Nursing Job Board</div>
+      <h1>Your nursing career, <em>anywhere.</em></h1>
+      <p>The only job board built exclusively for telehealth and remote nursing. Connect with top healthcare employers offering fully remote positions across every specialty.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Browse 1,200+ Jobs</a>
+        <a href="#" class="btn-outline">Post a Job</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">1,247</div>
+          <div class="stat-label">Active Jobs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">340+</div>
+          <div class="stat-label">Employers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$95k</div>
+          <div class="stat-label">Avg. Salary</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">48hr</div>
+          <div class="stat-label">Avg. Response</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="featured-job-card">
+        <div class="card-top">
+          <div class="company-logo logo-teal">TH</div>
+          <span class="new-badge">New Today</span>
+        </div>
+        <div class="card-title">Remote ICU Tele-Nurse</div>
+        <div class="card-company">Teladoc Health · Full-time</div>
+        <div class="card-tags">
+          <span class="tag tag-salary">$88k–$105k/yr</span>
+          <span class="tag">ICU</span>
+          <span class="tag">100% Remote</span>
+        </div>
+      </div>
+      <div class="featured-job-card">
+        <div class="card-top">
+          <div class="company-logo logo-gold">AM</div>
+          <span class="new-badge">New Today</span>
+        </div>
+        <div class="card-title">Telehealth Pediatric RN</div>
+        <div class="card-company">Amazon Care · Part-time</div>
+        <div class="card-tags">
+          <span class="tag tag-salary">$75k–$90k/yr</span>
+          <span class="tag">Pediatrics</span>
+          <span class="tag">Flexible Hours</span>
+        </div>
+      </div>
+      <div class="featured-job-card">
+        <div class="card-top">
+          <div class="company-logo logo-dark">CV</div>
+        </div>
+        <div class="card-title">Remote Case Manager RN</div>
+        <div class="card-company">CVS Health · Full-time</div>
+        <div class="card-tags">
+          <span class="tag tag-salary">$80k–$98k/yr</span>
+          <span class="tag">Case Mgmt</span>
+          <span class="tag">Benefits</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+
+<div class="trust-bar">
+  <div class="trust-inner">
+    <span class="trust-label">Trusted by nurses at</span>
+    <div class="trust-logos">
+      <span class="trust-logo">Teladoc</span>
+      <span class="trust-logo">CVS Health</span>
+      <span class="trust-logo">Mayo Clinic</span>
+      <span class="trust-logo">Humana</span>
+      <span class="trust-logo">Kaiser Permanente</span>
+      <span class="trust-logo">UnitedHealth</span>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+
+<section class="search-section">
+  <div class="search-inner">
+    <p class="search-label">Find your next remote position</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Job title, keyword, or specialty...">
+      <div class="search-divider"></div>
+      <select>
+        <option>All Specialties</option>
+        <option>ICU / Critical Care</option>
+        <option>Pediatrics</option>
+        <option>Mental Health</option>
+        <option>Case Management</option>
+        <option>Oncology</option>
+        <option>Emergency</option>
+      </select>
+      <div class="search-divider"></div>
+      <select>
+        <option>Any Schedule</option>
+        <option>Full-time</option>
+        <option>Part-time</option>
+        <option>PRN / Contract</option>
+        <option>Per Diem</option>
+      </select>
+      <button class="search-btn">Search Jobs →</button>
+    </div>
+    <div class="search-filters">
+      <span class="filter-pill active">All</span>
+      <span class="filter-pill">$80k+</span>
+      <span class="filter-pill">$100k+</span>
+      <span class="filter-pill">New This Week</span>
+      <span class="filter-pill">No Nights</span>
+      <span class="filter-pill">Benefits Included</span>
+      <span class="filter-pill">Hiring Now</span>
+    </div>
+  </div>
+</section>
+
+<!-- JOB LISTINGS -->
+
+<section class="listings-section">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>Filter Jobs</h3>
+
+```
+<div class="filter-group">
+  <label>Employment Type</label>
+  <div class="filter-option">
+    <input type="checkbox" checked> <span>Full-time</span> <span class="count">847</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Part-time</span> <span class="count">214</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Contract</span> <span class="count">156</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>PRN / Per Diem</span> <span class="count">89</span>
+  </div>
+</div>
+
+<div class="filter-group">
+  <label>Specialty</label>
+  <div class="filter-option">
+    <input type="checkbox"> <span>ICU / Critical Care</span> <span class="count">203</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Mental Health</span> <span class="count">178</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Case Management</span> <span class="count">164</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Pediatrics</span> <span class="count">121</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Oncology</span> <span class="count">98</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Med-Surg</span> <span class="count">87</span>
+  </div>
+</div>
+
+<div class="filter-group">
+  <label>License Required</label>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Compact State License</span> <span class="count">612</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>Single State OK</span> <span class="count">389</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>NP License</span> <span class="count">246</span>
+  </div>
+</div>
+
+<div class="filter-group">
+  <label>Salary Range</label>
+  <div class="filter-option">
+    <input type="checkbox"> <span>$60k – $80k</span> <span class="count">184</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>$80k – $100k</span> <span class="count">431</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>$100k – $130k</span> <span class="count">298</span>
+  </div>
+  <div class="filter-option">
+    <input type="checkbox"> <span>$130k+</span> <span class="count">112</span>
+  </div>
+</div>
+```
+
+  </aside>
+
+  <!-- JOB LIST -->
+
+  <div>
+    <div class="jobs-header">
+      <div>
+        <h2>Remote Nursing Jobs</h2>
+        <span>1,247 positions available</span>
+      </div>
+      <select class="sort-select">
+        <option>Sort: Most Recent</option>
+        <option>Sort: Highest Salary</option>
+        <option>Sort: Most Relevant</option>
+      </select>
+    </div>
+
+```
+<!-- Job Cards -->
+<div class="job-card featured">
+  <div class="job-logo" style="background: var(--teal);">TH</div>
+  <div class="job-info">
+    <div class="job-title">Remote ICU Tele-Nurse, RN</div>
+    <div class="job-company">Teladoc Health · New York, NY (Remote)</div>
+    <div class="job-meta">
+      <span class="meta-tag meta-featured">⭐ Featured</span>
+      <span class="meta-tag meta-salary">$88,000 – $105,000/yr</span>
+      <span class="meta-tag">Full-time</span>
+      <span class="meta-tag">ICU</span>
+      <span class="meta-tag">Compact License OK</span>
+    </div>
+  </div>
+  <div class="job-action">
+    <span class="job-date">Today</span>
+    <button class="apply-btn">Apply Now</button>
+  </div>
+</div>
+
+<div class="job-card">
+  <div class="job-logo" style="background: #2D4A6B;">CV</div>
+  <div class="job-info">
+    <div class="job-title">Telehealth Case Manager, RN</div>
+    <div class="job-company">CVS Health / Aetna · Hartford, CT (Remote)</div>
+    <div class="job-meta">
+      <span class="meta-tag meta-salary">$80,000 – $97,000/yr</span>
+      <span class="meta-tag">Full-time</span>
+      <span class="meta-tag">Case Management</span>
+      <span class="meta-tag">Benefits</span>
+    </div>
+  </div>
+  <div class="job-action">
+    <span class="job-date">2 days ago</span>
+    <button class="apply-btn">Apply Now</button>
+  </div>
+</div>
+
+<div class="job-card">
+  <div class="job-logo" style="background: var(--gold);">AM</div>
+  <div class="job-info">
+    <div class="job-title">Remote Pediatric RN, Telehealth</div>
+    <div class="job-company">Amazon Care · Seattle, WA (Remote)</div>
+    <div class="job-meta">
+      <span class="meta-tag meta-salary">$78,000 – $94,000/yr</span>
+      <span class="meta-tag">Part-time</span>
+      <span class="meta-tag">Pediatrics</span>
+      <span class="meta-tag">Flexible</span>
+    </div>
+  </div>
+  <div class="job-action">
+    <span class="job-date">3 days ago</span>
+    <button class="apply-btn">Apply Now</button>
+  </div>
+</div>
+
+<div class="job-card">
+  <div class="job-logo" style="background: #5B6F47;">HU</div>
+  <div class="job-info">
+    <div class="job-title">Behavioral Health RN, Remote</div>
+    <div class="job-company">Humana · Louisville, KY (Remote)</div>
+    <div class="job-meta">
+      <span class="meta-tag meta-salary">$75,000 – $90,000/yr</span>
+      <span class="meta-tag">Full-time</span>
+      <span class="meta-tag">Mental Health</span>
+      <span class="meta-tag">No Nights</span>
+    </div>
+  </div>
+  <div class="job-action">
+    <span class="job-date">4 days ago</span>
+    <button class="apply-btn">Apply Now</button>
+  </div>
+</div>
+
+<div class="job-card">
+  <div class="job-logo" style="background: #7B3FA0;">UP</div>
+  <div class="job-info">
+    <div class="job-title">Remote Oncology Nurse Navigator</div>
+    <div class="job-company">UnitedHealth Group · Minneapolis, MN (Remote)</div>
+    <div class="job-meta">
+      <span class="meta-tag meta-salary">$95,000 – $118,000/yr</span>
+      <span class="meta-tag">Full-time</span>
+      <span class="meta-tag">Oncology</span>
+      <span class="meta-tag">NP Preferred</span>
+    </div>
+  </div>
+  <div class="job-action">
+    <span class="job-date">5 days ago</span>
+    <button class="apply-btn">Apply Now</button>
+  </div>
+</div>
+
+<div class="job-card">
+  <div class="job-logo" style="background: #C0392B;">MC</div>
+  <div class="job-info">
+    <div class="job-title">Telehealth Triage RN</div>
+    <div class="job-company">Mayo Clinic · Rochester, MN (Remote)</div>
+    <div class="job-meta">
+      <span class="meta-tag meta-salary">$82,000 – $99,000/yr</span>
+      <span class="meta-tag">Full-time</span>
+      <span class="meta-tag">Triage</span>
+      <span class="meta-tag">Evenings</span>
+    </div>
+  </div>
+  <div class="job-action">
+    <span class="job-date">1 week ago</span>
+    <button class="apply-btn">Apply Now</button>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- EMPLOYER CTA -->
+
+<section class="employer-section">
+  <div class="employer-inner">
+    <div>
+      <h2>Hire remote nurses <em>faster.</em></h2>
+      <p>Post to the only job board where every candidate is actively seeking remote or telehealth work. Reach 48,000+ qualified nurses who are ready to start now.</p>
+      <a href="#" class="btn-primary" style="display:inline-block;">Post Your First Job →</a>
+    </div>
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <div>
+          <div class="pricing-name">Single Listing</div>
+          <div class="pricing-desc">1 job post, 30-day visibility</div>
+        </div>
+        <div class="pricing-price">$99<span>/post</span></div>
+      </div>
+      <div class="pricing-card popular">
+        <div>
+          <div class="pricing-name">⭐ Employer Pack</div>
+          <div class="pricing-desc">5 posts + featured placement</div>
+        </div>
+        <div class="pricing-price">$349<span>/mo</span></div>
+      </div>
+      <div class="pricing-card">
+        <div>
+          <div class="pricing-name">Unlimited</div>
+          <div class="pricing-desc">Unlimited posts + branding</div>
+        </div>
+        <div class="pricing-price">$699<span>/mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">Nurse<span>Remote</span></div>
+  <p>© 2026 NurseRemote. The #1 telehealth nursing job board.</p>
+  <div>
+    <a href="#">About</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Filter pills toggle
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
