@@ -1640,3 +1640,76 @@ footer {
   transition: all 0.2s ease;
 }
 </style>
+<style>
+/* FORCE DARK THEME PROPERLY */
+html, body {
+  background-color: #0f172a !important; /* dark navy instead of pure black */
+  color: #f8fafc !important;
+}
+
+/* FORCE ALL SECTIONS TO BE SOLID (NO SEE-THROUGH) */
+section, div, main, header, footer {
+  background-color: #0f172a !important;
+}
+
+/* FIX CARDS / CONTENT BLOCKS */
+.card,
+[class*="card"],
+[class*="job"],
+[class*="pricing"],
+[class*="container"] {
+  background-color: #1e293b !important; /* dark slate */
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important;
+}
+
+/* FIX BUTTONS */
+button, .btn {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+  border: none !important;
+}
+
+/* PRIMARY BUTTONS */
+.btn-primary {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+/* GREEN CTA */
+.btn-success {
+  background-color: #22c55e !important;
+  color: white !important;
+}
+
+/* TEXT FIX */
+p, span, li {
+  color: #cbd5f5 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important;
+}
+
+/* INPUTS */
+input, textarea {
+  background-color: #1e293b !important;
+  color: #fff !important;
+  border: 1px solid #334155 !important;
+}
+
+/* 🔥 THIS IS THE REAL FIX FOR YOUR ISSUE */
+* {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* REMOVE WHITE / TRANSPARENT BACKGROUNDS */
+[style*="background: white"],
+[style*="background:white"],
+[style*="rgba(255,255,255"],
+[style*="rgba(255, 255, 255"] {
+  background-color: #1e293b !important;
+}
+</style>
