@@ -1394,3 +1394,97 @@ renderJobs();
     opacity: 1 !important;
   }
 </style>
+<style>
+/* ===== GLOBAL DARK MODE FIX ===== */
+html, body {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* ===== REMOVE ALL TRANSPARENCY / GLASS ===== */
+* {
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ===== FIX ALL SECTIONS ===== */
+section, div, main, header, footer {
+  background-color: #000 !important;
+  opacity: 1 !important;
+}
+
+/* ===== FIX CARDS / PRICING BOXES ===== */
+.card, 
+[class*="card"], 
+[class*="pricing"], 
+[class*="box"] {
+  background-color: #111 !important;
+  border: 1px solid #222 !important;
+  color: #fff !important;
+}
+
+/* ===== FIX BUTTONS ===== */
+button, .btn {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+}
+
+button:hover, .btn:hover {
+  background-color: #222 !important;
+}
+
+/* Primary (blue/green buttons like Post Job / Subscribe) */
+.btn-primary, 
+button.primary {
+  background-color: #2563eb !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* ===== FIX INPUT FIELDS ===== */
+input, textarea {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+}
+
+/* ===== FIX FADED TEXT ===== */
+p, span, small, li {
+  color: #ccc !important;
+}
+
+/* Headings stay bright */
+h1, h2, h3, h4, h5, h6 {
+  color: #fff !important;
+}
+
+/* ===== FIX “WHITE BLOCK” BUTTONS (LIKE LOAD MORE / POST JOB) ===== */
+a, .button, .cta {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+}
+
+/* ===== REMOVE RANDOM OPACITY SETTINGS ===== */
+[style*="opacity"] {
+  opacity: 1 !important;
+}
+
+/* ===== FIX ICON ROW (stats section) ===== */
+[class*="stat"], [class*="icon"] {
+  color: #fff !important;
+}
+
+/* ===== FIX FOOTER ===== */
+footer {
+  background-color: #000 !important;
+  color: #aaa !important;
+}
+
+/* ===== OPTIONAL: SMOOTHER LOOK ===== */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+</style>
