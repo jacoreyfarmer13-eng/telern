@@ -4,21 +4,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TeleRN — Remote & Telehealth Nursing Jobs</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>TeleRN — Remote Nursing Jobs | Work From Home RN Positions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #060B14;
-    --surface: #0D1520;
-    --surface2: #121D2E;
-    --border: rgba(255,255,255,0.08);
-    --accent: #00E5A0;
-    --accent2: #0EA5E9;
-    --text: #F0F4FF;
-    --muted: #8492A6;
-    --card: #0F1B2D;
-    --gold: #F59E0B;
-  }
+:root {
+  --bg: #F8FAFB;
+  --white: #FFFFFF;
+  --ink: #0D1117;
+  --ink2: #1C2333;
+  --muted: #6B7A94;
+  --border: #E4E8F0;
+  --accent: #0066FF;
+  --accent-light: #EEF3FF;
+  --green: #00C77A;
+  --green-light: #E6FAF3;
+  --gold: #F59E0B;
+  --gold-light: #FEF3C7;
+  --red: #EF4444;
+  --card: #FFFFFF;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+}
 
 - { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -26,602 +32,658 @@
 body {
 font-family: ‘Instrument Sans’, sans-serif;
 background: var(–bg);
-color: var(–text);
+color: var(–ink);
 min-height: 100vh;
 overflow-x: hidden;
 }
 
-body::before {
-content: ‘’;
-position: fixed;
-top: -50%; left: -50%;
-width: 200%; height: 200%;
-background: radial-gradient(ellipse at 20% 20%, rgba(0,229,160,0.04) 0%, transparent 50%),
-radial-gradient(ellipse at 80% 80%, rgba(14,165,233,0.04) 0%, transparent 50%);
-pointer-events: none;
-z-index: 0;
-}
-
 /* ====== NAV ====== */
 nav {
-position: sticky; top: 0; z-index: 100;
-display: flex; align-items: center; justify-content: space-between;
-padding: 0 60px; height: 68px;
-background: rgba(6,11,20,0.92);
-backdrop-filter: blur(20px);
+background: var(–white);
 border-bottom: 1px solid var(–border);
+position: sticky; top: 0; z-index: 100;
+width: 100%;
+}
+
+.nav-inner {
+max-width: 1280px; margin: 0 auto;
+display: flex; align-items: center; justify-content: space-between;
+padding: 0 40px; height: 64px;
+gap: 32px;
 }
 
 .logo {
+display: flex; align-items: center; gap: 10px;
 font-family: ‘Syne’, sans-serif;
-font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
-color: var(–text); text-decoration: none;
+font-size: 20px; font-weight: 800;
+color: var(–ink); text-decoration: none;
 flex-shrink: 0;
 }
+
+.logo-icon {
+width: 34px; height: 34px;
+background: var(–accent);
+border-radius: 9px;
+display: flex; align-items: center; justify-content: center;
+font-size: 16px;
+}
+
 .logo span { color: var(–accent); }
 
-.nav-center {
-display: flex; align-items: center; gap: 8px;
-list-style: none;
+.nav-links {
+display: flex; align-items: center; gap: 4px;
+list-style: none; flex: 1; justify-content: center;
 }
 
-.nav-center a {
+.nav-links a {
 text-decoration: none; color: var(–muted);
 font-size: 14px; font-weight: 500;
-padding: 8px 14px; border-radius: 8px;
-transition: all 0.2s; cursor: pointer;
+padding: 7px 14px; border-radius: 8px;
+transition: all 0.15s; cursor: pointer;
 white-space: nowrap;
 }
-.nav-center a:hover { color: var(–text); background: rgba(255,255,255,0.05); }
+.nav-links a:hover { color: var(–ink); background: var(–bg); }
 
-.nav-right {
-display: flex; align-items: center; gap: 12px;
-flex-shrink: 0;
+.nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.btn-ghost {
+background: transparent; color: var(–ink);
+border: 1px solid var(–border);
+padding: 8px 18px; border-radius: 8px;
+font-size: 14px; font-weight: 600;
+cursor: pointer; font-family: ‘Instrument Sans’, sans-serif;
+transition: all 0.15s; white-space: nowrap;
 }
+.btn-ghost:hover { background: var(–bg); border-color: #C8D0E0; }
 
-.nav-post {
-background: var(–accent); color: #060B14 !important;
-padding: 9px 20px; border-radius: 8px;
-font-weight: 700 !important; font-size: 13px !important;
-transition: all 0.2s; cursor: pointer;
-white-space: nowrap;
+.btn-accent {
+background: var(–accent); color: white;
+border: none; padding: 9px 20px; border-radius: 8px;
+font-size: 14px; font-weight: 700;
+cursor: pointer; font-family: ‘Instrument Sans’, sans-serif;
+transition: all 0.15s; white-space: nowrap;
+display: flex; align-items: center; gap: 6px;
 }
-.nav-post:hover { background: #00ffb3 !important; box-shadow: 0 4px 16px rgba(0,229,160,0.3); }
+.btn-accent:hover { background: #0052CC; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,102,255,0.25); }
 
-.nav-price-tag {
-font-size: 11px; background: rgba(0,229,160,0.15);
-color: var(–accent); padding: 3px 8px; border-radius: 100px;
-font-weight: 600; margin-left: 4px;
+.price-badge {
+background: var(–green-light); color: var(–green);
+font-size: 11px; font-weight: 700;
+padding: 2px 7px; border-radius: 100px;
 }
 
 /* ====== HERO ====== */
 .hero {
-position: relative; z-index: 1;
-padding: 80px 60px 60px;
-max-width: 1200px; margin: 0 auto;
+background: var(–white);
+border-bottom: 1px solid var(–border);
+padding: 64px 40px 48px;
+}
+
+.hero-inner {
+max-width: 1280px; margin: 0 auto;
 text-align: center;
 }
 
-.hero-badge {
+.hero-tag {
 display: inline-flex; align-items: center; gap: 8px;
-background: rgba(0,229,160,0.1);
-border: 1px solid rgba(0,229,160,0.25);
+background: var(–accent-light);
+border: 1px solid rgba(0,102,255,0.15);
 color: var(–accent);
 padding: 7px 16px; border-radius: 100px;
-font-size: 12px; font-weight: 600;
-letter-spacing: 1px; text-transform: uppercase;
-margin-bottom: 28px;
-animation: fadeDown 0.5s ease forwards;
+font-size: 12px; font-weight: 700;
+letter-spacing: 0.5px; text-transform: uppercase;
+margin-bottom: 24px;
 }
 
 .live-dot {
 width: 7px; height: 7px;
-background: var(–accent); border-radius: 50%;
-animation: pulse 2s infinite;
+background: var(–green); border-radius: 50%;
+animation: blink 2s infinite;
 }
-
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-@keyframes fadeDown { from{opacity:0;transform:translateY(-15px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 .hero h1 {
 font-family: ‘Syne’, sans-serif;
-font-size: 64px; font-weight: 800;
-line-height: 1.05; letter-spacing: -2px;
-margin-bottom: 20px;
-animation: fadeUp 0.5s 0.1s ease both;
+font-size: 56px; font-weight: 800;
+line-height: 1.08; letter-spacing: -1.5px;
+color: var(–ink); margin-bottom: 18px;
 }
 
-.hero h1 .g {
-background: linear-gradient(135deg, var(–accent), var(–accent2));
+.hero h1 em {
+font-style: italic;
+background: linear-gradient(135deg, var(–accent), #00C2FF);
 -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 background-clip: text;
 }
 
-.hero p {
+.hero-sub {
 font-size: 18px; color: var(–muted);
-max-width: 560px; margin: 0 auto 40px;
-line-height: 1.7; font-weight: 300;
-animation: fadeUp 0.5s 0.2s ease both;
+max-width: 520px; margin: 0 auto 36px;
+line-height: 1.65; font-weight: 400;
 }
 
-.hero-btns {
-display: flex; gap: 12px; justify-content: center;
-margin-bottom: 56px;
-animation: fadeUp 0.5s 0.3s ease both;
+.hero-advantage {
+display: flex; align-items: center; justify-content: center;
+gap: 24px; margin-bottom: 40px; flex-wrap: wrap;
 }
 
-.btn-primary {
-background: var(–accent); color: #060B14;
-padding: 14px 32px; border-radius: 10px;
-font-size: 15px; font-weight: 700;
-border: none; cursor: pointer;
-font-family: ‘Instrument Sans’, sans-serif;
-text-decoration: none;
-display: inline-flex; align-items: center; gap: 8px;
-transition: all 0.2s;
+.adv {
+display: flex; align-items: center; gap: 7px;
+font-size: 13px; color: var(–muted); font-weight: 500;
 }
-.btn-primary:hover { background: #00ffb3; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,229,160,0.3); }
 
-.btn-outline {
-background: transparent; color: var(–text);
-padding: 14px 32px; border-radius: 10px;
-font-size: 15px; font-weight: 600;
-border: 1px solid var(–border); cursor: pointer;
-font-family: ‘Instrument Sans’, sans-serif;
-text-decoration: none;
-display: inline-flex; align-items: center; gap: 8px;
-transition: all 0.2s;
-}
-.btn-outline:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+.adv-dot { color: var(–green); font-size: 16px; }
 
-/* ====== STATS ====== */
-.stats-row {
+.hero-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 48px; }
+
+/* STATS ROW */
+.hero-stats {
 display: flex; justify-content: center; gap: 0;
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 16px; overflow: hidden;
-max-width: 720px; margin: 0 auto;
-animation: fadeUp 0.5s 0.4s ease both;
+border: 1px solid var(–border); border-radius: 14px;
+overflow: hidden; max-width: 680px; margin: 0 auto;
+background: var(–bg);
 }
 
-.stat-item {
-flex: 1; padding: 24px 20px; text-align: center;
+.hstat {
+flex: 1; padding: 20px 16px; text-align: center;
 border-right: 1px solid var(–border);
 }
-.stat-item:last-child { border-right: none; }
+.hstat:last-child { border-right: none; }
 
-.stat-num {
+.hstat-num {
 font-family: ‘Syne’, sans-serif;
-font-size: 30px; font-weight: 800;
-color: var(–accent); letter-spacing: -1px;
+font-size: 26px; font-weight: 800;
+color: var(–ink); letter-spacing: -0.5px;
 }
 
-.stat-label { font-size: 12px; color: var(–muted); margin-top: 3px; font-weight: 500; }
+.hstat-label { font-size: 12px; color: var(–muted); margin-top: 2px; font-weight: 500; }
+
+/* ====== EMAIL CAPTURE ====== */
+.email-bar {
+background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
+padding: 18px 40px;
+}
+
+.email-inner {
+max-width: 1280px; margin: 0 auto;
+display: flex; align-items: center; justify-content: space-between; gap: 24px;
+flex-wrap: wrap;
+}
+
+.email-text { color: white; }
+.email-text strong { font-family: ‘Syne’, sans-serif; font-size: 16px; font-weight: 700; }
+.email-text p { font-size: 13px; opacity: 0.8; margin-top: 2px; }
+
+.email-form { display: flex; gap: 8px; flex-shrink: 0; }
+
+.email-input {
+background: rgba(255,255,255,0.15);
+border: 1px solid rgba(255,255,255,0.3);
+color: white; padding: 10px 16px;
+border-radius: 8px; font-size: 14px;
+font-family: ‘Instrument Sans’, sans-serif;
+outline: none; width: 240px;
+}
+.email-input::placeholder { color: rgba(255,255,255,0.6); }
+
+.email-btn {
+background: white; color: var(–accent);
+border: none; padding: 10px 20px; border-radius: 8px;
+font-size: 14px; font-weight: 700;
+font-family: ‘Instrument Sans’, sans-serif;
+cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.email-btn:hover { background: #F0F5FF; }
 
 /* ====== TRUST BAR ====== */
 .trust-bar {
-position: relative; z-index: 1;
-border-top: 1px solid var(–border);
-border-bottom: 1px solid var(–border);
-padding: 20px 60px;
-background: rgba(255,255,255,0.01);
+background: var(–white); border-bottom: 1px solid var(–border);
+padding: 16px 40px;
 }
 
 .trust-inner {
-max-width: 1200px; margin: 0 auto;
-display: flex; align-items: center; gap: 32px;
+max-width: 1280px; margin: 0 auto;
+display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
 }
 
 .trust-label {
 font-size: 11px; font-weight: 700;
 letter-spacing: 1.5px; text-transform: uppercase;
-color: rgba(255,255,255,0.2); white-space: nowrap;
+color: var(–muted); white-space: nowrap;
 }
 
-.trust-logos { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+.trust-logos { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
 .trust-logo {
 font-family: ‘Syne’, sans-serif; font-size: 13px;
-font-weight: 700; color: rgba(255,255,255,0.18);
-letter-spacing: -0.3px;
+font-weight: 700; color: #C4CADA;
 }
 
-/* ====== SEARCH ====== */
-.search-wrap {
-position: relative; z-index: 1;
-max-width: 1200px; margin: 0 auto;
-padding: 48px 60px 0;
-}
-
-.search-box {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 14px; padding: 6px;
-display: flex; gap: 6px; align-items: center;
-transition: border-color 0.2s;
-}
-.search-box:focus-within { border-color: rgba(0,229,160,0.35); box-shadow: 0 0 0 3px rgba(0,229,160,0.07); }
-
-.search-box input {
-flex: 1; background: transparent; border: none;
-padding: 12px 14px; color: var(–text);
-font-size: 15px; font-family: ‘Instrument Sans’, sans-serif;
-outline: none;
-}
-.search-box input::placeholder { color: var(–muted); }
-
-.sdiv { width: 1px; height: 28px; background: var(–border); flex-shrink: 0; }
-
-.search-box select {
-background: transparent; border: none;
-color: var(–muted); font-size: 14px;
-font-family: ‘Instrument Sans’, sans-serif;
-outline: none; padding: 12px 14px; cursor: pointer;
-min-width: 150px;
-}
-.search-box select option { background: #0D1520; }
-
-.search-btn {
-background: var(–accent); color: #060B14;
-border: none; padding: 12px 28px;
-border-radius: 9px; font-size: 14px; font-weight: 700;
-font-family: ‘Instrument Sans’, sans-serif;
-cursor: pointer; transition: all 0.2s; white-space: nowrap;
-}
-.search-btn:hover { background: #00ffb3; transform: translateY(-1px); }
-
-.filter-pills {
-display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;
-}
-
-.pill {
-background: var(–surface2); border: 1px solid var(–border);
-color: var(–muted); padding: 7px 16px; border-radius: 100px;
-font-size: 13px; font-weight: 500; cursor: pointer;
-transition: all 0.2s;
-}
-.pill:hover, .pill.active {
-background: rgba(0,229,160,0.1);
-border-color: rgba(0,229,160,0.3); color: var(–accent);
-}
-
-/* ====== LAYOUT ====== */
-.main-layout {
-position: relative; z-index: 1;
-max-width: 1200px; margin: 0 auto;
-padding: 40px 60px 80px;
-display: grid; grid-template-columns: 250px 1fr;
-gap: 36px;
+/* ====== MAIN ====== */
+.page-wrap {
+max-width: 1280px; margin: 0 auto;
+padding: 32px 40px 80px;
+display: grid; grid-template-columns: 260px 1fr;
+gap: 28px;
 }
 
 /* ====== SIDEBAR ====== */
-.sidebar { position: sticky; top: 88px; height: fit-content; }
+.sidebar { position: sticky; top: 80px; height: fit-content; }
 
-.sidebar-box {
-background: var(–surface); border: 1px solid var(–border);
-border-radius: 14px; padding: 22px; margin-bottom: 14px;
+.sb-card {
+background: var(–white); border: 1px solid var(–border);
+border-radius: 14px; padding: 22px; margin-bottom: 16px;
+box-shadow: var(–shadow);
 }
 
 .sb-title {
-font-family: ‘Syne’, sans-serif; font-size: 13px;
-font-weight: 700; color: var(–text); margin-bottom: 16px;
+font-family: ‘Syne’, sans-serif; font-size: 14px;
+font-weight: 700; color: var(–ink); margin-bottom: 18px;
 }
 
-.fg { margin-bottom: 18px; }
+.fg { margin-bottom: 20px; }
 
 .fl {
 font-size: 10px; font-weight: 700;
 letter-spacing: 1.5px; text-transform: uppercase;
-color: rgba(255,255,255,0.25); margin-bottom: 10px; display: block;
+color: var(–muted); margin-bottom: 10px; display: block;
 }
 
 .fi {
 display: flex; align-items: center; gap: 9px;
-margin-bottom: 8px; cursor: pointer;
+margin-bottom: 9px; cursor: pointer;
 }
-.fi input[type=“checkbox”] { accent-color: var(–accent); width: 15px; height: 15px; cursor: pointer; }
-.fi span { font-size: 13px; color: var(–muted); }
-.fi .cn { margin-left: auto; font-size: 11px; color: rgba(255,255,255,0.18); }
+.fi input[type=“checkbox”] {
+accent-color: var(–accent);
+width: 15px; height: 15px; cursor: pointer;
+border-radius: 4px;
+}
+.fi span { font-size: 13px; color: var(–ink2); }
+.fi .cn { margin-left: auto; font-size: 11px; color: var(–muted); background: var(–bg); padding: 1px 6px; border-radius: 100px; }
 
-/* POST JOB CTA IN SIDEBAR */
-.sidebar-cta {
-background: linear-gradient(135deg, rgba(0,229,160,0.12), rgba(14,165,233,0.08));
-border: 1px solid rgba(0,229,160,0.2);
-border-radius: 14px; padding: 22px; text-align: center;
+/* SIDEBAR POST CTA */
+.sb-cta {
+background: var(–ink);
+border-radius: 14px; padding: 22px;
+text-align: center; box-shadow: var(–shadow);
 }
 
-.sidebar-cta h4 {
+.sb-cta h4 {
 font-family: ‘Syne’, sans-serif; font-size: 15px;
-font-weight: 700; margin-bottom: 6px;
+font-weight: 800; color: white; margin-bottom: 8px;
 }
 
-.sidebar-cta p { font-size: 12px; color: var(–muted); margin-bottom: 16px; line-height: 1.5; }
+.sb-cta p { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 16px; line-height: 1.5; }
+.sb-price { font-family: ‘Syne’, sans-serif; font-size: 30px; font-weight: 800; color: var(–green); }
+.sb-price small { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.4); font-family: ‘Instrument Sans’, sans-serif; }
 
-.cta-price {
-font-family: ‘Syne’, sans-serif; font-size: 28px;
-font-weight: 800; color: var(–accent); margin-bottom: 4px;
-}
-
-.cta-price small { font-size: 13px; font-weight: 400; color: var(–muted); font-family: ‘Instrument Sans’, sans-serif; }
-
-.cta-btn {
-width: 100%; background: var(–accent); color: #060B14;
+.sb-btn {
+width: 100%; background: var(–green); color: white;
 border: none; padding: 12px; border-radius: 9px;
 font-size: 14px; font-weight: 700;
 font-family: ‘Instrument Sans’, sans-serif;
-cursor: pointer; transition: all 0.2s; margin-top: 14px;
+cursor: pointer; transition: all 0.15s; margin-top: 14px;
+display: block;
 }
-.cta-btn:hover { background: #00ffb3; }
+.sb-btn:hover { background: #00A865; }
 
-/* ====== JOBS LIST ====== */
-.jobs-header {
+.sb-features { text-align: left; margin: 14px 0; }
+.sb-feat {
+font-size: 12px; color: rgba(255,255,255,0.5);
+display: flex; align-items: center; gap: 8px;
+margin-bottom: 7px;
+}
+.sb-feat::before { content: ‘✓’; color: var(–green); font-weight: 700; flex-shrink: 0; }
+
+/* ====== JOBS ====== */
+.jobs-top {
 display: flex; align-items: center; justify-content: space-between;
 margin-bottom: 18px;
 }
 
-.jobs-title { font-family: ‘Syne’, sans-serif; font-size: 20px; font-weight: 700; }
-.jobs-count { color: var(–muted); font-size: 13px; margin-top: 2px; }
+.jobs-heading { font-family: ‘Syne’, sans-serif; font-size: 18px; font-weight: 700; }
+.jobs-sub { font-size: 13px; color: var(–muted); margin-top: 2px; }
+
+.sort-wrap { display: flex; align-items: center; gap: 8px; }
 
 .sort-sel {
-background: var(–surface); border: 1px solid var(–border);
-color: var(–muted); padding: 8px 14px; border-radius: 8px;
+background: var(–white); border: 1px solid var(–border);
+color: var(–ink2); padding: 7px 12px; border-radius: 8px;
 font-size: 13px; font-family: ‘Instrument Sans’, sans-serif;
 outline: none; cursor: pointer;
 }
-.sort-sel option { background: #0D1520; }
 
-/* ====== JOB CARD ====== */
+/* JOB CARD */
 .job-card {
-background: var(–card); border: 1px solid var(–border);
-border-radius: 14px; padding: 22px;
+background: var(–white); border: 1px solid var(–border);
+border-radius: 14px; padding: 20px 22px;
 margin-bottom: 10px;
-display: grid; grid-template-columns: 48px 1fr auto;
+display: grid; grid-template-columns: 46px 1fr auto;
 gap: 16px; align-items: start;
-cursor: pointer; transition: all 0.22s;
+cursor: pointer; transition: all 0.18s;
+box-shadow: var(–shadow);
 position: relative; overflow: hidden;
 }
 
-.job-card::before {
-content: ‘’; position: absolute;
-left: 0; top: 0; bottom: 0; width: 3px;
-background: transparent; transition: background 0.2s;
-}
-
 .job-card:hover {
-border-color: rgba(0,229,160,0.2);
-background: var(–surface);
+border-color: var(–accent);
+box-shadow: 0 0 0 3px rgba(0,102,255,0.08), var(–shadow-lg);
 transform: translateY(-2px);
-box-shadow: 0 6px 28px rgba(0,0,0,0.3);
 }
-.job-card:hover::before { background: var(–accent); }
 
 .job-card.featured {
-border-color: rgba(0,229,160,0.18);
-background: linear-gradient(135deg, rgba(0,229,160,0.03), var(–card));
+border-color: #F59E0B;
+background: linear-gradient(135deg, #FFFDF5, var(–white));
 }
-.job-card.featured::before { background: var(–accent); }
 
-.co-icon {
-width: 48px; height: 48px; border-radius: 11px;
+.job-card.featured::before {
+content: ‘’;
+position: absolute; top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(–gold), #FCD34D);
+}
+
+.co-logo {
+width: 46px; height: 46px; border-radius: 10px;
 display: flex; align-items: center; justify-content: center;
 font-family: ‘Syne’, sans-serif; font-weight: 800;
-font-size: 14px; color: white; flex-shrink: 0;
+font-size: 13px; color: white; flex-shrink: 0;
+letter-spacing: -0.5px;
 }
 
-.jt { font-family: ‘Syne’, sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+.jt { font-family: ‘Syne’, sans-serif; font-size: 16px; font-weight: 700; color: var(–ink); margin-bottom: 3px; }
 .jc { font-size: 13px; color: var(–muted); margin-bottom: 12px; }
 
-.jtags { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+.jtags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 
 .tag {
 font-size: 12px; font-weight: 500;
-padding: 4px 11px; border-radius: 100px;
+padding: 4px 10px; border-radius: 100px;
 border: 1px solid var(–border); color: var(–muted);
+background: var(–bg);
 }
-.ts { color: var(–accent); border-color: rgba(0,229,160,0.2); background: rgba(0,229,160,0.07); font-weight: 600; }
-.tf { color: var(–gold); border-color: rgba(245,158,11,0.2); background: rgba(245,158,11,0.07); font-weight: 600; }
-.tn { color: var(–accent2); border-color: rgba(14,165,233,0.2); background: rgba(14,165,233,0.07); font-weight: 600; }
+.ts { color: var(–green); border-color: rgba(0,199,122,0.25); background: var(–green-light); font-weight: 600; }
+.tf { color: #B45309; border-color: rgba(245,158,11,0.25); background: var(–gold-light); font-weight: 600; }
+.tnew { color: var(–accent); border-color: rgba(0,102,255,0.2); background: var(–accent-light); font-weight: 600; }
+.thot { color: var(–red); border-color: rgba(239,68,68,0.2); background: #FEF2F2; font-weight: 600; }
 
-.ja { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-.jd { font-size: 12px; color: var(–muted); white-space: nowrap; }
+.ja { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.jdate { font-size: 12px; color: var(–muted); white-space: nowrap; }
 
 .apply-btn {
-background: var(–accent); color: #060B14;
-border: none; padding: 9px 20px; border-radius: 8px;
+background: var(–accent); color: white;
+border: none; padding: 9px 22px; border-radius: 8px;
 font-size: 13px; font-weight: 700;
 font-family: ‘Instrument Sans’, sans-serif;
-cursor: pointer; transition: all 0.2s; white-space: nowrap;
+cursor: pointer; transition: all 0.15s; white-space: nowrap;
 }
-.apply-btn:hover { background: #00ffb3; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,229,160,0.25); }
+.apply-btn:hover { background: #0052CC; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,102,255,0.25); }
 
 .save-btn {
 background: transparent; color: var(–muted);
 border: 1px solid var(–border); padding: 8px 14px;
 border-radius: 8px; font-size: 13px;
 font-family: ‘Instrument Sans’, sans-serif;
-cursor: pointer; transition: all 0.2s;
+cursor: pointer; transition: all 0.15s;
 }
-.save-btn:hover { color: var(–text); border-color: rgba(255,255,255,0.2); }
+.save-btn:hover { color: var(–red); border-color: rgba(239,68,68,0.3); background: #FEF2F2; }
 
-/* ====== TRUST SECTION ====== */
-.trust-section {
-position: relative; z-index: 1;
-background: var(–surface);
-border-top: 1px solid var(–border);
-border-bottom: 1px solid var(–border);
-padding: 60px;
+/* LOAD MORE */
+.load-more {
+width: 100%; background: var(–white);
+border: 1px solid var(–border); border-radius: 12px;
+padding: 14px; font-size: 14px; font-weight: 600;
+color: var(–ink2); cursor: pointer;
+font-family: ‘Instrument Sans’, sans-serif;
+transition: all 0.15s; margin-top: 6px;
+box-shadow: var(–shadow);
 }
+.load-more:hover { background: var(–bg); border-color: var(–accent); color: var(–accent); }
 
-.trust-inner2 {
-max-width: 1200px; margin: 0 auto;
-display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-}
-
-.trust-card {
-text-align: center; padding: 28px 20px;
-background: var(–card); border: 1px solid var(–border);
-border-radius: 14px;
+/* ====== MISSION SECTION ====== */
+.mission {
+background: var(–ink);
+padding: 64px 40px;
 }
 
-.trust-icon { font-size: 28px; margin-bottom: 12px; }
-
-.trust-num {
-font-family: ‘Syne’, sans-serif; font-size: 32px;
-font-weight: 800; color: var(–accent); margin-bottom: 4px;
-}
-
-.trust-desc { font-size: 13px; color: var(–muted); line-height: 1.5; }
-
-/* ====== EMPLOYER SECTION ====== */
-.employer-section {
-position: relative; z-index: 1;
-padding: 80px 60px;
-}
-
-.emp-inner {
-max-width: 1200px; margin: 0 auto;
+.mission-inner {
+max-width: 1280px; margin: 0 auto;
 display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
 align-items: center;
 }
 
-.emp-eyebrow {
-display: inline-block;
-background: rgba(0,229,160,0.1);
-border: 1px solid rgba(0,229,160,0.2);
-color: var(–accent); padding: 5px 14px;
-border-radius: 100px; font-size: 11px;
-font-weight: 700; letter-spacing: 1px;
-text-transform: uppercase; margin-bottom: 20px;
+.mission h2 {
+font-family: ‘Syne’, sans-serif; font-size: 40px;
+font-weight: 800; line-height: 1.15;
+letter-spacing: -1px; color: white; margin-bottom: 16px;
 }
 
-.employer-section h2 {
-font-family: ‘Syne’, sans-serif; font-size: 44px;
-font-weight: 800; line-height: 1.1;
-letter-spacing: -1.5px; margin-bottom: 16px;
+.mission h2 em {
+font-style: italic; color: var(–green);
+-webkit-text-fill-color: var(–green);
 }
 
-.employer-section h2 span {
-background: linear-gradient(135deg, var(–accent), var(–accent2));
--webkit-background-clip: text; -webkit-text-fill-color: transparent;
-background-clip: text;
+.mission p { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 28px; font-weight: 300; }
+
+.mission-feats { margin-bottom: 36px; }
+.mf {
+display: flex; align-items: flex-start; gap: 12px;
+margin-bottom: 16px;
 }
-
-.employer-section p { color: var(–muted); font-size: 16px; line-height: 1.7; margin-bottom: 28px; font-weight: 300; }
-
-.emp-features { margin-bottom: 32px; }
-
-.emp-feat {
-display: flex; align-items: center; gap: 12px;
-margin-bottom: 12px; font-size: 14px; color: var(–muted);
+.mf-icon {
+width: 32px; height: 32px; border-radius: 8px;
+background: rgba(0,199,122,0.15);
+display: flex; align-items: center; justify-content: center;
+font-size: 15px; flex-shrink: 0;
 }
+.mf-text strong { font-size: 14px; color: white; display: block; margin-bottom: 2px; }
+.mf-text span { font-size: 13px; color: rgba(255,255,255,0.45); }
 
-.emp-feat::before {
-content: ‘✓’; color: var(–accent);
-font-weight: 700; font-size: 14px;
-width: 22px; height: 22px;
-background: rgba(0,229,160,0.1);
-border-radius: 50%; display: flex;
-align-items: center; justify-content: center;
-flex-shrink: 0;
-}
-
-.pricing-stack { display: flex; flex-direction: column; gap: 12px; }
+/* PRICING */
+.pricing-col { display: flex; flex-direction: column; gap: 12px; }
 
 .pc {
-background: var(–card); border: 1px solid var(–border);
+background: rgba(255,255,255,0.05);
+border: 1px solid rgba(255,255,255,0.1);
 border-radius: 13px; padding: 18px 22px;
 display: flex; align-items: center; justify-content: space-between;
-cursor: pointer; transition: all 0.2s;
+cursor: pointer; transition: all 0.18s;
 }
-.pc:hover { border-color: rgba(0,229,160,0.2); transform: translateX(4px); }
-.pc.pop { border-color: rgba(0,229,160,0.3); background: rgba(0,229,160,0.05); }
+.pc:hover { border-color: rgba(0,199,122,0.3); background: rgba(0,199,122,0.05); transform: translateX(4px); }
+.pc.pop { border-color: rgba(0,199,122,0.35); background: rgba(0,199,122,0.07); }
 
-.pn { font-family: ‘Syne’, sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 2px; }
-.pd { font-size: 12px; color: var(–muted); }
-.pp { font-family: ‘Syne’, sans-serif; font-size: 24px; font-weight: 800; color: var(–accent); }
-.pp small { font-family: ‘Instrument Sans’, sans-serif; font-size: 12px; font-weight: 400; color: var(–muted); }
+.pn { font-family: ‘Syne’, sans-serif; font-weight: 700; font-size: 15px; color: white; margin-bottom: 2px; }
+.pd { font-size: 12px; color: rgba(255,255,255,0.4); }
+.pp { font-family: ‘Syne’, sans-serif; font-size: 24px; font-weight: 800; color: var(–green); }
+.pp small { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.35); font-family: ‘Instrument Sans’, sans-serif; }
+
+/* ====== TRUST NUMBERS ====== */
+.trust-numbers {
+background: var(–white); border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 48px 40px;
+}
+
+.tn-inner {
+max-width: 1280px; margin: 0 auto;
+display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
+}
+
+.tn-card {
+text-align: center; padding: 28px 20px;
+border: 1px solid var(–border); border-radius: 14px;
+transition: all 0.2s;
+}
+.tn-card:hover { box-shadow: var(–shadow-lg); transform: translateY(-2px); }
+
+.tn-icon { font-size: 28px; margin-bottom: 12px; }
+.tn-num { font-family: ‘Syne’, sans-serif; font-size: 30px; font-weight: 800; color: var(–ink); margin-bottom: 6px; }
+.tn-label { font-size: 13px; color: var(–muted); line-height: 1.5; }
+
+/* ====== TESTIMONIALS ====== */
+.testimonials {
+background: var(–bg); padding: 64px 40px;
+}
+
+.test-inner { max-width: 1280px; margin: 0 auto; }
+
+.test-header { text-align: center; margin-bottom: 40px; }
+.test-header h2 { font-family: ‘Syne’, sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+.test-header p { color: var(–muted); font-size: 16px; }
+
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+.test-card {
+background: var(–white); border: 1px solid var(–border);
+border-radius: 14px; padding: 24px;
+box-shadow: var(–shadow);
+}
+
+.test-stars { color: var(–gold); font-size: 14px; margin-bottom: 12px; }
+.test-quote { font-size: 14px; color: var(–ink2); line-height: 1.65; margin-bottom: 18px; font-style: italic; }
+.test-author { display: flex; align-items: center; gap: 10px; }
+.test-avatar {
+width: 36px; height: 36px; border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-weight: 700; font-size: 14px; color: white;
+}
+.test-name { font-size: 13px; font-weight: 600; }
+.test-role { font-size: 12px; color: var(–muted); }
+
+/* ====== FOOTER ====== */
+footer {
+background: var(–ink2);
+padding: 36px 40px;
+}
+
+.foot-inner {
+max-width: 1280px; margin: 0 auto;
+display: flex; align-items: center; justify-content: space-between;
+}
+
+.foot-logo { font-family: ‘Syne’, sans-serif; font-size: 18px; font-weight: 800; color: white; }
+.foot-logo span { color: var(–accent); }
+footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; margin-left: 20px; transition: color 0.15s; }
+footer a:hover { color: white; }
 
 /* ====== MODAL ====== */
 .overlay {
 display: none; position: fixed; inset: 0;
-background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+background: rgba(0,0,0,0.5); backdrop-filter: blur(6px);
 z-index: 1000; align-items: center; justify-content: center;
 }
 .overlay.open { display: flex; }
 
 .modal {
-background: var(–surface); border: 1px solid var(–border);
+background: var(–white); border: 1px solid var(–border);
 border-radius: 18px; padding: 36px;
-max-width: 540px; width: 92%;
-position: relative; animation: mIn 0.25s ease;
-max-height: 90vh; overflow-y: auto;
+max-width: 520px; width: 94%;
+position: relative; animation: mIn 0.22s ease;
+max-height: 92vh; overflow-y: auto;
+box-shadow: var(–shadow-lg);
 }
-
-@keyframes mIn { from{opacity:0;transform:scale(0.96) translateY(16px)} to{opacity:1;transform:scale(1) translateY(0)} }
+@keyframes mIn { from{opacity:0;transform:scale(0.97) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
 
 .mcl {
-position: absolute; top: 18px; right: 18px;
-background: var(–surface2); border: 1px solid var(–border);
+position: absolute; top: 16px; right: 16px;
+background: var(–bg); border: 1px solid var(–border);
 color: var(–muted); width: 30px; height: 30px;
-border-radius: 7px; cursor: pointer;
-font-size: 16px; display: flex; align-items: center; justify-content: center;
-transition: all 0.2s;
+border-radius: 7px; cursor: pointer; font-size: 17px;
+display: flex; align-items: center; justify-content: center;
+transition: all 0.15s;
 }
-.mcl:hover { color: var(–text); }
+.mcl:hover { color: var(–ink); }
 
-.modal h3 { font-family: ‘Syne’, sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
-.mco { color: var(–muted); font-size: 14px; margin-bottom: 20px; }
-.mtags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-
+.modal h3 { font-family: ‘Syne’, sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.mco { font-size: 14px; color: var(–muted); margin-bottom: 18px; }
+.mtags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 18px; }
 .mdesc {
-color: var(–muted); font-size: 14px; line-height: 1.7;
-margin-bottom: 28px; padding: 18px;
-background: var(–card); border-radius: 10px;
+font-size: 14px; color: var(–ink2); line-height: 1.7;
+margin-bottom: 26px; padding: 16px;
+background: var(–bg); border-radius: 10px;
 border: 1px solid var(–border);
 }
-
 .mact { display: flex; gap: 10px; }
 
-.fg2 { margin-bottom: 18px; }
-.fl2 { display: block; font-size: 12px; font-weight: 600; color: var(–muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
+.fg2 { margin-bottom: 16px; }
+.fl2 { display: block; font-size: 12px; font-weight: 600; color: var(–muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 .fi2 {
-width: 100%; background: var(–card); border: 1px solid var(–border);
-border-radius: 9px; padding: 11px 14px; color: var(–text);
+width: 100%; background: var(–bg); border: 1px solid var(–border);
+border-radius: 9px; padding: 11px 14px; color: var(–ink);
 font-size: 14px; font-family: ‘Instrument Sans’, sans-serif;
-outline: none; transition: border-color 0.2s;
+outline: none; transition: border-color 0.15s;
 }
-.fi2:focus { border-color: rgba(0,229,160,0.35); }
+.fi2:focus { border-color: var(–accent); box-shadow: 0 0 0 3px rgba(0,102,255,0.08); }
 
-/* ====== TOAST ====== */
+/* SEARCH */
+.search-wrap {
+background: var(–white); border-bottom: 1px solid var(–border);
+padding: 20px 40px;
+}
+
+.search-inner { max-width: 1280px; margin: 0 auto; }
+
+.search-box {
+background: var(–bg); border: 1.5px solid var(–border);
+border-radius: 12px; padding: 5px;
+display: flex; gap: 5px; align-items: center;
+transition: border-color 0.15s;
+}
+.search-box:focus-within { border-color: var(–accent); box-shadow: 0 0 0 3px rgba(0,102,255,0.08); }
+
+.search-box input {
+flex: 1; background: transparent; border: none;
+padding: 11px 14px; color: var(–ink);
+font-size: 15px; font-family: ‘Instrument Sans’, sans-serif;
+outline: none;
+}
+.search-box input::placeholder { color: var(–muted); }
+
+.sdiv { width: 1px; height: 26px; background: var(–border); flex-shrink: 0; }
+
+.search-box select {
+background: transparent; border: none;
+color: var(–muted); font-size: 14px;
+font-family: ‘Instrument Sans’, sans-serif;
+outline: none; padding: 11px 14px; cursor: pointer; min-width: 145px;
+}
+
+.sbtn {
+background: var(–accent); color: white;
+border: none; padding: 11px 26px;
+border-radius: 9px; font-size: 14px; font-weight: 700;
+font-family: ‘Instrument Sans’, sans-serif;
+cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.sbtn:hover { background: #0052CC; }
+
+.filter-pills { display: flex; gap: 7px; margin-top: 12px; flex-wrap: wrap; }
+
+.pill {
+background: var(–bg); border: 1px solid var(–border);
+color: var(–muted); padding: 6px 14px; border-radius: 100px;
+font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+}
+.pill:hover, .pill.active {
+background: var(–accent-light); border-color: rgba(0,102,255,0.25); color: var(–accent);
+}
+
+/* TOAST */
 .toast {
-position: fixed; bottom: 28px; right: 28px;
-background: var(–accent); color: #060B14;
-padding: 13px 22px; border-radius: 10px;
-font-weight: 700; font-size: 14px;
-z-index: 2000; transform: translateY(80px); opacity: 0;
-transition: all 0.28s;
+position: fixed; bottom: 24px; right: 24px;
+background: var(–ink); color: white;
+padding: 12px 20px; border-radius: 10px;
+font-weight: 600; font-size: 14px;
+z-index: 2000; transform: translateY(70px); opacity: 0;
+transition: all 0.25s; box-shadow: var(–shadow-lg);
 }
 .toast.show { transform: translateY(0); opacity: 1; }
-
-/* ====== FOOTER ====== */
-footer {
-position: relative; z-index: 1;
-border-top: 1px solid var(–border);
-padding: 36px 60px;
-display: flex; align-items: center; justify-content: space-between;
-}
-
-.fl-logo { font-family: ‘Syne’, sans-serif; font-size: 17px; font-weight: 800; }
-.fl-logo span { color: var(–accent); }
-footer p { font-size: 13px; color: var(–muted); }
-footer a { color: var(–muted); text-decoration: none; font-size: 13px; margin-left: 22px; transition: color 0.2s; }
-footer a:hover { color: var(–text); }
 </style>
 
 </head>
 <body>
 
-<div class="toast" id="toast">✓ Done!</div>
+<div class="toast" id="toast">Done!</div>
 
 <!-- JOB MODAL -->
 
@@ -633,8 +695,8 @@ footer a:hover { color: var(–text); }
     <div class="mtags" id="mTags"></div>
     <div class="mdesc" id="mDesc"></div>
     <div class="mact">
-      <button class="btn-primary" style="flex:1;justify-content:center" onclick="toast('✓ Application link copied! Check your clipboard.');closeModal('jobModal')">Apply Now →</button>
-      <button class="save-btn" onclick="toast('♡ Job saved to your list!')">Save</button>
+      <button class="btn-accent" style="flex:1;justify-content:center" onclick="toast('✓ Application link copied!');closeModal('jobModal')">Apply Now →</button>
+      <button class="save-btn" onclick="toast('♡ Job saved!')">♡ Save</button>
     </div>
   </div>
 </div>
@@ -645,60 +707,95 @@ footer a:hover { color: var(–text); }
   <div class="modal">
     <button class="mcl" onclick="closeModal('postModal')">×</button>
     <h3>Post a Job — $99</h3>
-    <p class="mco">Reach 48,000+ remote nurses. Live in 24 hours.</p>
+    <p class="mco">Live in 24 hours · Seen by 48,000+ remote nurses</p>
     <div class="fg2"><label class="fl2">Company Name</label><input class="fi2" type="text" placeholder="e.g. Teladoc Health"></div>
     <div class="fg2"><label class="fl2">Job Title</label><input class="fi2" type="text" placeholder="e.g. Remote ICU Tele-Nurse, RN"></div>
-    <div class="fg2"><label class="fl2">Salary Range</label><input class="fi2" type="text" placeholder="e.g. $80,000 – $100,000/yr"></div>
-    <div class="fg2"><label class="fl2">Specialty / Type</label><input class="fi2" type="text" placeholder="e.g. Full-time · ICU · Remote"></div>
+    <div class="fg2"><label class="fl2">Salary Range</label><input class="fi2" type="text" placeholder="e.g. $80,000–$100,000/yr"></div>
+    <div class="fg2"><label class="fl2">Specialty & Type</label><input class="fi2" type="text" placeholder="e.g. Full-time · ICU · 100% Remote"></div>
     <div class="fg2"><label class="fl2">Contact Email</label><input class="fi2" type="email" placeholder="hr@yourcompany.com"></div>
-    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="toast('🎉 Job submitted! We will go live in 24hrs.');closeModal('postModal')">Submit & Pay $99 →</button>
+    <button class="btn-accent" style="width:100%;justify-content:center;padding:13px" onclick="toast('🎉 Submitted! Goes live in 24hrs.');closeModal('postModal')">Submit & Pay $99 →</button>
   </div>
 </div>
 
 <!-- NAV -->
 
 <nav>
-  <a class="logo" href="#">Tele<span>RN</span></a>
-  <ul class="nav-center">
-    <li><a onclick="document.querySelector('.main-layout').scrollIntoView({behavior:'smooth'})">Browse Jobs</a></li>
-    <li><a onclick="document.querySelector('.employer-section').scrollIntoView({behavior:'smooth'})">For Employers</a></li>
-    <li><a href="#">Salary Guide</a></li>
-    <li><a href="#">Resources</a></li>
-  </ul>
-  <div class="nav-right">
-    <a class="nav-post" onclick="openModal('postModal')">Post a Job <span class="nav-price-tag">$99</span></a>
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">🩺</div>
+      Tele<span>RN</span>
+    </a>
+    <ul class="nav-links">
+      <li><a onclick="document.querySelector('.page-wrap').scrollIntoView({behavior:'smooth'})">Browse Jobs</a></li>
+      <li><a onclick="document.querySelector('.mission').scrollIntoView({behavior:'smooth'})">For Employers</a></li>
+      <li><a href="#">Salary Guide</a></li>
+      <li><a href="#">Resources</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-ghost">Sign In</button>
+      <button class="btn-accent" onclick="openModal('postModal')">Post a Job <span class="price-badge">$99</span></button>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 
 <section class="hero">
-  <div class="hero-badge"><div class="live-dot"></div> Updated Daily · 1,247 Active Jobs</div>
-  <h1>Your <span class="g">remote nursing</span><br>career starts here</h1>
-  <p>The only job board built exclusively for telehealth and remote nursing. Browse verified positions from top healthcare employers — free for nurses.</p>
-  <div class="hero-btns">
-    <button class="btn-primary" onclick="document.querySelector('.search-wrap').scrollIntoView({behavior:'smooth'})">Browse 1,247 Jobs →</button>
-    <button class="btn-outline" onclick="openModal('postModal')">Post a Job — $99</button>
+  <div class="hero-inner">
+    <div class="hero-tag"><div class="live-dot"></div> Updated Daily · New Jobs Every Morning</div>
+    <h1>Find High-Paying<br><em>Remote Nursing Jobs</em></h1>
+    <p class="hero-sub">Work from home RN roles across the U.S. — only remote, only nursing, no spam listings.</p>
+
+```
+<div class="hero-advantage">
+  <div class="adv"><span class="adv-dot">●</span> Only remote nursing jobs</div>
+  <div class="adv"><span class="adv-dot">●</span> No hybrid or in-person listings</div>
+  <div class="adv"><span class="adv-dot">●</span> New jobs added daily</div>
+  <div class="adv"><span class="adv-dot">●</span> 100% free for nurses</div>
+</div>
+
+<div class="hero-actions">
+  <button class="btn-accent" style="padding:13px 32px;font-size:15px" onclick="document.querySelector('.search-wrap').scrollIntoView({behavior:'smooth'})">Browse Jobs Now →</button>
+  <button class="btn-ghost" style="padding:13px 24px;font-size:15px" onclick="openModal('postModal')">Post a Job — $99</button>
+</div>
+
+<div class="hero-stats">
+  <div class="hstat">
+    <div class="hstat-num" data-count="1247">0</div>
+    <div class="hstat-label">Active Jobs</div>
   </div>
-  <div class="stats-row">
-    <div class="stat-item">
-      <div class="stat-num" data-count="1247">0</div>
-      <div class="stat-label">Active Jobs</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="48200">0</div>
-      <div class="stat-label">Nurses Registered</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="340">0</div>
-      <div class="stat-label">Employers</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">$95k</div>
-      <div class="stat-label">Avg. Salary</div>
-    </div>
+  <div class="hstat">
+    <div class="hstat-num" data-count="48200">0</div>
+    <div class="hstat-label">Nurses Browsing</div>
+  </div>
+  <div class="hstat">
+    <div class="hstat-num" data-count="340">0</div>
+    <div class="hstat-label">Employers</div>
+  </div>
+  <div class="hstat">
+    <div class="hstat-num">$95k</div>
+    <div class="hstat-label">Avg. Salary</div>
+  </div>
+</div>
+```
+
   </div>
 </section>
+
+<!-- EMAIL CAPTURE -->
+
+<div class="email-bar">
+  <div class="email-inner">
+    <div class="email-text">
+      <strong>Get new remote RN jobs emailed daily</strong>
+      <p>Be first to apply — new listings every morning, straight to your inbox.</p>
+    </div>
+    <div class="email-form">
+      <input class="email-input" type="email" placeholder="your@email.com">
+      <button class="email-btn" onclick="toast('✓ You\'re subscribed! Check your inbox.')">Get Job Alerts</button>
+    </div>
+  </div>
+</div>
 
 <!-- TRUST BAR -->
 
@@ -710,7 +807,6 @@ footer a:hover { color: var(–text); }
       <span class="trust-logo">CVS Health</span>
       <span class="trust-logo">Mayo Clinic</span>
       <span class="trust-logo">Humana</span>
-      <span class="trust-logo">Kaiser</span>
       <span class="trust-logo">UnitedHealth</span>
       <span class="trust-logo">Amazon Care</span>
       <span class="trust-logo">Devoted Health</span>
@@ -721,48 +817,50 @@ footer a:hover { color: var(–text); }
 <!-- SEARCH -->
 
 <div class="search-wrap">
-  <div class="search-box">
-    <input type="text" id="sInput" placeholder="Job title, specialty, or keyword..." onkeyup="filterJobs()">
-    <div class="sdiv"></div>
-    <select id="sSpec" onchange="filterJobs()">
-      <option value="">All Specialties</option>
-      <option value="ICU">ICU / Critical Care</option>
-      <option value="Pediatrics">Pediatrics</option>
-      <option value="Mental Health">Mental Health</option>
-      <option value="Case Management">Case Management</option>
-      <option value="Oncology">Oncology</option>
-      <option value="Med-Surg">Med-Surg</option>
-      <option value="Triage">Triage</option>
-    </select>
-    <div class="sdiv"></div>
-    <select id="sType" onchange="filterJobs()">
-      <option value="">Any Schedule</option>
-      <option value="Full-time">Full-time</option>
-      <option value="Part-time">Part-time</option>
-      <option value="Contract">Contract</option>
-      <option value="PRN">PRN</option>
-    </select>
-    <button class="search-btn" onclick="filterJobs()">Search →</button>
-  </div>
-  <div class="filter-pills">
-    <span class="pill active" onclick="setPill(this)">All Jobs</span>
-    <span class="pill" onclick="setPill(this)">$80k+</span>
-    <span class="pill" onclick="setPill(this)">$100k+</span>
-    <span class="pill" onclick="setPill(this)">New Today</span>
-    <span class="pill" onclick="setPill(this)">No Nights</span>
-    <span class="pill" onclick="setPill(this)">Benefits</span>
-    <span class="pill" onclick="setPill(this)">Compact License OK</span>
+  <div class="search-inner">
+    <div class="search-box">
+      <input type="text" id="sInput" placeholder="Search by title, specialty, or company..." onkeyup="filterJobs()">
+      <div class="sdiv"></div>
+      <select id="sSpec" onchange="filterJobs()">
+        <option value="">All Specialties</option>
+        <option value="ICU">ICU / Critical Care</option>
+        <option value="Pediatrics">Pediatrics</option>
+        <option value="Mental Health">Mental Health</option>
+        <option value="Case Management">Case Management</option>
+        <option value="Oncology">Oncology</option>
+        <option value="Med-Surg">Med-Surg</option>
+        <option value="Triage">Triage</option>
+      </select>
+      <div class="sdiv"></div>
+      <select id="sType" onchange="filterJobs()">
+        <option value="">Any Schedule</option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+        <option value="Contract">Contract</option>
+        <option value="PRN">PRN</option>
+      </select>
+      <button class="sbtn" onclick="filterJobs()">Search Jobs</button>
+    </div>
+    <div class="filter-pills">
+      <span class="pill active" onclick="setPill(this)">All Jobs</span>
+      <span class="pill" onclick="setPill(this)">$80k+</span>
+      <span class="pill" onclick="setPill(this)">$100k+</span>
+      <span class="pill" onclick="setPill(this)">New Today</span>
+      <span class="pill" onclick="setPill(this)">No Nights</span>
+      <span class="pill" onclick="setPill(this)">Benefits Included</span>
+      <span class="pill" onclick="setPill(this)">Compact License</span>
+    </div>
   </div>
 </div>
 
-<!-- MAIN LAYOUT -->
+<!-- PAGE WRAP -->
 
-<div class="main-layout">
+<div class="page-wrap">
 
   <!-- SIDEBAR -->
 
   <aside class="sidebar">
-    <div class="sidebar-box">
+    <div class="sb-card">
       <div class="sb-title">Filter Jobs</div>
       <div class="fg">
         <span class="fl">Employment Type</span>
@@ -782,9 +880,9 @@ footer a:hover { color: var(–text); }
       </div>
       <div class="fg">
         <span class="fl">Salary Range</span>
-        <div class="fi"><input type="checkbox"> <span>$60k – $80k</span> <span class="cn">184</span></div>
-        <div class="fi"><input type="checkbox"> <span>$80k – $100k</span> <span class="cn">431</span></div>
-        <div class="fi"><input type="checkbox"> <span>$100k – $130k</span> <span class="cn">298</span></div>
+        <div class="fi"><input type="checkbox"> <span>$60k–$80k</span> <span class="cn">184</span></div>
+        <div class="fi"><input type="checkbox"> <span>$80k–$100k</span> <span class="cn">431</span></div>
+        <div class="fi"><input type="checkbox"> <span>$100k–$130k</span> <span class="cn">298</span></div>
         <div class="fi"><input type="checkbox"> <span>$130k+</span> <span class="cn">112</span></div>
       </div>
       <div class="fg">
@@ -796,98 +894,141 @@ footer a:hover { color: var(–text); }
     </div>
 
 ```
-<!-- POST JOB CTA -->
-<div class="sidebar-cta">
+<div class="sb-cta">
   <h4>Hiring Remote Nurses?</h4>
-  <p>Post your open positions and reach 48,000+ qualified candidates today.</p>
-  <div class="cta-price">$99<small>/listing</small></div>
-  <button class="cta-btn" onclick="openModal('postModal')">Post a Job →</button>
+  <p>Reach 48,000+ nurses actively looking for remote positions right now.</p>
+  <div class="sb-features">
+    <div class="sb-feat">Live within 24 hours</div>
+    <div class="sb-feat">No contracts required</div>
+    <div class="sb-feat">Featured placement available</div>
+  </div>
+  <div class="sb-price">$99<small>/listing</small></div>
+  <button class="sb-btn" onclick="openModal('postModal')">Post a Job →</button>
 </div>
 ```
 
   </aside>
 
-  <!-- JOB LIST -->
+  <!-- JOBS -->
 
   <div>
-    <div class="jobs-header">
+    <div class="jobs-top">
       <div>
-        <div class="jobs-title">Remote Nursing Jobs</div>
-        <div class="jobs-count" id="jCount">1,247 positions available</div>
+        <div class="jobs-heading">Remote Nursing Jobs</div>
+        <div class="jobs-sub" id="jCount">1,247 positions available · Limited featured spots open</div>
       </div>
-      <select class="sort-sel">
-        <option>Most Recent</option>
-        <option>Highest Salary</option>
-        <option>Most Relevant</option>
-      </select>
+      <div class="sort-wrap">
+        <select class="sort-sel">
+          <option>Most Recent</option>
+          <option>Highest Salary</option>
+          <option>Most Relevant</option>
+        </select>
+      </div>
     </div>
     <div id="jobList"></div>
+    <button class="load-more" onclick="toast('Loading more jobs...')">Load More Jobs →</button>
   </div>
 </div>
 
-<!-- TRUST SECTION -->
+<!-- TRUST NUMBERS -->
 
-<section class="trust-section">
-  <div class="trust-inner2">
-    <div class="trust-card">
-      <div class="trust-icon">🩺</div>
-      <div class="trust-num">48,200+</div>
-      <div class="trust-desc">Nurses registered and actively browsing remote positions</div>
+<section class="trust-numbers">
+  <div class="tn-inner">
+    <div class="tn-card">
+      <div class="tn-icon">🩺</div>
+      <div class="tn-num">48,200+</div>
+      <div class="tn-label">Nurses registered and actively browsing</div>
     </div>
-    <div class="trust-card">
-      <div class="trust-icon">🏥</div>
-      <div class="trust-num">340+</div>
-      <div class="trust-desc">Healthcare employers actively posting telehealth jobs</div>
+    <div class="tn-card">
+      <div class="tn-icon">🏥</div>
+      <div class="tn-num">340+</div>
+      <div class="tn-label">Healthcare employers posting jobs</div>
     </div>
-    <div class="trust-card">
-      <div class="trust-icon">⚡</div>
-      <div class="trust-num">48 hrs</div>
-      <div class="trust-desc">Average time from application to employer response</div>
+    <div class="tn-card">
+      <div class="tn-icon">⚡</div>
+      <div class="tn-num">48 hrs</div>
+      <div class="tn-label">Average employer response time</div>
     </div>
-    <div class="trust-card">
-      <div class="trust-icon">✅</div>
-      <div class="trust-num">100%</div>
-      <div class="trust-desc">Remote positions — no hybrid, no in-person requirements</div>
+    <div class="tn-card">
+      <div class="tn-icon">✅</div>
+      <div class="tn-num">100%</div>
+      <div class="tn-label">Remote — no hybrid or in-person</div>
     </div>
   </div>
 </section>
 
-<!-- EMPLOYER SECTION -->
+<!-- TESTIMONIALS -->
 
-<section class="employer-section">
-  <div class="emp-inner">
-    <div>
-      <div class="emp-eyebrow">For Employers</div>
-      <h2>Hire remote nurses <span>faster.</span></h2>
-      <p>Post to the only job board where every candidate is actively seeking remote or telehealth work. Stop competing with hospital jobs on Indeed.</p>
-      <div class="emp-features">
-        <div class="emp-feat">Listed in front of 48,000+ qualified remote nurses</div>
-        <div class="emp-feat">Live within 24 hours of posting</div>
-        <div class="emp-feat">Featured placement available for faster hiring</div>
-        <div class="emp-feat">No contracts or monthly commitments required</div>
-      </div>
-      <button class="btn-primary" onclick="openModal('postModal')">Post Your First Job →</button>
+<section class="testimonials">
+  <div class="test-inner">
+    <div class="test-header">
+      <h2>Trusted by nurses nationwide</h2>
+      <p>Real nurses who found remote work through TeleRN</p>
     </div>
-    <div class="pricing-stack">
-      <div class="pc" onclick="openModal('postModal')">
-        <div>
-          <div class="pn">Single Listing</div>
-          <div class="pd">1 job post · 30-day visibility</div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"Finally a job board that only shows remote nursing jobs. I was tired of wading through hospital listings on Indeed. Found my current telehealth position here in under a week."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:#0066FF">JM</div>
+          <div>
+            <div class="test-name">Jessica M., RN</div>
+            <div class="test-role">Telehealth Case Manager · Texas</div>
+          </div>
         </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"The salary filters are a game changer. I was able to search specifically for $100k+ remote ICU roles and actually found several that matched. Landed a position at $105k fully remote."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:#00C77A">DK</div>
+          <div>
+            <div class="test-name">Dana K., BSN RN</div>
+            <div class="test-role">Remote ICU Nurse · Florida</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"As a travel nurse looking to transition to remote work, this site was exactly what I needed. The specialty filters made it easy to find mental health telehealth roles in my state."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:#F59E0B">AM</div>
+          <div>
+            <div class="test-name">Aisha M., RN</div>
+            <div class="test-role">Behavioral Health RN · Georgia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / EMPLOYER -->
+
+<section class="mission">
+  <div class="mission-inner">
+    <div>
+      <h2>TeleRN helps nurses find <em>flexible remote work</em> without burnout.</h2>
+      <p>We built TeleRN because nurses deserve better than sifting through thousands of irrelevant listings on general job boards. Every single job on this platform is remote. That's our promise.</p>
+      <div class="mission-feats">
+        <div class="mf"><div class="mf-icon">🏠</div><div class="mf-text"><strong>Only remote positions</strong><span>No hybrid, no "remote preferred" listings</span></div></div>
+        <div class="mf"><div class="mf-icon">✓</div><div class="mf-text"><strong>Verified employers</strong><span>Every employer is manually reviewed before posting</span></div></div>
+        <div class="mf"><div class="mf-icon">📅</div><div class="mf-text"><strong>Updated daily</strong><span>New remote nursing jobs added every morning</span></div></div>
+        <div class="mf"><div class="mf-icon">💰</div><div class="mf-text"><strong>Free for nurses</strong><span>Always free to browse and apply</span></div></div>
+      </div>
+      <button class="btn-accent" onclick="openModal('postModal')">Post a Job — $99 →</button>
+    </div>
+    <div class="pricing-col">
+      <div class="pc" onclick="openModal('postModal')">
+        <div><div class="pn">Single Listing</div><div class="pd">1 job post · 30-day visibility</div></div>
         <div class="pp">$99<small>/post</small></div>
       </div>
       <div class="pc pop" onclick="openModal('postModal')">
-        <div>
-          <div class="pn">⭐ Employer Pack</div>
-          <div class="pd">5 posts + featured placement</div>
-        </div>
+        <div><div class="pn">⭐ Employer Pack</div><div class="pd">5 posts + featured placement</div></div>
         <div class="pp">$349<small>/mo</small></div>
       </div>
       <div class="pc" onclick="openModal('postModal')">
-        <div>
-          <div class="pn">Unlimited</div>
-          <div class="pd">Unlimited posts + branding</div>
-        </div>
+        <div><div class="pn">Unlimited</div><div class="pd">Unlimited posts + branding</div></div>
         <div class="pp">$699<small>/mo</small></div>
       </div>
     </div>
@@ -897,57 +1038,65 @@ footer a:hover { color: var(–text); }
 <!-- FOOTER -->
 
 <footer>
-  <div class="fl-logo">Tele<span>RN</span></div>
-  <p>© 2026 TeleRN · The #1 remote nursing job board · Free for nurses</p>
-  <div>
-    <a href="#">About</a>
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a onclick="openModal('postModal')" href="#">Post a Job</a>
+  <div class="foot-inner">
+    <div class="foot-logo">Tele<span>RN</span></div>
+    <p>© 2026 TeleRN · Remote nursing jobs, updated daily · Free for nurses</p>
+    <div>
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+      <a onclick="openModal('postModal')" href="#">Post a Job</a>
+    </div>
   </div>
 </footer>
 
 <script>
 const jobs = [
-  {id:1,t:'Remote ICU Tele-Nurse, RN',c:'Teladoc Health',l:'New York, NY (Remote)',s:'$88,000–$105,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Compact OK','No Nights'],feat:true,date:'Today',col:'#0D6E6E',ini:'TH',desc:'Join Teladoc Health as a Remote ICU Tele-Nurse. Monitor critically ill patients using tele-ICU technology, collaborate with bedside teams nationwide, and deliver life-saving care remotely. Competitive pay + full benefits.'},
-  {id:2,t:'Telehealth Case Manager, RN',c:'CVS Health / Aetna',l:'Hartford, CT (Remote)',s:'$80,000–$97,000/yr',type:'Full-time',spec:'Case Management',tags:['Case Mgmt','Benefits','No Nights'],feat:false,date:'Today',col:'#1E3A5F',ini:'CV',desc:'CVS Health seeks a Case Manager RN to coordinate care for complex patients via telehealth. Develop care plans and improve health outcomes. Full benefits, no nights required.'},
-  {id:3,t:'Telehealth Pediatric RN',c:'Amazon Care',l:'Seattle, WA (Remote)',s:'$78,000–$94,000/yr',type:'Part-time',spec:'Pediatrics',tags:['Pediatrics','Flexible','Part-time'],feat:false,date:'Today',col:'#E47911',ini:'AC',desc:'Amazon Care needs a Pediatric RN for virtual care to children and families. Part-time, flexible scheduling. Set your own hours within available slots.'},
-  {id:4,t:'Behavioral Health RN, Remote',c:'Humana',l:'Louisville, KY (Remote)',s:'$75,000–$90,000/yr',type:'Full-time',spec:'Mental Health',tags:['Mental Health','No Nights','Full Benefits'],feat:false,date:'2 days ago',col:'#2E7D32',ini:'HU',desc:'Humana needs a Behavioral Health RN for telephonic care management to members with mental health disorders. No nights or weekends. Comprehensive benefits.'},
-  {id:5,t:'Remote Oncology Nurse Navigator',c:'UnitedHealth Group',l:'Minneapolis, MN (Remote)',s:'$95,000–$118,000/yr',type:'Full-time',spec:'Oncology',tags:['Oncology','NP Preferred','$100k+'],feat:false,date:'2 days ago',col:'#6A1B9A',ini:'UH',desc:'UnitedHealth needs an Oncology Nurse Navigator to guide cancer patients through treatment via telehealth. Oncology experience required. Excellent compensation.'},
-  {id:6,t:'Telehealth Triage RN',c:'Mayo Clinic',l:'Rochester, MN (Remote)',s:'$82,000–$99,000/yr',type:'Full-time',spec:'Triage',tags:['Triage','Evening Shifts','Compact OK'],feat:false,date:'3 days ago',col:'#B71C1C',ini:'MC',desc:'Mayo Clinic seeks a Triage RN for after-hours telehealth calls. Fast-paced environment, evening shifts, compact license required.'},
-  {id:7,t:'Remote Utilization Review RN',c:'Piper Companies',l:'Remote, USA',s:'$72,000–$88,000/yr',type:'Full-time',spec:'Case Management',tags:['Utilization Mgmt','Compact OK','Benefits'],feat:false,date:'3 days ago',col:'#1565C0',ini:'PC',desc:'Piper Companies is hiring a Utilization Review RN for medical necessity reviews. Remote position, compact license preferred.'},
-  {id:8,t:'Telehealth NP – Weight Management',c:'Ro Health',l:'Nationwide (Remote)',s:'$105,000–$130,000/yr',type:'Full-time',spec:'Med-Surg',tags:['NP Required','$100k+','Flexible'],feat:true,date:'4 days ago',col:'#00695C',ini:'RO',desc:'Ro Health is seeking NPs for virtual weight management consultations. GLP-1 experience preferred. Fully remote, flexible scheduling, excellent pay.'},
-  {id:9,t:'Virtual ICU Nurse, RN',c:'Mercy Virtual',l:'Chesterfield, MO (Remote)',s:'$85,000–$102,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Night Shifts','Full Benefits'],feat:false,date:'4 days ago',col:'#4527A0',ini:'MV',desc:'Mercy Virtual is hiring ICU RNs for remote patient monitoring. Night shift availability required. Strong benefits package.'},
-  {id:10,t:'Remote Psychiatric RN',c:'LifeStance Health',l:'Remote, USA',s:'$78,000–$95,000/yr',type:'Full-time',spec:'Mental Health',tags:['Psych','No Nights','Compact OK'],feat:false,date:'5 days ago',col:'#4E342E',ini:'LS',desc:'LifeStance Health needs a Psychiatric RN for virtual mental health support. No nights or weekends. Compact license required.'},
-  {id:11,t:'Telehealth Care Manager RN',c:'Devoted Health',l:'Remote, USA',s:'$76,000–$91,000/yr',type:'Full-time',spec:'Case Management',tags:['Care Mgmt','Medicare','Benefits'],feat:false,date:'5 days ago',col:'#00838F',ini:'DH',desc:'Devoted Health seeks a Care Manager RN to support Medicare members via telehealth. Coordinate care and improve outcomes for complex patients.'},
-  {id:12,t:'Remote Wound Care RN',c:'WoundCentrics',l:'Remote, USA',s:'$74,000–$89,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Wound Care','Compact OK','No Nights'],feat:false,date:'6 days ago',col:'#558B2F',ini:'WC',desc:'WoundCentrics needs a Wound Care RN to consult virtually with patients and bedside staff. No nights, competitive pay.'},
-  {id:13,t:'Telehealth Diabetes Nurse Educator',c:'Vida Health',l:'Remote, USA',s:'$70,000–$85,000/yr',type:'Part-time',spec:'Med-Surg',tags:['Diabetes','Part-time','Flexible'],feat:false,date:'1 week ago',col:'#E65100',ini:'VH',desc:'Vida Health needs a Diabetes Nurse Educator to coach patients virtually. Part-time, flexible hours, passion for wellness required.'},
-  {id:14,t:'Remote NICU Tele-Nurse',c:'Children\'s Health',l:'Dallas, TX (Remote)',s:'$88,000–$108,000/yr',type:'Full-time',spec:'Pediatrics',tags:['NICU','Pediatrics','Nights OK'],feat:false,date:'1 week ago',col:'#1976D2',ini:'CH',desc:'Children\'s Health is hiring a NICU Tele-Nurse for remote support of neonatal ICU patients. Night availability required. Premium pay.'},
-  {id:15,t:'Virtual Hospice RN',c:'VITAS Healthcare',l:'Remote, USA',s:'$72,000–$87,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Hospice','Compassionate','Benefits'],feat:false,date:'1 week ago',col:'#37474F',ini:'VI',desc:'VITAS Healthcare needs a compassionate RN for virtual hospice support and family guidance. Meaningful work, full benefits.'},
+  {id:1,t:'Remote ICU Tele-Nurse, RN',c:'Teladoc Health',l:'New York, NY (Remote)',s:'$88,000–$105,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Compact OK','Benefits'],feat:true,hot:true,date:'Today',col:'#0D6E6E',ini:'TH',desc:'Join Teladoc Health as a Remote ICU Tele-Nurse. Monitor critically ill patients using tele-ICU technology, collaborate with bedside teams nationwide, and deliver life-saving care from home. Compact license required. Full benefits package.'},
+  {id:2,t:'Telehealth Case Manager, RN',c:'CVS Health / Aetna',l:'Hartford, CT (Remote)',s:'$80,000–$97,000/yr',type:'Full-time',spec:'Case Management',tags:['Case Mgmt','No Nights','Benefits'],feat:false,hot:false,date:'Today',col:'#1E3A5F',ini:'CV',desc:'CVS Health seeks a compassionate Case Manager RN to coordinate care for complex patients via telehealth. Develop care plans, connect patients with resources, and improve health outcomes. Full benefits, no nights required.'},
+  {id:3,t:'Telehealth Pediatric RN',c:'Amazon Care',l:'Seattle, WA (Remote)',s:'$78,000–$94,000/yr',type:'Part-time',spec:'Pediatrics',tags:['Pediatrics','Flexible Hours','Part-time'],feat:false,hot:false,date:'Today',col:'#E47911',ini:'AC',desc:'Amazon Care needs a Pediatric RN for virtual care to children and families. Part-time, maximum flexibility — set your own hours within available slots. Excellent for experienced pediatric nurses seeking work-life balance.'},
+  {id:4,t:'Behavioral Health RN, Remote',c:'Humana',l:'Louisville, KY (Remote)',s:'$75,000–$90,000/yr',type:'Full-time',spec:'Mental Health',tags:['Mental Health','No Nights','Full Benefits'],feat:false,hot:false,date:'2 days ago',col:'#2E7D32',ini:'HU',desc:'Humana needs a Behavioral Health RN for telephonic care management to members with mental health disorders. No nights, no weekends. Comprehensive benefits package included.'},
+  {id:5,t:'Remote Oncology Nurse Navigator',c:'UnitedHealth Group',l:'Minneapolis, MN (Remote)',s:'$95,000–$118,000/yr',type:'Full-time',spec:'Oncology',tags:['Oncology','NP Preferred','$100k+'],feat:true,hot:false,date:'2 days ago',col:'#6A1B9A',ini:'UH',desc:'UnitedHealth needs an Oncology Nurse Navigator to guide cancer patients through their treatment journey via telehealth. Oncology experience required, NP preferred but not required. Excellent compensation package.'},
+  {id:6,t:'Telehealth Triage RN',c:'Mayo Clinic',l:'Rochester, MN (Remote)',s:'$82,000–$99,000/yr',type:'Full-time',spec:'Triage',tags:['Triage','Evening Shifts','Compact OK'],feat:false,hot:false,date:'3 days ago',col:'#B71C1C',ini:'MC',desc:'Mayo Clinic seeks a Triage RN for after-hours telehealth calls and urgent care consultations nationwide. Fast-paced environment, evening shifts. Compact license required. Excellent Mayo benefits.'},
+  {id:7,t:'Remote Utilization Review RN',c:'Piper Companies',l:'Remote, USA',s:'$72,000–$88,000/yr',type:'Full-time',spec:'Case Management',tags:['UM Review','Compact OK','Benefits'],feat:false,hot:false,date:'3 days ago',col:'#1565C0',ini:'PC',desc:'Piper Companies hiring a Utilization Review RN for medical necessity reviews. Fully remote, compact license preferred. Work with multiple healthcare clients across the country.'},
+  {id:8,t:'Telehealth NP — Weight Management',c:'Ro Health',l:'Nationwide (Remote)',s:'$105,000–$130,000/yr',type:'Full-time',spec:'Med-Surg',tags:['NP Required','$100k+','Flexible'],feat:true,hot:true,date:'4 days ago',col:'#00695C',ini:'RO',desc:'Ro Health is seeking NPs for virtual weight management consultations. GLP-1 experience preferred. Fully remote, flexible scheduling, top-of-market compensation.'},
+  {id:9,t:'Virtual ICU Nurse, RN',c:'Mercy Virtual',l:'Chesterfield, MO (Remote)',s:'$85,000–$102,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Night Shifts','Full Benefits'],feat:false,hot:false,date:'4 days ago',col:'#4527A0',ini:'MV',desc:'Mercy Virtual hiring ICU RNs for remote patient monitoring. Night shift availability required. One of the largest tele-ICU programs in the country. Strong benefits.'},
+  {id:10,t:'Remote Psychiatric RN',c:'LifeStance Health',l:'Remote, USA',s:'$78,000–$95,000/yr',type:'Full-time',spec:'Mental Health',tags:['Psych','No Nights','Compact OK'],feat:false,hot:false,date:'5 days ago',col:'#4E342E',ini:'LS',desc:'LifeStance Health needs a Psychiatric RN for virtual mental health support. No nights or weekends. Compact license required. Work with leading mental health providers nationwide.'},
+  {id:11,t:'Telehealth Care Manager RN',c:'Devoted Health',l:'Remote, USA',s:'$76,000–$91,000/yr',type:'Full-time',spec:'Case Management',tags:['Care Mgmt','Medicare','Benefits'],feat:false,hot:false,date:'5 days ago',col:'#00838F',ini:'DH',desc:'Devoted Health seeks a Care Manager RN to support Medicare members via telehealth. Coordinate care and improve outcomes for complex patients. Mission-driven team.'},
+  {id:12,t:'Remote Wound Care RN',c:'WoundCentrics',l:'Remote, USA',s:'$74,000–$89,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Wound Care','Compact OK','No Nights'],feat:false,hot:false,date:'6 days ago',col:'#558B2F',ini:'WC',desc:'WoundCentrics needs a Wound Care RN to consult virtually with patients and bedside staff across the country. No nights, no weekends. Competitive pay.'},
+  {id:13,t:'Telehealth Diabetes Nurse Educator',c:'Vida Health',l:'Remote, USA',s:'$70,000–$85,000/yr',type:'Part-time',spec:'Med-Surg',tags:['Diabetes','Part-time','Flexible'],feat:false,hot:false,date:'1 week ago',col:'#E65100',ini:'VH',desc:'Vida Health needs a Diabetes Nurse Educator to coach patients virtually. Part-time, flexible hours. Passion for preventive health required.'},
+  {id:14,t:'Remote NICU Tele-Nurse',c:"Children's Health",l:'Dallas, TX (Remote)',s:'$88,000–$108,000/yr',type:'Full-time',spec:'Pediatrics',tags:['NICU','Pediatrics','Premium Pay'],feat:false,hot:true,date:'1 week ago',col:'#1976D2',ini:'CH',desc:"Children's Health is hiring a NICU Tele-Nurse for remote support of neonatal ICU patients. Night availability required. Premium compensation. One of the top pediatric health systems in the U.S."},
+  {id:15,t:'Virtual Hospice RN',c:'VITAS Healthcare',l:'Remote, USA',s:'$72,000–$87,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Hospice','Meaningful Work','Benefits'],feat:false,hot:false,date:'1 week ago',col:'#37474F',ini:'VI',desc:'VITAS Healthcare needs a compassionate RN for virtual hospice support and family guidance. Deeply meaningful work, full benefits, flexible scheduling.'},
+  {id:16,t:'Telehealth Cardiology RN',c:'Cleveland Clinic',l:'Cleveland, OH (Remote)',s:'$82,000–$100,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Cardiology','Compact OK','Benefits'],feat:false,hot:false,date:'1 week ago',col:'#0D47A1',ini:'CC',desc:'Cleveland Clinic seeks a Cardiology RN for remote monitoring and patient education for cardiac patients. Compact license preferred. World-class benefits.'},
+  {id:17,t:'Remote Utilization Mgmt RN',c:'Cigna',l:'Remote, USA',s:'$78,000–$94,000/yr',type:'Full-time',spec:'Case Management',tags:['UM','No Nights','Benefits'],feat:false,hot:false,date:'8 days ago',col:'#880E4F',ini:'CI',desc:'Cigna is hiring a Utilization Management RN to conduct clinical reviews and authorize care. Fully remote, no nights. Strong benefits and career growth opportunities.'},
+  {id:18,t:'Telehealth Maternal-Fetal RN',c:'Optum',l:'Remote, USA',s:'$80,000–$96,000/yr',type:'Full-time',spec:'Pediatrics',tags:['OB/GYN','Maternal','Benefits'],feat:false,hot:false,date:'9 days ago',col:'#4A148C',ini:'OP',desc:'Optum needs a Maternal-Fetal RN to provide telehealth support to high-risk pregnant patients. Remote, meaningful work supporting moms and babies nationwide.'},
+  {id:19,t:'Remote ED Triage Nurse',c:'Ascension Health',l:'Remote, USA',s:'$79,000–$95,000/yr',type:'Full-time',spec:'Triage',tags:['ED Triage','Evenings','Compact OK'],feat:false,hot:false,date:'10 days ago',col:'#BF360C',ini:'AS',desc:'Ascension Health needs an experienced ED Triage RN for telehealth urgent care consultations. Evening availability required. Compact license required. Nationwide health system.'},
+  {id:20,t:'Virtual Chronic Care RN',c:'Oshi Health',l:'Remote, USA',s:'$74,000–$90,000/yr',type:'Full-time',spec:'Case Management',tags:['Chronic Care','GI','Benefits'],feat:false,hot:false,date:'10 days ago',col:'#006064',ini:'OH',desc:'Oshi Health is a GI-focused digital health startup hiring a Chronic Care RN for virtual patient management. Mission-driven team improving digestive health outcomes nationwide.'},
 ];
-
-let current = null;
 
 function renderJobs(list) {
   list = list || jobs;
-  document.getElementById('jCount').textContent = list.length.toLocaleString() + ' positions available';
+  document.getElementById('jCount').textContent = list.length.toLocaleString() + ' positions available · Limited featured spots open';
   document.getElementById('jobList').innerHTML = list.map(j => `
     <div class="job-card ${j.feat?'featured':''}" onclick="openJob(${j.id})">
-      <div class="co-icon" style="background:${j.col}">${j.ini}</div>
+      <div class="co-logo" style="background:${j.col}">${j.ini}</div>
       <div>
         <div class="jt">${j.t}</div>
         <div class="jc">${j.c} · ${j.l}</div>
         <div class="jtags">
           ${j.feat?'<span class="tag tf">⭐ Featured</span>':''}
+          ${j.hot?'<span class="tag thot">🔥 Hot</span>':''}
           <span class="tag ts">${j.s}</span>
           <span class="tag">${j.type}</span>
+          ${j.date==='Today'?'<span class="tag tnew">New Today</span>':''}
           ${j.tags.map(x=>`<span class="tag">${x}</span>`).join('')}
         </div>
       </div>
       <div class="ja">
-        <span class="jd">${j.date}</span>
-        <button class="apply-btn" onclick="event.stopPropagation();toast('✓ Link copied! Apply at company site.')">Apply Now</button>
-        <button class="save-btn" onclick="event.stopPropagation();toast('♡ Saved!')">♡</button>
+        <span class="jdate">${j.date}</span>
+        <button class="apply-btn" onclick="event.stopPropagation();toast('✓ Application link copied!')">Apply Now</button>
+        <button class="save-btn" onclick="event.stopPropagation();toast('♡ Job saved!')">♡</button>
       </div>
     </div>
   `).join('');
@@ -959,8 +1108,7 @@ function filterJobs() {
   const ty = document.getElementById('sType').value;
   renderJobs(jobs.filter(j =>
     (!q || j.t.toLowerCase().includes(q) || j.c.toLowerCase().includes(q) || j.spec.toLowerCase().includes(q)) &&
-    (!sp || j.spec === sp) &&
-    (!ty || j.type === ty)
+    (!sp || j.spec === sp) && (!ty || j.type === ty)
   ));
 }
 
@@ -970,12 +1118,12 @@ function setPill(el) {
 }
 
 function openJob(id) {
-  current = jobs.find(j=>j.id===id);
-  document.getElementById('mTitle').textContent = current.t;
-  document.getElementById('mCo').textContent = current.c + ' · ' + current.l;
-  document.getElementById('mDesc').textContent = current.desc;
+  const j = jobs.find(x=>x.id===id);
+  document.getElementById('mTitle').textContent = j.t;
+  document.getElementById('mCo').textContent = j.c + ' · ' + j.l;
+  document.getElementById('mDesc').textContent = j.desc;
   document.getElementById('mTags').innerHTML =
-    `<span class="tag ts">${current.s}</span><span class="tag">${current.type}</span>${current.tags.map(x=>`<span class="tag">${x}</span>`).join('')}`;
+    `<span class="tag ts">${j.s}</span><span class="tag">${j.type}</span>${j.tags.map(x=>`<span class="tag">${x}</span>`).join('')}`;
   openModal('jobModal');
 }
 
@@ -989,27 +1137,27 @@ function toast(msg) {
   setTimeout(()=>t.classList.remove('show'), 3000);
 }
 
-document.querySelectorAll('.overlay').forEach(o=>{
-  o.addEventListener('click', e=>{ if(e.target===o) o.classList.remove('open'); });
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if(e.target===o) o.classList.remove('open'); });
 });
 
 // Counter animation
-const cObs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
     if(e.isIntersecting) {
       const el = e.target;
       const target = parseInt(el.dataset.count);
-      let cur = 0; const step = target/50;
+      let cur = 0; const step = target/60;
       const t = setInterval(()=>{
         cur += step;
         if(cur >= target){ el.textContent = target.toLocaleString(); clearInterval(t); }
         else el.textContent = Math.floor(cur).toLocaleString();
-      }, 20);
-      cObs.unobserve(el);
+      }, 18);
+      obs.unobserve(el);
     }
   });
 });
-document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
+document.querySelectorAll('[data-count]').forEach(el => obs.observe(el));
 
 renderJobs();
 </script>
