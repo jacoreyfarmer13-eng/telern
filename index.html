@@ -7,623 +7,678 @@
 <title>TeleRN — Remote Nursing Jobs</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ===== ONE RULE: White/light bg = dark text. Colored bg = white text. Always. ===== */
 :root {
-  --bg: #0A0F1E;
-  --surface: #111827;
-  --card: #1A2235;
-  --border: rgba(255,255,255,0.09);
-  --accent: #3B82F6;
-  --accent2: #06B6D4;
-  --green: #10B981;
-  --gold: #F59E0B;
-  --red: #EF4444;
-  --text: #F1F5F9;
-  --muted: #94A3B8;
-  --dim: #64748B;
+  --bg: #F0F4F8;
+  --white: #FFFFFF;
+  --ink: #0D1117;
+  --ink2: #1E293B;
+  --body: #334155;
+  --muted: #64748B;
+  --dim: #94A3B8;
+  --border: #CBD5E1;
+  --border-light: #E2E8F0;
+
+–blue: #1D4ED8;
+–blue-dark: #1E40AF;
+–blue-light: #DBEAFE;
+–blue-text: #1E40AF;
+
+–green: #059669;
+–green-light: #D1FAE5;
+–green-text: #065F46;
+
+–gold: #D97706;
+–gold-light: #FEF3C7;
+–gold-text: #92400E;
+
+–red: #DC2626;
+–red-light: #FEE2E2;
+–red-text: #991B1B;
+
+–teal: #0891B2;
+–teal-light: #E0F7FA;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:‘Instrument Sans’,sans-serif;background:var(–bg);color:var(–text);min-height:100vh;overflow-x:hidden}
+body{
+font-family:‘Instrument Sans’,sans-serif;
+background:var(–bg);
+color:var(–ink);
+min-height:100vh;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+}
 
-/* ===== NAV ===== */
+/* ===== NAV — white bg, dark text ===== */
 nav{
-width:100%;background:rgba(10,15,30,0.95);
-border-bottom:1px solid var(–border);
+width:100%;
+background:var(–white);
+border-bottom:2px solid var(–border-light);
 position:sticky;top:0;z-index:200;
-backdrop-filter:blur(12px);
+box-shadow:0 2px 8px rgba(0,0,0,0.06);
 }
 .nav-wrap{
 max-width:1280px;margin:0 auto;
 display:flex;align-items:center;justify-content:space-between;
-padding:0 20px;height:60px;gap:16px;
+padding:0 24px;height:64px;gap:16px;
 }
 .logo{
-display:flex;align-items:center;gap:8px;
-font-family:‘Syne’,sans-serif;font-size:20px;font-weight:800;
-color:var(–text);text-decoration:none;flex-shrink:0;
+display:flex;align-items:center;gap:10px;
+font-family:‘Syne’,sans-serif;font-size:22px;font-weight:800;
+color:var(–ink);text-decoration:none;flex-shrink:0;
 }
 .logo-box{
-width:32px;height:32px;background:var(–accent);
-border-radius:8px;display:flex;align-items:center;
-justify-content:center;font-size:16px;
+width:34px;height:34px;
+background:var(–blue);
+border-radius:9px;
+display:flex;align-items:center;justify-content:center;
+font-size:17px;
 }
-.logo span{color:var(–accent)}
+.logo em{color:var(–blue);font-style:normal}
 
-/* Desktop nav links - hidden on mobile */
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
 .nav-links a{
-color:var(–muted);font-size:14px;font-weight:500;
-padding:7px 12px;border-radius:8px;
-cursor:pointer;transition:all .15s;text-decoration:none;
-white-space:nowrap;
+/* DARK TEXT on white background */
+color:var(–body);
+font-size:14px;font-weight:500;
+padding:8px 14px;border-radius:8px;
+cursor:pointer;transition:all .15s;text-decoration:none;white-space:nowrap;
 }
-.nav-links a:hover{color:var(–text);background:rgba(255,255,255,0.05)}
+.nav-links a:hover{color:var(–ink);background:#F1F5F9}
 
 .nav-btn{
-background:var(–accent);color:white;
-border:none;padding:9px 18px;border-radius:9px;
-font-size:13px;font-weight:700;
+/* WHITE TEXT on blue background */
+background:var(–blue);color:#FFFFFF;
+border:none;padding:10px 20px;border-radius:9px;
+font-size:14px;font-weight:700;
 font-family:‘Instrument Sans’,sans-serif;
 cursor:pointer;transition:all .15s;white-space:nowrap;
-display:flex;align-items:center;gap:6px;flex-shrink:0;
+flex-shrink:0;
 }
-.nav-btn:hover{background:#2563EB;transform:translateY(-1px)}
+.nav-btn:hover{background:var(–blue-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(29,78,216,0.3)}
 
-.price-chip{
-background:rgba(16,185,129,0.2);color:var(–green);
-font-size:11px;font-weight:700;padding:2px 7px;border-radius:100px;
-}
-
-/* ===== HERO ===== */
+/* ===== HERO — deep blue bg, white text ===== */
 .hero{
-background:linear-gradient(135deg,#0A0F1E 0%,#0F1A2E 50%,#0A1628 100%);
-padding:56px 20px 48px;text-align:center;
-border-bottom:1px solid var(–border);
-position:relative;overflow:hidden;
+background:var(–blue-dark);
+padding:64px 24px 56px;
+text-align:center;
 }
-
-.hero::before{
-content:’’;position:absolute;inset:0;
-background:radial-gradient(ellipse at 30% 0%,rgba(59,130,246,0.12) 0%,transparent 60%),
-radial-gradient(ellipse at 70% 100%,rgba(6,182,212,0.08) 0%,transparent 60%);
-pointer-events:none;
-}
-
-.hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+.hero-inner{max-width:680px;margin:0 auto}
 
 .badge{
 display:inline-flex;align-items:center;gap:8px;
-background:rgba(59,130,246,0.12);
-border:1px solid rgba(59,130,246,0.25);
-color:var(–accent);
-padding:7px 16px;border-radius:100px;
+/* WHITE TEXT on semi-transparent bg */
+background:rgba(255,255,255,0.15);
+border:1px solid rgba(255,255,255,0.3);
+color:#FFFFFF;
+padding:7px 18px;border-radius:100px;
 font-size:12px;font-weight:700;letter-spacing:.5px;
-text-transform:uppercase;margin-bottom:24px;
+text-transform:uppercase;margin-bottom:28px;
 }
-.dot{width:7px;height:7px;background:var(–green);border-radius:50%;animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.dot{width:7px;height:7px;background:#34D399;border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 
 .hero h1{
 font-family:‘Syne’,sans-serif;
-font-size:clamp(32px,6vw,56px);
+font-size:clamp(34px,6vw,58px);
 font-weight:800;line-height:1.08;
-letter-spacing:-1px;margin-bottom:16px;
+letter-spacing:-1.5px;margin-bottom:18px;
+/* WHITE TEXT on blue background */
+color:#FFFFFF;
 }
-
 .hero h1 .g{
-background:linear-gradient(135deg,var(–accent),var(–accent2));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+color:#67E8F9; /* light cyan, readable on dark blue */
+-webkit-text-fill-color:#67E8F9;
 }
 
 .hero-sub{
-font-size:clamp(15px,2.5vw,18px);color:var(–muted);
-line-height:1.65;margin-bottom:28px;font-weight:400;
+/* LIGHT text on dark blue */
+color:rgba(255,255,255,0.82);
+font-size:clamp(15px,2.5vw,18px);
+line-height:1.7;margin-bottom:32px;
 }
 
 .hero-perks{
 display:flex;flex-wrap:wrap;justify-content:center;
-gap:10px;margin-bottom:32px;
+gap:10px;margin-bottom:36px;
 }
-
 .perk{
 display:flex;align-items:center;gap:6px;
-background:rgba(255,255,255,0.05);
-border:1px solid var(–border);
-color:var(–muted);font-size:13px;font-weight:500;
-padding:6px 14px;border-radius:100px;
+/* WHITE TEXT on semi-transparent bg */
+background:rgba(255,255,255,0.12);
+border:1px solid rgba(255,255,255,0.2);
+color:#FFFFFF;
+font-size:13px;font-weight:500;
+padding:7px 16px;border-radius:100px;
 }
-.perk-icon{color:var(–green);font-size:12px}
+.perk-dot{color:#34D399;font-size:10px}
 
-.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
 
-.btn-blue{
-background:var(–accent);color:white;
-border:none;padding:13px 28px;border-radius:10px;
+.btn-white{
+/* DARK TEXT on white background */
+background:#FFFFFF;color:var(–blue-dark);
+border:none;padding:14px 32px;border-radius:10px;
 font-size:15px;font-weight:700;
-font-family:‘Instrument Sans’,sans-serif;
-cursor:pointer;transition:all .15s;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;transition:all .15s;
 }
-.btn-blue:hover{background:#2563EB;transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,0.3)}
+.btn-white:hover{background:#EFF6FF;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
 
-.btn-outline{
-background:transparent;color:var(–text);
-border:1px solid var(–border);
-padding:13px 24px;border-radius:10px;
+.btn-outline-white{
+/* WHITE TEXT on transparent bg with white border */
+background:transparent;color:#FFFFFF;
+border:2px solid rgba(255,255,255,0.5);
+padding:14px 28px;border-radius:10px;
 font-size:15px;font-weight:600;
-font-family:‘Instrument Sans’,sans-serif;
-cursor:pointer;transition:all .15s;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;transition:all .15s;
 }
-.btn-outline:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.05)}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);border-color:#FFFFFF}
 
-/* STATS */
-.stats-grid{
+/* STATS — white cards, dark text */
+.stats-row{
 display:grid;grid-template-columns:repeat(4,1fr);
-background:var(–surface);
-border:1px solid var(–border);
 border-radius:14px;overflow:hidden;
-max-width:600px;margin:0 auto;
+max-width:640px;margin:0 auto;
+border:1px solid rgba(255,255,255,0.2);
 }
-
 .sstat{
-padding:18px 12px;text-align:center;
-border-right:1px solid var(–border);
+padding:20px 12px;text-align:center;
+background:rgba(255,255,255,0.1);
+border-right:1px solid rgba(255,255,255,0.15);
 }
 .sstat:last-child{border-right:none}
-
 .snum{
 font-family:‘Syne’,sans-serif;
 font-size:clamp(18px,3vw,26px);
-font-weight:800;color:var(–accent);
+font-weight:800;
+/* BRIGHT WHITE on dark blue */
+color:#FFFFFF;
 }
+.slabel{font-size:11px;color:rgba(255,255,255,0.65);margin-top:3px;font-weight:500}
 
-.slabel{font-size:11px;color:var(–muted);margin-top:3px;font-weight:500}
-
-/* ===== EMAIL BAR ===== */
-.email-bar{
-background:linear-gradient(135deg,#1E40AF,#0E7490);
-padding:20px;
-}
+/* ===== EMAIL BAR — teal bg, white text ===== */
+.email-bar{background:var(–teal);padding:22px 24px}
 .email-inner{
 max-width:1280px;margin:0 auto;
-display:flex;flex-direction:column;
-align-items:center;gap:14px;text-align:center;
+display:flex;flex-wrap:wrap;align-items:center;
+justify-content:space-between;gap:16px;
 }
-.email-text strong{font-family:‘Syne’,sans-serif;font-size:16px;font-weight:700;color:white}
-.email-text p{font-size:13px;color:rgba(255,255,255,.7);margin-top:3px}
-.email-form{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+/* WHITE TEXT on teal */
+.email-bar strong{font-family:‘Syne’,sans-serif;font-size:16px;font-weight:700;color:#FFFFFF}
+.email-bar p{font-size:13px;color:rgba(255,255,255,0.8);margin-top:2px}
+.email-form{display:flex;gap:8px;flex-wrap:wrap}
 .email-inp{
-background:rgba(255,255,255,.15);
-border:1px solid rgba(255,255,255,.3);
-color:white;padding:10px 16px;
-border-radius:8px;font-size:14px;
-font-family:‘Instrument Sans’,sans-serif;
-outline:none;width:220px;
+background:rgba(255,255,255,0.2);
+border:1px solid rgba(255,255,255,0.4);
+/* WHITE TEXT */
+color:#FFFFFF;
+padding:10px 16px;border-radius:8px;
+font-size:14px;font-family:‘Instrument Sans’,sans-serif;
+outline:none;width:210px;
 }
-.email-inp::placeholder{color:rgba(255,255,255,.55)}
-.email-btn{
-background:white;color:#1E40AF;
+.email-inp::placeholder{color:rgba(255,255,255,0.6)}
+.email-inp:focus{background:rgba(255,255,255,0.25);border-color:#FFFFFF}
+.email-go{
+/* DARK TEXT on white bg */
+background:#FFFFFF;color:var(–teal);
 border:none;padding:10px 20px;border-radius:8px;
 font-size:14px;font-weight:700;
-font-family:‘Instrument Sans’,sans-serif;cursor:pointer;
-transition:all .15s;white-space:nowrap;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;white-space:nowrap;
 }
-.email-btn:hover{background:#EFF6FF}
+.email-go:hover{background:#E0F7FA}
 
-/* ===== TRUST BAR ===== */
+/* ===== TRUST BAR — white bg, dark text ===== */
 .trust-bar{
-background:var(–surface);border-bottom:1px solid var(–border);
-padding:14px 20px;
+background:var(–white);
+border-bottom:1px solid var(–border-light);
+padding:16px 24px;
 }
 .trust-inner{
 max-width:1280px;margin:0 auto;
 display:flex;align-items:center;flex-wrap:wrap;gap:16px;
 }
+/* DARK text on white */
 .trust-label{
-font-size:10px;font-weight:700;
-letter-spacing:1.5px;text-transform:uppercase;
-color:var(–dim);white-space:nowrap;
+font-size:10px;font-weight:700;letter-spacing:1.5px;
+text-transform:uppercase;color:var(–muted);white-space:nowrap;
 }
-.trust-logos{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.trust-logos{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .trust-co{
 font-family:‘Syne’,sans-serif;font-size:13px;
-font-weight:700;color:rgba(255,255,255,.2);
+font-weight:700;color:#B0BEC5;
 }
 
-/* ===== SEARCH ===== */
+/* ===== SEARCH — white bg, dark text ===== */
 .search-section{
-background:var(–surface);
-border-bottom:1px solid var(–border);
-padding:18px 20px;
+background:var(–white);
+border-bottom:2px solid var(–border-light);
+padding:20px 24px;
 }
 .search-inner{max-width:1280px;margin:0 auto}
-
 .search-box{
 display:flex;flex-wrap:wrap;gap:8px;
-background:var(–card);border:1.5px solid var(–border);
+background:var(–bg);
+border:2px solid var(–border);
 border-radius:12px;padding:6px;
 transition:border-color .15s;
 }
-.search-box:focus-within{border-color:var(–accent);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
-
+.search-box:focus-within{border-color:var(–blue);box-shadow:0 0 0 3px rgba(29,78,216,0.08)}
 .search-box input{
 flex:1;min-width:140px;background:transparent;border:none;
-padding:10px 12px;color:var(–text);
-font-size:14px;font-family:‘Instrument Sans’,sans-serif;outline:none;
+/* DARK TEXT on light bg */
+color:var(–ink);
+padding:10px 12px;font-size:15px;
+font-family:‘Instrument Sans’,sans-serif;outline:none;
 }
 .search-box input::placeholder{color:var(–dim)}
-
 .search-box select{
-background:transparent;border:none;color:var(–muted);
-font-size:13px;font-family:‘Instrument Sans’,sans-serif;
-outline:none;padding:10px 12px;cursor:pointer;
-min-width:130px;
+background:transparent;border:none;
+/* DARK TEXT */
+color:var(–body);
+font-size:14px;font-family:‘Instrument Sans’,sans-serif;
+outline:none;padding:10px 12px;cursor:pointer;min-width:130px;
 }
-.search-box select option{background:var(–card)}
-
+.search-box select option{background:var(–white);color:var(–ink)}
 .search-go{
-background:var(–accent);color:white;
-border:none;padding:10px 22px;border-radius:9px;
+/* WHITE TEXT on blue */
+background:var(–blue);color:#FFFFFF;
+border:none;padding:10px 24px;border-radius:9px;
 font-size:14px;font-weight:700;
-font-family:‘Instrument Sans’,sans-serif;
-cursor:pointer;transition:all .15s;white-space:nowrap;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;white-space:nowrap;
 }
-.search-go:hover{background:#2563EB}
+.search-go:hover{background:var(–blue-dark)}
 
 .pills{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
 .pill{
-background:var(–card);border:1px solid var(–border);
-color:var(–muted);padding:6px 14px;border-radius:100px;
-font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;
+/* DARK TEXT on light bg */
+background:var(–bg);border:1.5px solid var(–border);
+color:var(–body);
+padding:6px 14px;border-radius:100px;
+font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;
 }
 .pill:hover,.pill.active{
-background:rgba(59,130,246,.12);
-border-color:rgba(59,130,246,.3);color:var(–accent);
+background:var(–blue-light);border-color:var(–blue);color:var(–blue-text);
 }
 
 /* ===== MAIN LAYOUT ===== */
 .main{
 max-width:1280px;margin:0 auto;
-padding:24px 20px 64px;
-display:grid;grid-template-columns:240px 1fr;gap:24px;
+padding:28px 24px 72px;
+display:grid;grid-template-columns:256px 1fr;gap:24px;
 }
 
-/* ===== SIDEBAR ===== */
-.sidebar{position:sticky;top:76px;height:fit-content}
-
+/* ===== SIDEBAR — white cards, dark text ===== */
+.sidebar{position:sticky;top:80px;height:fit-content}
 .sb{
-background:var(–card);border:1px solid var(–border);
-border-radius:14px;padding:20px;margin-bottom:16px;
+background:var(–white);
+border:1.5px solid var(–border-light);
+border-radius:14px;padding:22px;margin-bottom:16px;
+box-shadow:0 1px 4px rgba(0,0,0,0.04);
 }
-
 .sb-h{
-font-family:‘Syne’,sans-serif;font-size:13px;
-font-weight:700;color:var(–text);margin-bottom:16px;
+font-family:‘Syne’,sans-serif;font-size:14px;
+font-weight:700;
+/* DARK TEXT on white */
+color:var(–ink);
+margin-bottom:18px;
 }
-
 .fg{margin-bottom:18px}
 .fl{
 font-size:10px;font-weight:700;letter-spacing:1.5px;
-text-transform:uppercase;color:var(–dim);
+text-transform:uppercase;
+/* Medium dark on white */
+color:var(–muted);
 margin-bottom:10px;display:block;
 }
-
-.fi{
-display:flex;align-items:center;gap:8px;
-margin-bottom:8px;cursor:pointer;
-}
-.fi input{accent-color:var(–accent);width:15px;height:15px;cursor:pointer}
-.fi span{font-size:13px;color:var(–muted)}
+.fi{display:flex;align-items:center;gap:9px;margin-bottom:9px;cursor:pointer}
+.fi input{accent-color:var(–blue);width:15px;height:15px;cursor:pointer}
+/* DARK TEXT on white */
+.fi span{font-size:13px;color:var(–body)}
 .fi .cn{
-margin-left:auto;font-size:11px;color:var(–dim);
-background:rgba(255,255,255,.05);
-padding:1px 7px;border-radius:100px;
+margin-left:auto;font-size:11px;
+color:var(–muted);
+background:var(–bg);
+padding:1px 8px;border-radius:100px;
 }
 
-/* SIDEBAR CTA */
+/* SIDEBAR CTA — dark bg, white text */
 .sb-cta{
-background:linear-gradient(135deg,#1E3A5F,#1A2F4A);
-border:1px solid rgba(59,130,246,.2);
-border-radius:14px;padding:22px;text-align:center;
+background:var(–blue-dark);
+border-radius:14px;padding:24px;text-align:center;
 }
-.sb-cta h4{font-family:‘Syne’,sans-serif;font-size:16px;font-weight:800;color:white;margin-bottom:8px}
-.sb-cta p{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px;line-height:1.5}
-.sb-feats{text-align:left;margin-bottom:14px}
+/* WHITE TEXT on dark blue */
+.sb-cta h4{font-family:‘Syne’,sans-serif;font-size:16px;font-weight:800;color:#FFFFFF;margin-bottom:8px}
+.sb-cta p{font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:14px;line-height:1.55}
+.sb-feats{text-align:left;margin-bottom:16px}
 .sb-feat{
-font-size:12px;color:rgba(255,255,255,.5);
-display:flex;align-items:center;gap:8px;margin-bottom:6px;
+font-size:12px;color:rgba(255,255,255,0.7);
+display:flex;align-items:center;gap:8px;margin-bottom:7px;
 }
-.sb-feat::before{content:‘✓’;color:var(–green);font-weight:700;flex-shrink:0}
-.sb-price{font-family:‘Syne’,sans-serif;font-size:32px;font-weight:800;color:var(–green);margin-bottom:4px}
-.sb-price small{font-size:13px;font-weight:400;color:rgba(255,255,255,.35);font-family:‘Instrument Sans’,sans-serif}
+.sb-feat::before{content:‘✓’;color:#34D399;font-weight:700;flex-shrink:0}
+.sb-price{
+font-family:‘Syne’,sans-serif;font-size:34px;
+font-weight:800;color:#FFFFFF;margin-bottom:4px;
+}
+.sb-price small{font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);font-family:‘Instrument Sans’,sans-serif}
 .sb-btn{
-width:100%;background:var(–green);color:white;
-border:none;padding:12px;border-radius:9px;
+width:100%;
+/* DARK TEXT on green */
+background:#34D399;color:#064E3B;
+border:none;padding:13px;border-radius:10px;
 font-size:14px;font-weight:700;
-font-family:‘Instrument Sans’,sans-serif;
-cursor:pointer;transition:all .15s;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;transition:all .15s;
 }
-.sb-btn:hover{background:#059669}
+.sb-btn:hover{background:#10B981}
 
-/* ===== JOBS ===== */
+/* ===== JOB CARDS — white bg, dark text ===== */
 .jobs-top{
 display:flex;align-items:center;justify-content:space-between;
-margin-bottom:16px;flex-wrap:wrap;gap:10px;
+margin-bottom:18px;flex-wrap:wrap;gap:10px;
 }
-.jobs-h{font-family:‘Syne’,sans-serif;font-size:18px;font-weight:700}
+/* DARK TEXT on light bg */
+.jobs-h{font-family:‘Syne’,sans-serif;font-size:20px;font-weight:700;color:var(–ink)}
 .jobs-sub{font-size:13px;color:var(–muted);margin-top:2px}
-
 .sort-sel{
-background:var(–card);border:1px solid var(–border);
-color:var(–muted);padding:8px 12px;border-radius:8px;
+background:var(–white);border:1.5px solid var(–border);
+color:var(–body);padding:8px 12px;border-radius:8px;
 font-size:13px;font-family:‘Instrument Sans’,sans-serif;outline:none;cursor:pointer;
 }
-.sort-sel option{background:var(–card)}
+.sort-sel option{background:var(–white);color:var(–ink)}
 
-/* JOB CARD */
 .jcard{
-background:var(–card);border:1px solid var(–border);
-border-radius:14px;padding:18px 20px;
-margin-bottom:10px;cursor:pointer;
-transition:all .18s;position:relative;overflow:hidden;
+background:var(–white);
+border:1.5px solid var(–border-light);
+border-radius:14px;padding:20px 22px;margin-bottom:10px;
+cursor:pointer;transition:all .18s;position:relative;overflow:hidden;
+box-shadow:0 1px 4px rgba(0,0,0,0.05);
 }
 .jcard::before{
 content:’’;position:absolute;left:0;top:0;bottom:0;
-width:3px;background:transparent;transition:background .18s;
+width:4px;background:transparent;transition:background .18s;
 }
 .jcard:hover{
-border-color:rgba(59,130,246,.35);
-background:#1E2D45;transform:translateY(-2px);
-box-shadow:0 6px 24px rgba(0,0,0,.3);
+border-color:var(–blue);
+box-shadow:0 4px 20px rgba(29,78,216,0.12);
+transform:translateY(-2px);
 }
-.jcard:hover::before{background:var(–accent)}
-.jcard.feat{border-color:rgba(245,158,11,.25);background:linear-gradient(135deg,rgba(245,158,11,.04),var(–card))}
+.jcard:hover::before{background:var(–blue)}
+.jcard.feat{border-color:#F59E0B;border-width:1.5px}
 .jcard.feat::before{background:var(–gold)}
 
-.jcard-inner{display:grid;grid-template-columns:46px 1fr auto;gap:14px;align-items:start}
-
+.jinner{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:start}
 .jlogo{
-width:46px;height:46px;border-radius:11px;
+width:48px;height:48px;border-radius:11px;
 display:flex;align-items:center;justify-content:center;
 font-family:‘Syne’,sans-serif;font-weight:800;
-font-size:13px;color:white;flex-shrink:0;letter-spacing:-.5px;
+/* WHITE TEXT on colored bg */
+font-size:13px;color:#FFFFFF;flex-shrink:0;
 }
-
-.jtitle{font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700;color:var(–text);margin-bottom:3px}
-.jco{font-size:12px;color:var(–muted);margin-bottom:11px}
+/* DARK TEXT on white card */
+.jtitle{font-family:‘Syne’,sans-serif;font-size:16px;font-weight:700;color:var(–ink);margin-bottom:3px}
+.jco{font-size:13px;color:var(–muted);margin-bottom:12px}
 
 .jtags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{
-font-size:11px;font-weight:600;
-padding:3px 10px;border-radius:100px;
-border:1px solid var(–border);color:var(–dim);
-background:rgba(255,255,255,.04);
+font-size:12px;font-weight:600;
+padding:4px 11px;border-radius:100px;
 }
-.tg{color:var(–green);border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.08)}
-.tgold{color:var(–gold);border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.08)}
-.tblue{color:var(–accent);border-color:rgba(59,130,246,.25);background:rgba(59,130,246,.08)}
-.tred{color:var(–red);border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.08)}
+/* Each tag: colored bg with matching dark text */
+.tg{color:var(–green-text);background:var(–green-light);border:1px solid #A7F3D0}
+.tgold{color:var(–gold-text);background:var(–gold-light);border:1px solid #FCD34D}
+.tblue{color:var(–blue-text);background:var(–blue-light);border:1px solid #BFDBFE}
+.tred{color:var(–red-text);background:var(–red-light);border:1px solid #FECACA}
+.tgray{color:var(–body);background:var(–bg);border:1.5px solid var(–border)}
 
 .ja{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
-.jdate{font-size:11px;color:var(–dim);white-space:nowrap}
-
+.jdate{font-size:12px;color:var(–dim);white-space:nowrap}
 .apply-btn{
-background:var(–accent);color:white;
-border:none;padding:9px 18px;border-radius:8px;
-font-size:12px;font-weight:700;
-font-family:‘Instrument Sans’,sans-serif;
-cursor:pointer;transition:all .15s;white-space:nowrap;
+/* WHITE TEXT on blue */
+background:var(–blue);color:#FFFFFF;
+border:none;padding:9px 20px;border-radius:8px;
+font-size:13px;font-weight:700;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;transition:all .15s;
 }
-.apply-btn:hover{background:#2563EB;box-shadow:0 4px 12px rgba(59,130,246,.3)}
-
+.apply-btn:hover{background:var(–blue-dark);box-shadow:0 4px 12px rgba(29,78,216,0.25)}
 .save-btn{
-background:transparent;color:var(–dim);
-border:1px solid var(–border);padding:7px 12px;
+background:transparent;
+/* DARK TEXT on white */
+color:var(–muted);
+border:1.5px solid var(–border);padding:7px 14px;
 border-radius:8px;font-size:12px;
 font-family:‘Instrument Sans’,sans-serif;cursor:pointer;transition:all .15s;
 }
-.save-btn:hover{color:var(–red);border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)}
+.save-btn:hover{color:var(–red);border-color:#FECACA;background:var(–red-light)}
 
 .load-btn{
-width:100%;background:var(–card);
-border:1px solid var(–border);border-radius:12px;
-padding:13px;font-size:14px;font-weight:600;
-color:var(–muted);cursor:pointer;
-font-family:‘Instrument Sans’,sans-serif;
-transition:all .15s;margin-top:6px;
+width:100%;
+background:var(–white);
+border:1.5px solid var(–border);
+border-radius:12px;padding:14px;
+font-size:14px;font-weight:600;
+/* DARK TEXT on white */
+color:var(–body);
+cursor:pointer;font-family:‘Instrument Sans’,sans-serif;
+transition:all .15s;margin-top:8px;
+box-shadow:0 1px 4px rgba(0,0,0,0.04);
 }
-.load-btn:hover{border-color:var(–accent);color:var(–accent);background:rgba(59,130,246,.05)}
+.load-btn:hover{border-color:var(–blue);color:var(–blue);background:var(–blue-light)}
 
-/* ===== TRUST NUMBERS ===== */
+/* ===== TRUST NUMBERS — white cards, dark text ===== */
 .trust-nums{
-background:var(–surface);
-border-top:1px solid var(–border);
-border-bottom:1px solid var(–border);
-padding:48px 20px;
+background:var(–bg);
+border-top:1px solid var(–border-light);
+border-bottom:1px solid var(–border-light);
+padding:56px 24px;
 }
 .tn-grid{
 max-width:1280px;margin:0 auto;
 display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
 }
 .tn{
-background:var(–card);border:1px solid var(–border);
-border-radius:14px;padding:24px 16px;text-align:center;
-transition:all .2s;
+background:var(–white);border:1.5px solid var(–border-light);
+border-radius:14px;padding:28px 16px;text-align:center;
+box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:all .2s;
 }
-.tn:hover{transform:translateY(-2px);border-color:rgba(59,130,246,.25)}
-.tn-icon{font-size:26px;margin-bottom:10px}
-.tn-num{font-family:‘Syne’,sans-serif;font-size:28px;font-weight:800;color:var(–accent);margin-bottom:6px}
-.tn-label{font-size:12px;color:var(–muted);line-height:1.5}
+.tn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);border-color:var(–blue)}
+.tn-icon{font-size:28px;margin-bottom:12px}
+/* BLUE text on white card */
+.tn-num{font-family:‘Syne’,sans-serif;font-size:30px;font-weight:800;color:var(–blue);margin-bottom:6px}
+/* DARK text on white */
+.tn-label{font-size:13px;color:var(–body);line-height:1.5}
 
-/* ===== TESTIMONIALS ===== */
-.testimonials{background:var(–bg);padding:56px 20px}
+/* ===== TESTIMONIALS — light bg, dark text ===== */
+.testimonials{background:var(–white);padding:64px 24px}
 .test-inner{max-width:1280px;margin:0 auto}
-.test-hd{text-align:center;margin-bottom:36px}
-.test-hd h2{font-family:‘Syne’,sans-serif;font-size:clamp(24px,4vw,32px);font-weight:800;margin-bottom:8px}
+.test-hd{text-align:center;margin-bottom:40px}
+/* DARK text on white */
+.test-hd h2{font-family:‘Syne’,sans-serif;font-size:clamp(24px,4vw,32px);font-weight:800;color:var(–ink);margin-bottom:8px}
 .test-hd p{color:var(–muted);font-size:15px}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .tcard{
-background:var(–card);border:1px solid var(–border);
-border-radius:14px;padding:22px;
+background:var(–bg);border:1.5px solid var(–border-light);
+border-radius:14px;padding:24px;
 }
-.stars{color:var(–gold);font-size:13px;margin-bottom:12px}
-.quote{font-size:14px;color:var(–muted);line-height:1.65;margin-bottom:18px;font-style:italic}
+.stars{color:var(–gold);font-size:14px;margin-bottom:12px}
+/* DARK text on light bg */
+.quote{font-size:14px;color:var(–body);line-height:1.65;margin-bottom:18px;font-style:italic}
 .author{display:flex;align-items:center;gap:10px}
 .avatar{
-width:36px;height:36px;border-radius:50%;
+width:38px;height:38px;border-radius:50%;
 display:flex;align-items:center;justify-content:center;
-font-weight:700;font-size:13px;color:white;flex-shrink:0;
+/* WHITE TEXT on colored bg */
+font-weight:700;font-size:13px;color:#FFFFFF;flex-shrink:0;
 }
-.aname{font-size:13px;font-weight:600;color:var(–text)}
-.arole{font-size:11px;color:var(–dim)}
+/* DARK text on light bg */
+.aname{font-size:13px;font-weight:600;color:var(–ink)}
+.arole{font-size:12px;color:var(–muted)}
 
-/* ===== MISSION ===== */
+/* ===== MISSION — dark bg, white text ===== */
 .mission{
-background:linear-gradient(135deg,#0D1B2E,#0A1628);
-padding:64px 20px;
-border-top:1px solid var(–border);
-border-bottom:1px solid var(–border);
+background:var(–ink2);
+padding:72px 24px;
+border-top:1px solid #2D3748;
 }
 .mission-inner{
 max-width:1280px;margin:0 auto;
-display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
 }
+/* WHITE TEXT on dark bg */
 .mission h2{
 font-family:‘Syne’,sans-serif;
-font-size:clamp(28px,4vw,40px);
-font-weight:800;line-height:1.15;margin-bottom:16px;
+font-size:clamp(28px,4vw,42px);
+font-weight:800;line-height:1.15;
+color:#FFFFFF;
+margin-bottom:18px;
 }
-.mission h2 em{font-style:italic;color:var(–green);-webkit-text-fill-color:var(–green)}
-.mission p{color:var(–muted);font-size:15px;line-height:1.7;margin-bottom:28px;font-weight:400}
-.mfeats{margin-bottom:32px}
+.mission h2 em{font-style:italic;color:#34D399;-webkit-text-fill-color:#34D399}
+.mission p{color:rgba(255,255,255,0.72);font-size:16px;line-height:1.7;margin-bottom:28px}
+.mfeats{margin-bottom:36px}
 .mf{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
 .mf-icon{
-width:32px;height:32px;border-radius:8px;
-background:rgba(16,185,129,.12);
+width:34px;height:34px;border-radius:9px;
+background:rgba(52,211,153,0.15);
 display:flex;align-items:center;justify-content:center;
-font-size:14px;flex-shrink:0;
+font-size:15px;flex-shrink:0;
 }
-.mf strong{font-size:14px;color:var(–text);display:block;margin-bottom:2px}
-.mf span{font-size:12px;color:var(–dim)}
+/* WHITE + LIGHT text on dark bg */
+.mf strong{font-size:14px;color:#FFFFFF;display:block;margin-bottom:2px}
+.mf span{font-size:13px;color:rgba(255,255,255,0.55)}
 
+/* Pricing in mission — dark cards, white text */
 .pricing-stack{display:flex;flex-direction:column;gap:12px}
 .pc{
-background:rgba(255,255,255,.04);
-border:1px solid var(–border);
-border-radius:13px;padding:18px 20px;
+background:rgba(255,255,255,0.07);
+border:1.5px solid rgba(255,255,255,0.12);
+border-radius:13px;padding:20px 22px;
 display:flex;align-items:center;justify-content:space-between;
 cursor:pointer;transition:all .15s;
 }
-.pc:hover{border-color:rgba(16,185,129,.3);transform:translateX(4px)}
-.pc.pop{border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05)}
-.pn{font-family:‘Syne’,sans-serif;font-weight:700;font-size:15px;color:var(–text);margin-bottom:2px}
-.pd{font-size:12px;color:var(–dim)}
-.pp{font-family:‘Syne’,sans-serif;font-size:24px;font-weight:800;color:var(–green)}
-.pp small{font-size:12px;font-weight:400;color:var(–dim);font-family:‘Instrument Sans’,sans-serif}
+.pc:hover{border-color:rgba(52,211,153,0.4);background:rgba(52,211,153,0.06);transform:translateX(4px)}
+.pc.pop{border-color:rgba(52,211,153,0.35);background:rgba(52,211,153,0.07)}
+/* WHITE TEXT on dark card */
+.pn{font-family:‘Syne’,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF;margin-bottom:3px}
+.pd{font-size:12px;color:rgba(255,255,255,0.45)}
+/* GREEN price text — visible on dark */
+.pp{font-family:‘Syne’,sans-serif;font-size:26px;font-weight:800;color:#34D399}
+.pp small{font-size:12px;font-weight:400;color:rgba(255,255,255,0.4);font-family:‘Instrument Sans’,sans-serif}
 
-/* ===== FOOTER ===== */
+/* Button on dark bg */
+.btn-green{
+/* DARK TEXT on bright green */
+background:#34D399;color:#064E3B;
+border:none;padding:14px 32px;border-radius:10px;
+font-size:15px;font-weight:700;
+font-family:‘Instrument Sans’,sans-serif;cursor:pointer;transition:all .15s;
+}
+.btn-green:hover{background:#10B981;transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,0.3)}
+
+/* ===== FOOTER — dark bg, white text ===== */
 footer{
-background:var(–surface);
-border-top:1px solid var(–border);
-padding:28px 20px;
+background:var(–ink);
+border-top:1px solid #2D3748;
+padding:32px 24px;
 }
 .foot-inner{
 max-width:1280px;margin:0 auto;
 display:flex;align-items:center;justify-content:space-between;
 flex-wrap:wrap;gap:16px;
 }
-.flogo{font-family:‘Syne’,sans-serif;font-size:18px;font-weight:800;color:var(–text)}
-.flogo span{color:var(–accent)}
-footer p{font-size:13px;color:var(–dim)}
+.flogo{font-family:‘Syne’,sans-serif;font-size:20px;font-weight:800;color:#FFFFFF}
+.flogo em{color:#67E8F9;font-style:normal}
+/* WHITE text on dark */
+footer p{font-size:13px;color:rgba(255,255,255,0.45)}
 .flinks{display:flex;gap:20px;flex-wrap:wrap}
-footer a{color:var(–dim);text-decoration:none;font-size:13px;transition:color .15s}
-footer a:hover{color:var(–text)}
+/* WHITE links on dark */
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;transition:color .15s}
+footer a:hover{color:#FFFFFF}
 
-/* ===== MODAL ===== */
+/* ===== MODAL — white bg, dark text ===== */
 .overlay{
 display:none;position:fixed;inset:0;
-background:rgba(0,0,0,.7);backdrop-filter:blur(6px);
-z-index:1000;align-items:center;justify-content:center;
-padding:20px;
+background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);
+z-index:1000;align-items:center;justify-content:center;padding:20px;
 }
 .overlay.open{display:flex}
 .modal{
-background:var(–surface);border:1px solid var(–border);
-border-radius:18px;padding:32px;
+background:var(–white);
+border:1.5px solid var(–border-light);
+border-radius:18px;padding:36px;
 max-width:520px;width:100%;
 position:relative;animation:mIn .22s ease;
 max-height:92vh;overflow-y:auto;
+box-shadow:0 20px 60px rgba(0,0,0,0.2);
 }
-@keyframes mIn{from{opacity:0;transform:scale(.97) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes mIn{from{opacity:0;transform:scale(.97) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .mcl{
 position:absolute;top:16px;right:16px;
-background:var(–card);border:1px solid var(–border);
-color:var(–muted);width:30px;height:30px;
-border-radius:7px;cursor:pointer;font-size:17px;
-display:flex;align-items:center;justify-content:center;transition:all .15s;
+background:var(–bg);border:1.5px solid var(–border);
+/* DARK TEXT on light bg */
+color:var(–muted);
+width:30px;height:30px;border-radius:7px;cursor:pointer;
+font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .15s;
 }
-.mcl:hover{color:var(–text)}
-.modal h3{font-family:‘Syne’,sans-serif;font-size:20px;font-weight:800;margin-bottom:4px}
-.mco{font-size:13px;color:var(–muted);margin-bottom:16px}
-.mtags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.mcl:hover{color:var(–ink)}
+/* DARK text on white modal */
+.modal h3{font-family:‘Syne’,sans-serif;font-size:22px;font-weight:800;color:var(–ink);margin-bottom:4px}
+.mco{font-size:14px;color:var(–muted);margin-bottom:18px}
+.mtags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
 .mdesc{
-font-size:14px;color:var(–muted);line-height:1.7;
-margin-bottom:24px;padding:14px;
-background:var(–card);border-radius:10px;border:1px solid var(–border);
+font-size:14px;color:var(–body);line-height:1.7;
+margin-bottom:26px;padding:16px;
+background:var(–bg);border-radius:10px;border:1.5px solid var(–border-light);
 }
 .mact{display:flex;gap:10px}
-.fg2{margin-bottom:14px}
-.fl2{display:block;font-size:11px;font-weight:600;color:var(–muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.fg2{margin-bottom:16px}
+/* DARK label on white */
+.fl2{display:block;font-size:11px;font-weight:700;color:var(–muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
 .fi2{
-width:100%;background:var(–card);border:1px solid var(–border);
-border-radius:9px;padding:11px 14px;color:var(–text);
+width:100%;background:var(–bg);border:1.5px solid var(–border);
+border-radius:9px;padding:12px 14px;
+/* DARK TEXT in input */
+color:var(–ink);
 font-size:14px;font-family:‘Instrument Sans’,sans-serif;outline:none;transition:border-color .15s;
 }
-.fi2:focus{border-color:var(–accent);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.fi2:focus{border-color:var(–blue);box-shadow:0 0 0 3px rgba(29,78,216,0.08)}
+.fi2::placeholder{color:var(–dim)}
 
 /* ===== TOAST ===== */
 .toast{
 position:fixed;bottom:20px;right:20px;
-background:var(–surface);color:var(–text);
-border:1px solid var(–border);
+/* WHITE TEXT on dark bg */
+background:var(–ink);color:#FFFFFF;
+border:1px solid #374151;
 padding:12px 20px;border-radius:10px;
 font-weight:600;font-size:14px;
 z-index:2000;transform:translateY(70px);opacity:0;
-transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
+transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,0.3);
 }
 .toast.show{transform:translateY(0);opacity:1}
 
-/* ===== MOBILE RESPONSIVE ===== */
+/* ===== MOBILE ===== */
 @media(max-width:900px){
 .nav-links{display:none}
 .main{grid-template-columns:1fr}
-.sidebar{position:static;display:flex;flex-direction:column}
-.sb-cta{order:-1}
+.sidebar{position:static}
 .tn-grid{grid-template-columns:repeat(2,1fr)}
 .test-grid{grid-template-columns:1fr}
 .mission-inner{grid-template-columns:1fr}
-.stats-grid{grid-template-columns:repeat(2,1fr)}
-.hero-btns{flex-direction:column;align-items:center}
-.btn-blue,.btn-outline{width:100%;max-width:300px;text-align:center}
+.stats-row{grid-template-columns:repeat(2,1fr)}
 }
-
 @media(max-width:600px){
-.nav-btn .price-chip{display:none}
 .hero{padding:40px 16px 36px}
 .main{padding:16px 16px 48px}
-.search-section{padding:14px 16px}
-.tn-grid{grid-template-columns:repeat(2,1fr)}
-.jcard-inner{grid-template-columns:40px 1fr}
+.search-section,.trust-bar,.email-bar{padding-left:16px;padding-right:16px}
+.hero-btns{flex-direction:column;align-items:center}
+.btn-white,.btn-outline-white{width:100%;max-width:320px}
+.jinner{grid-template-columns:42px 1fr}
 .ja{display:none}
-.jcard{padding:14px 16px}
-.jco{font-size:11px}
-.jtitle{font-size:14px}
-.search-box select{display:none}
+.email-inner{flex-direction:column;align-items:flex-start}
+.email-form{flex-direction:column;width:100%}
+.email-inp{width:100%}
 .foot-inner{flex-direction:column;text-align:center}
 .flinks{justify-content:center}
-.mission-inner{grid-template-columns:1fr}
-.email-form{flex-direction:column;width:100%;max-width:300px}
-.email-inp{width:100%}
 }
 </style>
 
@@ -642,8 +697,8 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
     <div class="mtags" id="mTags"></div>
     <div class="mdesc" id="mDesc"></div>
     <div class="mact">
-      <button class="btn-blue" style="flex:1;padding:12px;font-size:14px" onclick="toast('✓ Link copied! Go apply now.');closeModal('jobModal')">Apply Now →</button>
-      <button class="save-btn" style="padding:12px 16px" onclick="toast('♡ Job saved!')">♡</button>
+      <button class="btn-white" style="flex:1;padding:12px;font-size:14px;background:var(--blue);color:#fff;border-radius:9px;border:none;cursor:pointer;font-weight:700;font-family:inherit" onclick="toast('✓ Link copied!');closeModal('jobModal')">Apply Now →</button>
+      <button class="save-btn" style="padding:12px 16px" onclick="toast('♡ Saved!')">♡ Save</button>
     </div>
   </div>
 </div>
@@ -660,7 +715,7 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
     <div class="fg2"><label class="fl2">Salary Range</label><input class="fi2" type="text" placeholder="e.g. $80,000–$100,000/yr"></div>
     <div class="fg2"><label class="fl2">Specialty & Type</label><input class="fi2" type="text" placeholder="e.g. Full-time · ICU · 100% Remote"></div>
     <div class="fg2"><label class="fl2">Contact Email</label><input class="fi2" type="email" placeholder="hr@yourcompany.com"></div>
-    <button class="btn-blue" style="width:100%;padding:13px;font-size:15px" onclick="toast('🎉 Submitted! Goes live in 24hrs.');closeModal('postModal')">Submit & Pay $99 →</button>
+    <button style="width:100%;padding:13px;font-size:15px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-weight:700;font-family:inherit;cursor:pointer" onclick="toast('🎉 Submitted! Goes live in 24hrs.');closeModal('postModal')">Submit & Pay $99 →</button>
   </div>
 </div>
 
@@ -668,14 +723,14 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
 
 <nav>
   <div class="nav-wrap">
-    <a class="logo" href="#"><div class="logo-box">🩺</div>Tele<span>RN</span></a>
+    <a class="logo" href="#"><div class="logo-box">🩺</div>Tele<em>RN</em></a>
     <ul class="nav-links">
       <li><a onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">Browse Jobs</a></li>
       <li><a onclick="document.querySelector('.mission').scrollIntoView({behavior:'smooth'})">For Employers</a></li>
       <li><a href="#">Salary Guide</a></li>
       <li><a href="#">Resources</a></li>
     </ul>
-    <button class="nav-btn" onclick="openModal('postModal')">Post a Job <span class="price-chip">$99</span></button>
+    <button class="nav-btn" onclick="openModal('postModal')">Post a Job — $99</button>
   </div>
 </nav>
 
@@ -687,16 +742,16 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
     <h1>Find High-Paying<br><span class="g">Remote Nursing Jobs</span></h1>
     <p class="hero-sub">Work from home RN roles across the U.S. — only remote, only nursing, no spam listings.</p>
     <div class="hero-perks">
-      <div class="perk"><span class="perk-icon">●</span>Only remote positions</div>
-      <div class="perk"><span class="perk-icon">●</span>No hybrid listings</div>
-      <div class="perk"><span class="perk-icon">●</span>New jobs daily</div>
-      <div class="perk"><span class="perk-icon">●</span>Free for nurses</div>
+      <div class="perk"><span class="perk-dot">●</span>Only remote positions</div>
+      <div class="perk"><span class="perk-dot">●</span>No hybrid listings</div>
+      <div class="perk"><span class="perk-dot">●</span>New jobs daily</div>
+      <div class="perk"><span class="perk-dot">●</span>Free for nurses</div>
     </div>
     <div class="hero-btns">
-      <button class="btn-blue" onclick="document.querySelector('.search-section').scrollIntoView({behavior:'smooth'})">Browse Jobs Now →</button>
-      <button class="btn-outline" onclick="openModal('postModal')">Post a Job — $99</button>
+      <button class="btn-white" onclick="document.querySelector('.search-section').scrollIntoView({behavior:'smooth'})">Browse Jobs Now →</button>
+      <button class="btn-outline-white" onclick="openModal('postModal')">Post a Job — $99</button>
     </div>
-    <div class="stats-grid">
+    <div class="stats-row">
       <div class="sstat"><div class="snum" data-count="1247">0</div><div class="slabel">Active Jobs</div></div>
       <div class="sstat"><div class="snum" data-count="48200">0</div><div class="slabel">Nurses Browsing</div></div>
       <div class="sstat"><div class="snum" data-count="340">0</div><div class="slabel">Employers</div></div>
@@ -709,13 +764,13 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
 
 <div class="email-bar">
   <div class="email-inner">
-    <div class="email-text">
+    <div>
       <strong>Get new remote RN jobs emailed daily</strong>
       <p>Be first to apply — fresh listings every morning in your inbox.</p>
     </div>
     <div class="email-form">
       <input class="email-inp" type="email" placeholder="your@email.com">
-      <button class="email-btn" onclick="toast('✓ Subscribed! Check your inbox.')">Get Job Alerts</button>
+      <button class="email-go" onclick="toast('✓ Subscribed!')">Get Job Alerts</button>
     </div>
   </div>
 </div>
@@ -752,7 +807,7 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
         <option value="Med-Surg">Med-Surg</option>
         <option value="Triage">Triage</option>
       </select>
-      <button class="search-go" onclick="filterJobs()">Search</button>
+      <button class="search-go" onclick="filterJobs()">Search Jobs</button>
     </div>
     <div class="pills">
       <span class="pill active" onclick="setPill(this)">All Jobs</span>
@@ -768,7 +823,6 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
 <!-- MAIN -->
 
 <div class="main">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sb">
       <div class="sb-h">Filter Jobs</div>
@@ -797,7 +851,7 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
     </div>
     <div class="sb-cta">
       <h4>Hiring Remote Nurses?</h4>
-      <p>Reach 48,000+ nurses actively looking for remote positions.</p>
+      <p>Reach 48,000+ nurses actively looking for remote positions right now.</p>
       <div class="sb-feats">
         <div class="sb-feat">Live within 24 hours</div>
         <div class="sb-feat">No contracts required</div>
@@ -807,8 +861,6 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
       <button class="sb-btn" onclick="openModal('postModal')">Post a Job →</button>
     </div>
   </aside>
-
-  <!-- JOBS -->
 
   <div>
     <div class="jobs-top">
@@ -831,10 +883,10 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
 
 <section class="trust-nums">
   <div class="tn-grid">
-    <div class="tn"><div class="tn-icon">🩺</div><div class="tn-num">48,200+</div><div class="tn-label">Nurses registered and actively browsing</div></div>
-    <div class="tn"><div class="tn-icon">🏥</div><div class="tn-num">340+</div><div class="tn-label">Healthcare employers posting jobs</div></div>
-    <div class="tn"><div class="tn-icon">⚡</div><div class="tn-num">48 hrs</div><div class="tn-label">Average employer response time</div></div>
-    <div class="tn"><div class="tn-icon">✅</div><div class="tn-num">100%</div><div class="tn-label">Remote — no hybrid or in-person</div></div>
+    <div class="tn"><div class="tn-icon">🩺</div><div class="tn-num">48,200+</div><div class="tn-label">Nurses registered and actively browsing remote positions</div></div>
+    <div class="tn"><div class="tn-icon">🏥</div><div class="tn-num">340+</div><div class="tn-label">Healthcare employers actively posting telehealth jobs</div></div>
+    <div class="tn"><div class="tn-icon">⚡</div><div class="tn-num">48 hrs</div><div class="tn-label">Average time from application to employer response</div></div>
+    <div class="tn"><div class="tn-icon">✅</div><div class="tn-num">100%</div><div class="tn-label">Remote positions — no hybrid or in-person listings</div></div>
   </div>
 </section>
 
@@ -849,24 +901,24 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
     <div class="test-grid">
       <div class="tcard">
         <div class="stars">★★★★★</div>
-        <div class="quote">"Finally a job board that only shows remote nursing jobs. I was tired of wading through hospital listings on Indeed. Found my current telehealth position in under a week."</div>
-        <div class="author"><div class="avatar" style="background:#3B82F6">JM</div><div><div class="aname">Jessica M., RN</div><div class="arole">Telehealth Case Manager · Texas</div></div></div>
+        <div class="quote">"Finally a job board that only shows remote nursing jobs. Found my current telehealth position here in under a week."</div>
+        <div class="author"><div class="avatar" style="background:#1D4ED8">JM</div><div><div class="aname">Jessica M., RN</div><div class="arole">Telehealth Case Manager · Texas</div></div></div>
       </div>
       <div class="tcard">
         <div class="stars">★★★★★</div>
-        <div class="quote">"The salary filters are a game changer. I searched specifically for $100k+ remote ICU roles and actually found several. Landed a position at $105k fully remote."</div>
-        <div class="author"><div class="avatar" style="background:#10B981">DK</div><div><div class="aname">Dana K., BSN RN</div><div class="arole">Remote ICU Nurse · Florida</div></div></div>
+        <div class="quote">"The salary filters are a game changer. Searched for $100k+ remote ICU roles and actually found several. Landed $105k fully remote."</div>
+        <div class="author"><div class="avatar" style="background:#059669">DK</div><div><div class="aname">Dana K., BSN RN</div><div class="arole">Remote ICU Nurse · Florida</div></div></div>
       </div>
       <div class="tcard">
         <div class="stars">★★★★★</div>
-        <div class="quote">"As a travel nurse transitioning to remote work, this site was exactly what I needed. The specialty filters made it easy to find mental health telehealth roles in my state."</div>
-        <div class="author"><div class="avatar" style="background:#F59E0B">AM</div><div><div class="aname">Aisha M., RN</div><div class="arole">Behavioral Health RN · Georgia</div></div></div>
+        <div class="quote">"As a travel nurse transitioning to remote work, this was exactly what I needed. Specialty filters made it easy to find mental health telehealth roles."</div>
+        <div class="author"><div class="avatar" style="background:#D97706">AM</div><div><div class="aname">Aisha M., RN</div><div class="arole">Behavioral Health RN · Georgia</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MISSION / EMPLOYER -->
+<!-- MISSION -->
 
 <section class="mission">
   <div class="mission-inner">
@@ -875,11 +927,11 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
       <p>We built TeleRN because nurses deserve better than sifting through thousands of irrelevant listings. Every job on this platform is remote. That's our promise.</p>
       <div class="mfeats">
         <div class="mf"><div class="mf-icon">🏠</div><div><strong>Only remote positions</strong><span>No hybrid, no "remote preferred" listings</span></div></div>
-        <div class="mf"><div class="mf-icon">✓</div><div><strong>Verified employers</strong><span>Every employer is manually reviewed</span></div></div>
-        <div class="mf"><div class="mf-icon">📅</div><div><strong>Updated daily</strong><span>New remote nursing jobs every morning</span></div></div>
+        <div class="mf"><div class="mf-icon">✓</div><div><strong>Verified employers</strong><span>Every employer manually reviewed before posting</span></div></div>
+        <div class="mf"><div class="mf-icon">📅</div><div><strong>Updated daily</strong><span>New remote nursing jobs added every morning</span></div></div>
         <div class="mf"><div class="mf-icon">💰</div><div><strong>Free for nurses</strong><span>Always free to browse and apply</span></div></div>
       </div>
-      <button class="btn-blue" style="padding:13px 28px;font-size:15px" onclick="openModal('postModal')">Post a Job — $99 →</button>
+      <button class="btn-green" onclick="openModal('postModal')">Post a Job — $99 →</button>
     </div>
     <div class="pricing-stack">
       <div class="pc" onclick="openModal('postModal')"><div><div class="pn">Single Listing</div><div class="pd">1 job post · 30-day visibility</div></div><div class="pp">$99<small>/post</small></div></div>
@@ -893,8 +945,8 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
 
 <footer>
   <div class="foot-inner">
-    <div class="flogo">Tele<span>RN</span></div>
-    <p>© 2026 TeleRN · Free for nurses · Updated daily</p>
+    <div class="flogo">Tele<em>RN</em></div>
+    <p>© 2026 TeleRN · Remote nursing jobs · Free for nurses</p>
     <div class="flinks">
       <a href="#">About</a>
       <a href="#">Privacy</a>
@@ -908,25 +960,25 @@ transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.4);
 <script>
 const jobs=[
   {id:1,t:'Remote ICU Tele-Nurse, RN',c:'Teladoc Health',l:'New York, NY (Remote)',s:'$88,000–$105,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Compact OK','Benefits'],feat:true,hot:true,date:'Today',col:'#0D9488',ini:'TH',desc:'Join Teladoc Health as a Remote ICU Tele-Nurse. Monitor critically ill patients using tele-ICU technology and deliver life-saving care from home. Compact license required. Full benefits.'},
-  {id:2,t:'Telehealth Case Manager, RN',c:'CVS Health / Aetna',l:'Hartford, CT (Remote)',s:'$80,000–$97,000/yr',type:'Full-time',spec:'Case Management',tags:['Case Mgmt','No Nights','Benefits'],feat:false,hot:false,date:'Today',col:'#2563EB',ini:'CV',desc:'CVS Health seeks a Case Manager RN to coordinate care for complex patients via telehealth. No nights required. Full benefits package.'},
-  {id:3,t:'Telehealth Pediatric RN',c:'Amazon Care',l:'Seattle, WA (Remote)',s:'$78,000–$94,000/yr',type:'Part-time',spec:'Pediatrics',tags:['Pediatrics','Flexible','Part-time'],feat:false,hot:false,date:'Today',col:'#D97706',ini:'AC',desc:'Amazon Care needs a Pediatric RN for virtual care to children and families. Part-time, flexible scheduling. Set your own hours.'},
-  {id:4,t:'Behavioral Health RN, Remote',c:'Humana',l:'Louisville, KY (Remote)',s:'$75,000–$90,000/yr',type:'Full-time',spec:'Mental Health',tags:['Mental Health','No Nights','Benefits'],feat:false,hot:false,date:'2 days ago',col:'#059669',ini:'HU',desc:'Humana needs a Behavioral Health RN for telephonic care management. No nights, no weekends. Comprehensive benefits included.'},
-  {id:5,t:'Remote Oncology Nurse Navigator',c:'UnitedHealth Group',l:'Minneapolis, MN (Remote)',s:'$95,000–$118,000/yr',type:'Full-time',spec:'Oncology',tags:['Oncology','NP Preferred','$100k+'],feat:true,hot:false,date:'2 days ago',col:'#7C3AED',ini:'UH',desc:'UnitedHealth needs an Oncology Nurse Navigator to guide cancer patients via telehealth. NP preferred. Excellent compensation.'},
+  {id:2,t:'Telehealth Case Manager, RN',c:'CVS Health / Aetna',l:'Hartford, CT (Remote)',s:'$80,000–$97,000/yr',type:'Full-time',spec:'Case Management',tags:['Case Mgmt','No Nights','Benefits'],feat:false,hot:false,date:'Today',col:'#1D4ED8',ini:'CV',desc:'CVS Health seeks a Case Manager RN to coordinate care for complex patients via telehealth. No nights. Full benefits package.'},
+  {id:3,t:'Telehealth Pediatric RN',c:'Amazon Care',l:'Seattle, WA (Remote)',s:'$78,000–$94,000/yr',type:'Part-time',spec:'Pediatrics',tags:['Pediatrics','Flexible','Part-time'],feat:false,hot:false,date:'Today',col:'#D97706',ini:'AC',desc:'Amazon Care needs a Pediatric RN for virtual care. Part-time, set your own hours.'},
+  {id:4,t:'Behavioral Health RN, Remote',c:'Humana',l:'Louisville, KY (Remote)',s:'$75,000–$90,000/yr',type:'Full-time',spec:'Mental Health',tags:['Mental Health','No Nights','Benefits'],feat:false,hot:false,date:'2 days ago',col:'#059669',ini:'HU',desc:'Humana needs a Behavioral Health RN for telephonic care management. No nights or weekends. Full benefits.'},
+  {id:5,t:'Remote Oncology Nurse Navigator',c:'UnitedHealth Group',l:'Minneapolis, MN (Remote)',s:'$95,000–$118,000/yr',type:'Full-time',spec:'Oncology',tags:['Oncology','NP Preferred','$100k+'],feat:true,hot:false,date:'2 days ago',col:'#7C3AED',ini:'UH',desc:'UnitedHealth needs an Oncology Nurse Navigator to guide cancer patients via telehealth. Excellent compensation.'},
   {id:6,t:'Telehealth Triage RN',c:'Mayo Clinic',l:'Rochester, MN (Remote)',s:'$82,000–$99,000/yr',type:'Full-time',spec:'Triage',tags:['Triage','Evening Shifts','Compact OK'],feat:false,hot:false,date:'3 days ago',col:'#DC2626',ini:'MC',desc:'Mayo Clinic seeks a Triage RN for after-hours telehealth calls. Evening shifts, compact license required.'},
-  {id:7,t:'Remote Utilization Review RN',c:'Piper Companies',l:'Remote, USA',s:'$72,000–$88,000/yr',type:'Full-time',spec:'Case Management',tags:['UM Review','Compact OK','Benefits'],feat:false,hot:false,date:'3 days ago',col:'#1D4ED8',ini:'PC',desc:'Piper Companies hiring a Utilization Review RN for medical necessity reviews. Fully remote, compact license preferred.'},
+  {id:7,t:'Remote Utilization Review RN',c:'Piper Companies',l:'Remote, USA',s:'$72,000–$88,000/yr',type:'Full-time',spec:'Case Management',tags:['UM Review','Compact OK','Benefits'],feat:false,hot:false,date:'3 days ago',col:'#0891B2',ini:'PC',desc:'Piper Companies hiring a Utilization Review RN for medical necessity reviews. Fully remote.'},
   {id:8,t:'Telehealth NP — Weight Management',c:'Ro Health',l:'Nationwide (Remote)',s:'$105,000–$130,000/yr',type:'Full-time',spec:'Med-Surg',tags:['NP Required','$100k+','Flexible'],feat:true,hot:true,date:'4 days ago',col:'#0F766E',ini:'RO',desc:'Ro Health seeking NPs for virtual weight management. GLP-1 experience preferred. Fully remote, top pay.'},
-  {id:9,t:'Virtual ICU Nurse, RN',c:'Mercy Virtual',l:'Chesterfield, MO (Remote)',s:'$85,000–$102,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Night Shifts','Benefits'],feat:false,hot:false,date:'4 days ago',col:'#6D28D9',ini:'MV',desc:'Mercy Virtual hiring ICU RNs for remote patient monitoring. Night shift availability required. Strong benefits.'},
-  {id:10,t:'Remote Psychiatric RN',c:'LifeStance Health',l:'Remote, USA',s:'$78,000–$95,000/yr',type:'Full-time',spec:'Mental Health',tags:['Psych','No Nights','Compact OK'],feat:false,hot:false,date:'5 days ago',col:'#92400E',ini:'LS',desc:'LifeStance Health needs a Psychiatric RN for virtual mental health support. No nights or weekends.'},
+  {id:9,t:'Virtual ICU Nurse, RN',c:'Mercy Virtual',l:'Chesterfield, MO (Remote)',s:'$85,000–$102,000/yr',type:'Full-time',spec:'ICU',tags:['ICU','Night Shifts','Benefits'],feat:false,hot:false,date:'4 days ago',col:'#5B21B6',ini:'MV',desc:'Mercy Virtual hiring ICU RNs for remote patient monitoring. Night shift availability required.'},
+  {id:10,t:'Remote Psychiatric RN',c:'LifeStance Health',l:'Remote, USA',s:'$78,000–$95,000/yr',type:'Full-time',spec:'Mental Health',tags:['Psych','No Nights','Compact OK'],feat:false,hot:false,date:'5 days ago',col:'#B45309',ini:'LS',desc:'LifeStance Health needs a Psychiatric RN for virtual mental health support. No nights or weekends.'},
   {id:11,t:'Telehealth Care Manager RN',c:'Devoted Health',l:'Remote, USA',s:'$76,000–$91,000/yr',type:'Full-time',spec:'Case Management',tags:['Care Mgmt','Medicare','Benefits'],feat:false,hot:false,date:'5 days ago',col:'#0E7490',ini:'DH',desc:'Devoted Health seeks a Care Manager RN to support Medicare members via telehealth.'},
   {id:12,t:'Remote Wound Care RN',c:'WoundCentrics',l:'Remote, USA',s:'$74,000–$89,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Wound Care','No Nights','Compact OK'],feat:false,hot:false,date:'6 days ago',col:'#4D7C0F',ini:'WC',desc:'WoundCentrics needs a Wound Care RN to consult virtually with patients nationwide.'},
   {id:13,t:'Telehealth Diabetes Educator RN',c:'Vida Health',l:'Remote, USA',s:'$70,000–$85,000/yr',type:'Part-time',spec:'Med-Surg',tags:['Diabetes','Part-time','Flexible'],feat:false,hot:false,date:'1 week ago',col:'#C2410C',ini:'VH',desc:'Vida Health needs a Diabetes Nurse Educator to coach patients virtually. Part-time, flexible hours.'},
   {id:14,t:'Remote NICU Tele-Nurse',c:"Children's Health",l:'Dallas, TX (Remote)',s:'$88,000–$108,000/yr',type:'Full-time',spec:'Pediatrics',tags:['NICU','Pediatrics','Premium Pay'],feat:false,hot:true,date:'1 week ago',col:'#1D4ED8',ini:'CH',desc:"Children's Health hiring a NICU Tele-Nurse for remote neonatal ICU support. Premium pay."},
   {id:15,t:'Virtual Hospice RN',c:'VITAS Healthcare',l:'Remote, USA',s:'$72,000–$87,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Hospice','Benefits','Flexible'],feat:false,hot:false,date:'1 week ago',col:'#374151',ini:'VI',desc:'VITAS Healthcare needs a compassionate RN for virtual hospice support and family guidance.'},
-  {id:16,t:'Telehealth Cardiology RN',c:'Cleveland Clinic',l:'Cleveland, OH (Remote)',s:'$82,000–$100,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Cardiology','Compact OK','Benefits'],feat:false,hot:false,date:'1 week ago',col:'#1E3A8A',ini:'CC',desc:'Cleveland Clinic seeks a Cardiology RN for remote monitoring and patient education.'},
+  {id:16,t:'Telehealth Cardiology RN',c:'Cleveland Clinic',l:'Cleveland, OH (Remote)',s:'$82,000–$100,000/yr',type:'Full-time',spec:'Med-Surg',tags:['Cardiology','Compact OK','Benefits'],feat:false,hot:false,date:'8 days ago',col:'#1E3A8A',ini:'CC',desc:'Cleveland Clinic seeks a Cardiology RN for remote monitoring and patient education.'},
   {id:17,t:'Remote UM Nurse, RN',c:'Cigna',l:'Remote, USA',s:'$78,000–$94,000/yr',type:'Full-time',spec:'Case Management',tags:['UM','No Nights','Benefits'],feat:false,hot:false,date:'8 days ago',col:'#881337',ini:'CI',desc:'Cigna hiring a Utilization Management RN for clinical reviews. Fully remote, no nights.'},
   {id:18,t:'Telehealth Maternal-Fetal RN',c:'Optum',l:'Remote, USA',s:'$80,000–$96,000/yr',type:'Full-time',spec:'Pediatrics',tags:['OB/GYN','Maternal','Benefits'],feat:false,hot:false,date:'9 days ago',col:'#5B21B6',ini:'OP',desc:'Optum needs a Maternal-Fetal RN for telehealth support to high-risk pregnant patients.'},
   {id:19,t:'Remote ED Triage Nurse',c:'Ascension Health',l:'Remote, USA',s:'$79,000–$95,000/yr',type:'Full-time',spec:'Triage',tags:['ED Triage','Evenings','Compact OK'],feat:false,hot:false,date:'10 days ago',col:'#B45309',ini:'AS',desc:'Ascension Health needs an ED Triage RN for telehealth urgent care. Evening availability required.'},
-  {id:20,t:'Virtual Chronic Care RN',c:'Oshi Health',l:'Remote, USA',s:'$74,000–$90,000/yr',type:'Full-time',spec:'Case Management',tags:['Chronic Care','GI','Benefits'],feat:false,hot:false,date:'10 days ago',col:'#065F46',ini:'OH',desc:'Oshi Health is a digital health startup hiring a Chronic Care RN for virtual patient management.'},
+  {id:20,t:'Virtual Chronic Care RN',c:'Oshi Health',l:'Remote, USA',s:'$74,000–$90,000/yr',type:'Full-time',spec:'Case Management',tags:['Chronic Care','GI','Benefits'],feat:false,hot:false,date:'10 days ago',col:'#065F46',ini:'OH',desc:'Oshi Health hiring a Chronic Care RN for virtual patient management.'},
 ];
 
 function renderJobs(list){
@@ -934,7 +986,7 @@ function renderJobs(list){
   document.getElementById('jCount').textContent=list.length+' positions available · Limited featured spots open';
   document.getElementById('jobList').innerHTML=list.map(j=>`
     <div class="jcard ${j.feat?'feat':''}" onclick="openJob(${j.id})">
-      <div class="jcard-inner">
+      <div class="jinner">
         <div class="jlogo" style="background:${j.col}">${j.ini}</div>
         <div>
           <div class="jtitle">${j.t}</div>
@@ -943,9 +995,9 @@ function renderJobs(list){
             ${j.feat?'<span class="tag tgold">⭐ Featured</span>':''}
             ${j.hot?'<span class="tag tred">🔥 Hot</span>':''}
             <span class="tag tg">${j.s}</span>
-            <span class="tag">${j.type}</span>
+            <span class="tag tgray">${j.type}</span>
             ${j.date==='Today'?'<span class="tag tblue">New Today</span>':''}
-            ${j.tags.map(x=>`<span class="tag">${x}</span>`).join('')}
+            ${j.tags.map(x=>`<span class="tag tgray">${x}</span>`).join('')}
           </div>
         </div>
         <div class="ja">
@@ -978,7 +1030,7 @@ function openJob(id){
   document.getElementById('mCo').textContent=j.c+' · '+j.l;
   document.getElementById('mDesc').textContent=j.desc;
   document.getElementById('mTags').innerHTML=
-    `<span class="tag tg">${j.s}</span><span class="tag">${j.type}</span>${j.tags.map(x=>`<span class="tag">${x}</span>`).join('')}`;
+    `<span class="tag tg">${j.s}</span><span class="tag tgray">${j.type}</span>${j.tags.map(x=>`<span class="tag tgray">${x}</span>`).join('')}`;
   openModal('jobModal');
 }
 
@@ -1010,7 +1062,6 @@ const obs=new IntersectionObserver(entries=>{
   });
 });
 document.querySelectorAll('[data-count]').forEach(el=>obs.observe(el));
-
 renderJobs();
 </script>
 
