@@ -1488,3 +1488,155 @@ footer {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 </style>
+<style>
+/* ===== ROOT COLOR SYSTEM ===== */
+:root {
+  --bg-main: #0a0a0a;
+  --bg-section: #111111;
+  --bg-card: #171717;
+  --border: #262626;
+
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #808080;
+
+  --accent: #3b82f6;   /* blue */
+  --accent-2: #22c55e; /* green */
+}
+
+/* ===== BASE ===== */
+html, body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+/* ===== SECTIONS ===== */
+section, header, footer, main {
+  background: var(--bg-main);
+}
+
+/* Alternate sections for depth */
+section:nth-child(even) {
+  background: var(--bg-section);
+}
+
+/* ===== REMOVE TRANSPARENCY ISSUES ===== */
+* {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ===== TEXT ===== */
+p, span, li {
+  color: var(--text-secondary);
+}
+
+small {
+  color: var(--text-muted);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+/* ===== CARDS / JOB LISTINGS / PRICING ===== */
+.card,
+[class*="card"],
+[class*="job"],
+[class*="pricing"] {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Hover effect */
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ===== BUTTONS ===== */
+button, .btn {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover, .btn:hover {
+  background: #1f1f1f;
+}
+
+/* Primary buttons */
+.btn-primary {
+  background: var(--accent);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+/* Green CTA (subscriptions etc) */
+.btn-success {
+  background: var(--accent-2);
+  border: none;
+  color: white;
+}
+
+/* ===== INPUTS ===== */
+input, textarea {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== STATS / ICON ROW ===== */
+[class*="stat"] {
+  text-align: center;
+}
+
+[class*="stat"] h2 {
+  color: var(--text-primary);
+}
+
+[class*="stat"] p {
+  color: var(--text-muted);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--bg-section);
+  color: var(--text-muted);
+}
+
+/* ===== FIX RANDOM INLINE STYLES ===== */
+[style*="background"] {
+  background: var(--bg-card) !important;
+}
+
+[style*="opacity"] {
+  opacity: 1 !important;
+}
+
+/* ===== SMOOTH UI ===== */
+* {
+  transition: all 0.2s ease;
+}
+</style>
