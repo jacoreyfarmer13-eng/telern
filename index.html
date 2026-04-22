@@ -1163,16 +1163,12 @@ renderJobs();
 </script>
 
 </body>
-</html>
-}<h2>$49/month</h2>
-<p>Post unlimited jobs + get featured visibility</p>
-<button>Start Subscription</button>
-<!DOCTYPE html>
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Site</title>
+  <title>TeleRN Pricing</title>
 
   <style>
     * {
@@ -1183,48 +1179,115 @@ renderJobs();
 
     body {
       font-family: Arial, sans-serif;
-      overflow-x: hidden; /* stops sideways scroll */
+      background-color: #f9fafb;
+      color: #111;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
     }
 
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    /* PRICING SECTION */
     .pricing-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap; /* KEY for mobile */
+      gap: 25px;
+      flex-wrap: wrap;
     }
 
-    .price-card {
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 25px;
       width: 300px;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #ddd;
-      text-align: center;
-      background: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: 0.3s;
+      position: relative;
     }
 
-    /* 🔥 Mobile Fix */
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card.popular {
+      border: 2px solid #22c55e;
+      background: #ecfdf5;
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22c55e;
+      color: white;
+      padding: 5px 12px;
+      font-size: 12px;
+      border-radius: 20px;
+    }
+
+    .price {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .features {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .features li {
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #111;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 15px;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #333;
+    }
+
+    .btn.green {
+      background: #22c55e;
+    }
+
+    .btn.green:hover {
+      background: #16a34a;
+    }
+
+    /* MOBILE FIX */
     @media (max-width: 768px) {
-      .pricing-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .price-card {
-        width: 90%; /* makes it fit screen */
-      }
-
       h1 {
         font-size: 24px;
       }
 
-      p {
-        font-size: 14px;
+      .card {
+        width: 90%;
       }
     }
   </style>
@@ -1233,23 +1296,49 @@ renderJobs();
 <body>
 
   <div class="container">
-    <h1>Pricing</h1>
+    <h1>Simple Pricing</h1>
+    <p>Choose the best plan to post jobs and reach nurses nationwide</p>
 
     <div class="pricing-container">
-      <div class="price-card">
-        <h2>$99</h2>
-        <p>Basic Plan</p>
+
+      <!-- BASIC -->
+      <div class="card">
+        <h2>Basic</h2>
+        <div class="price">$99</div>
+        <ul class="features">
+          <li>✔ 1 Job Post</li>
+          <li>✔ 30 Days Listing</li>
+          <li>✔ Standard Visibility</li>
+        </ul>
+        <a href="#" class="btn">Get Started</a>
       </div>
 
-      <div class="price-card">
-        <h2>$349</h2>
-        <p>Employer Pack</p>
+      <!-- MONTHLY (BEST FOR YOU 💰) -->
+      <div class="card popular">
+        <div class="badge">Most Popular</div>
+        <h2>Monthly</h2>
+        <div class="price">$49/mo</div>
+        <ul class="features">
+          <li>✔ Unlimited Job Posts</li>
+          <li>✔ Featured Listings</li>
+          <li>✔ Faster Exposure</li>
+          <li>✔ Priority Support</li>
+        </ul>
+        <a href="#" class="btn green">Start Subscription</a>
       </div>
 
-      <div class="price-card">
-        <h2>$699</h2>
-        <p>Premium Plan</p>
+      <!-- PREMIUM -->
+      <div class="card">
+        <h2>Premium</h2>
+        <div class="price">$349</div>
+        <ul class="features">
+          <li>✔ 10 Job Posts</li>
+          <li>✔ Highlighted Listings</li>
+          <li>✔ Better Reach</li>
+        </ul>
+        <a href="#" class="btn">Buy Now</a>
       </div>
+
     </div>
   </div>
 
