@@ -1344,3 +1344,35 @@ renderJobs();
 
 </body>
 </html>
+<style>
+  /* Force entire page background */
+  html, body {
+    background-color: #000 !important;
+  }
+
+  /* Fix common container elements */
+  section, div, main, header, footer {
+    background-color: #000 !important;
+    background-image: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Remove transparency / blur effects */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Fix cards, overlays, pricing boxes, etc */
+  [class*="card"],
+  [class*="section"],
+  [class*="container"],
+  [class*="wrapper"] {
+    background-color: #000 !important;
+  }
+
+  /* Optional: make text readable */
+  body, p, h1, h2, h3, h4, h5, h6, span {
+    color: #fff !important;
+  }
+</style>
