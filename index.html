@@ -1241,27 +1241,95 @@ p, span {
   z-index: 1;
 }
 
-.hero {
-  position: relative;
-  z-index: 2;
-}.overlay {
-  z-index: 0;
-}.pricing-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
 
-.price-card {
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-}body {
-  overflow-x: hidden;
 }<h2>$49/month</h2>
 <p>Post unlimited jobs + get featured visibility</p>
 <button>Start Subscription</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Site</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* stops sideways scroll */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap; /* KEY for mobile */
+    }
+
+    .price-card {
+      width: 300px;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+      background: white;
+    }
+
+    /* 🔥 Mobile Fix */
+    @media (max-width: 768px) {
+      .pricing-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .price-card {
+        width: 90%; /* makes it fit screen */
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Pricing</h1>
+
+    <div class="pricing-container">
+      <div class="price-card">
+        <h2>$99</h2>
+        <p>Basic Plan</p>
+      </div>
+
+      <div class="price-card">
+        <h2>$349</h2>
+        <p>Employer Pack</p>
+      </div>
+
+      <div class="price-card">
+        <h2>$699</h2>
+        <p>Premium Plan</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
