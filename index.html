@@ -1376,3 +1376,21 @@ renderJobs();
     color: #fff !important;
   }
 </style>
+<style>
+  /* Fix transparent/white overlay sections */
+  section, .section, .card, .container {
+    background-color: #000 !important;
+    opacity: 1 !important;
+  }
+
+  /* Remove blur/glass effects causing bleed-through */
+  .glass, .blur, [style*="backdrop-filter"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Prevent accidental transparency */
+  [style*="opacity"] {
+    opacity: 1 !important;
+  }
+</style>
