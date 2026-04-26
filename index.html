@@ -1,365 +1,685 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aden Cafe – Authentic Yemeni & Middle Eastern Restaurant in Norcross, GA</title>
-<meta name="description" content="Aden Cafe serves authentic Yemeni and Middle Eastern cuisine in Norcross, GA. Fresh ingredients, traditional spices, dine-in and takeout available.">
-<meta name="keywords" content="Yemeni restaurant Norcross GA, Middle Eastern food Norcross, Aden Cafe, halal restaurant Georgia, shawarma Norcross">
+<title>Soul Good Fine Food | Atlanta, GA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: Georgia, 'Times New Roman', serif; background: #FDF6E3; color: #2c1810; overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C9963A; --dark: #1A1208; --brown: #3B2310;
+    --cream: #FAF6EE; --text: #2C1A0E; --muted: #7A6353; --red: #8B2012;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #1a1208; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 64px; border-bottom: 2px solid #D4A853; }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo-icon { width: 38px; height: 38px; background: #C0392B; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ffffff; font-size: 13px; }
-.nav-logo-text { font-weight: 700; color: #ffffff; font-size: 18px; }
-.nav-links { display: flex; gap: 24px; list-style: none; }
-.nav-links a { color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; }
-.nav-links a:hover { color: #D4A853; }
-.nav-cta { background: #C0392B; padding: 8px 16px; border-radius: 6px; }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: #ffffff; border-radius: 2px; }
-.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: #1a1208; z-index: 999; padding: 20px; flex-direction: column; gap: 4px; border-bottom: 2px solid #D4A853; }
-.mobile-menu.open { display: flex; }
-.mobile-menu a { color: #ffffff; text-decoration: none; font-size: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: block; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem; background: rgba(26,18,8,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,150,58,0.2);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(250,246,238,0.75); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cart-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: var(--dark); padding: 0.55rem 1.3rem;
+    border: none; cursor: pointer; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .nav-cart-btn:hover { background: #E8B34A; }
+  .cart-badge {
+    background: var(--dark); color: var(--gold); border-radius: 50%;
+    width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 500;
+  }
 
-/* HERO */
-.hero { min-height: 100vh; background: #1a0a05; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 24px 60px; }
-.hero-content { max-width: 700px; }
-.hero-badge { display: inline-block; background: rgba(192,57,43,0.4); border: 1px solid #C0392B; color: #ffb5a8; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
-.hero h1 { font-size: clamp(38px, 8vw, 72px); font-weight: 900; color: #ffffff; line-height: 1.1; margin-bottom: 20px; }
-.hero h1 em { color: #D4A853; font-style: normal; }
-.hero p { font-size: 17px; color: #d4b89a; line-height: 1.7; margin-bottom: 36px; }
-.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-red { background: #C0392B; color: #ffffff; padding: 14px 26px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; }
-.btn-red:hover { background: #96281B; }
-.btn-gold { background: #D4A853; color: #1a1208; padding: 14px 26px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; }
-.btn-gold:hover { background: #c49843; }
-.btn-outline { background: transparent; color: #ffffff; padding: 14px 26px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; border: 2px solid rgba(255,255,255,0.5); display: inline-block; }
-.hero-info { display: flex; gap: 24px; justify-content: center; margin-top: 44px; flex-wrap: wrap; }
-.hero-info-item { color: #c0a070; font-size: 13px; }
+  .hero {
+    min-height: 100vh; background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; text-align: center; padding: 6rem 2rem 4rem;
+  }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,150,58,0.12) 0%, transparent 70%); }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem auto; position: relative; }
+  .hero-divider::before, .hero-divider::after { content: ''; position: absolute; top: 50%; transform: translateY(-50%); width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .hero-divider::before { left: -8px; }
+  .hero-divider::after { right: -8px; }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0; color: var(--cream); }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 1.1rem; color: rgba(250,246,238,0.6); margin-top: 0.8rem; }
+  .hero-address { margin-top: 1.2rem; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,246,238,0.45); }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 2.5rem;
+    background: var(--gold); color: var(--dark); padding: 1rem 2.5rem;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    border: 2px solid var(--gold); transition: all 0.2s; font-family: 'DM Sans', sans-serif; cursor: pointer;
+  }
+  .hero-cta:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
 
-/* INFO STRIP */
-.info-strip { background: #C0392B; padding: 14px 24px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
-.info-strip-item { color: #ffffff; font-size: 13px; font-weight: 600; }
+  .hours-strip {
+    background: var(--brown); padding: 1.2rem 2rem;
+    display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+    border-top: 1px solid rgba(201,150,58,0.25); border-bottom: 1px solid rgba(201,150,58,0.25);
+  }
+  .hours-item { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,246,238,0.65); }
+  .hours-item strong { color: var(--gold); font-weight: 500; }
+  .sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(201,150,58,0.35); }
 
-/* SECTIONS */
-section { padding: 70px 24px; }
-.container { max-width: 1100px; margin: 0 auto; }
-.section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #C0392B; font-weight: 700; margin-bottom: 10px; }
-.section-title { font-size: clamp(28px, 5vw, 48px); font-weight: 900; color: #1a1208; line-height: 1.15; margin-bottom: 16px; }
-.section-desc { font-size: 16px; color: #6b5742; line-height: 1.7; max-width: 580px; }
+  #menu { background: var(--cream); padding: 5rem 2rem; }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-rule { width: 50px; height: 1px; background: rgba(59,35,16,0.2); margin: 1.2rem auto 0; }
 
-/* ABOUT */
-.about { background: #ffffff; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
-.about-feature { background: #f5f0e8; padding: 18px; border-radius: 10px; border-left: 3px solid #C0392B; }
-.about-feature h4 { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: #1a1208; }
-.about-feature p { font-size: 13px; color: #8a7060; }
-.about-image-box { background: #1a1208; border-radius: 20px; padding: 40px; text-align: center; min-height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid #D4A853; }
-.about-image-box .big-icon { font-size: 72px; margin-bottom: 20px; }
-.about-image-box h3 { color: #ffffff; font-size: 26px; font-weight: 700; margin-bottom: 10px; }
-.about-image-box .sub { color: #c0a888; font-size: 15px; line-height: 1.6; }
-.address-box { background: rgba(212,168,83,0.15); border: 1px solid #D4A853; border-radius: 10px; padding: 16px 20px; margin-top: 20px; text-align: left; width: 100%; }
-.address-box p { color: #e8d5b0; font-size: 14px; margin: 3px 0; }
+  .menu-tabs {
+    display: flex; justify-content: center; width: fit-content; margin: 0 auto 3rem;
+    border: 1px solid rgba(59,35,16,0.15); overflow: hidden;
+  }
+  .menu-tab {
+    padding: 0.75rem 1.6rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; border: none; border-right: 1px solid rgba(59,35,16,0.15);
+    cursor: pointer; color: var(--muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .menu-tab:last-child { border-right: none; }
+  .menu-tab.active { background: var(--brown); color: var(--gold); }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+  .menu-container { max-width: 1100px; margin: 0 auto; }
+  .menu-note {
+    text-align: center; font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 0.88rem; color: var(--muted); padding: 1rem;
+    border: 1px solid rgba(59,35,16,0.1); background: rgba(255,255,255,0.6);
+    max-width: 700px; margin: 0 auto 2.5rem;
+  }
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .menu-card { background: #fff; border: 1px solid rgba(59,35,16,0.1); padding: 1.5rem; }
+  .menu-card-title {
+    font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--brown);
+    padding-bottom: 0.65rem; border-bottom: 1px solid rgba(59,35,16,0.1); margin-bottom: 0.4rem;
+  }
+  .menu-card-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  .menu-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.48rem 0; border-bottom: 1px dotted rgba(59,35,16,0.1);
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-info { flex: 1; }
+  .menu-item-name { font-size: 0.87rem; color: var(--text); line-height: 1.35; }
+  .menu-item-price { font-size: 0.8rem; color: var(--red); font-weight: 500; }
+  .add-btn {
+    background: var(--brown); color: var(--gold); border: none; cursor: pointer;
+    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; font-weight: 300; flex-shrink: 0; transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif; line-height: 1;
+  }
+  .add-btn:hover { background: var(--gold); color: var(--dark); }
+  .sides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.35rem; margin-top: 0.5rem; }
+  .side-chip {
+    font-size: 0.82rem; color: var(--text); padding: 0.35rem 0.6rem;
+    border: 1px solid rgba(59,35,16,0.12); background: var(--cream); cursor: pointer;
+    transition: all 0.15s; display: flex; align-items: center; gap: 0.4rem;
+  }
+  .side-chip:hover { background: var(--brown); color: var(--gold); border-color: var(--brown); }
+  .side-chip::before { content: '+'; font-size: 0.9rem; color: var(--gold); }
 
-/* MENU */
-.menu-section { background: #f5f0e8; }
-.menu-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 36px; }
-.menu-tab { padding: 10px 18px; border-radius: 25px; border: 2px solid #ddd; background: #ffffff; cursor: pointer; font-size: 13px; font-weight: 600; color: #6b5742; transition: all 0.2s; font-family: Georgia, serif; }
-.menu-tab.active, .menu-tab:hover { background: #C0392B; border-color: #C0392B; color: #ffffff; }
-.menu-category { display: none; }
-.menu-category.active { display: block; }
-.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
-.menu-item { background: #ffffff; border-radius: 12px; padding: 18px; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; border: 1px solid rgba(0,0,0,0.07); }
-.menu-item h4 { font-weight: 700; font-size: 15px; color: #1a1208; margin-bottom: 5px; }
-.menu-item p { font-size: 13px; color: #8a7060; line-height: 1.5; }
-.menu-item-price { font-weight: 900; font-size: 17px; color: #C0392B; white-space: nowrap; }
+  #location { background: var(--dark); padding: 5rem 2rem; }
+  .location-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .info-block { margin-bottom: 2rem; }
+  .info-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .info-value { font-size: 0.95rem; color: rgba(250,246,238,0.8); line-height: 1.7; }
+  .info-value a { color: var(--gold); text-decoration: none; }
+  .hours-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(201,150,58,0.1); font-size: 0.88rem; }
+  .hours-day { color: rgba(250,246,238,0.5); }
+  .hours-time { color: rgba(250,246,238,0.9); font-weight: 500; }
+  .map-embed { border: 1px solid rgba(201,150,58,0.2); height: 350px; overflow: hidden; }
+  .map-embed iframe { width: 100%; height: 100%; border: none; display: block; }
 
-/* REVIEWS */
-.reviews { background: #ffffff; }
-.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; margin-top: 36px; }
-.review-card { background: #f5f0e8; border-radius: 14px; padding: 22px; border-top: 3px solid #D4A853; }
-.stars { color: #D4A853; font-size: 18px; margin-bottom: 10px; }
-.review-text { font-size: 14px; line-height: 1.7; color: #5a4a3a; margin-bottom: 14px; font-style: italic; }
-.reviewer { font-weight: 700; font-size: 13px; color: #1a1208; }
+  footer { background: #0D0900; padding: 2rem; text-align: center; border-top: 1px solid rgba(201,150,58,0.15); }
+  footer p { font-size: 0.75rem; color: rgba(250,246,238,0.3); }
+  footer strong { color: var(--gold); font-weight: 400; }
 
-/* CONTACT */
-.contact-section { background: #1a1208; }
-.contact-title { color: #ffffff; }
-.contact-label { color: #D4A853; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 36px; }
-.contact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
-.contact-icon { width: 42px; height: 42px; background: rgba(192,57,43,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-.contact-item h4 { color: #D4A853; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
-.contact-item p { color: #e0d0c0; font-size: 15px; line-height: 1.6; }
-.contact-item a { color: #e0d0c0; font-size: 15px; text-decoration: none; }
-.contact-item a:hover { color: #D4A853; }
-.hours-table { width: 100%; border-collapse: collapse; }
-.hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
-.hours-table td { font-size: 14px; padding: 9px 0; color: #c0a888; }
-.hours-day { font-weight: 600; color: #ffffff !important; }
-.hours-time { text-align: right; color: #D4A853 !important; }
-.map-embed { border-radius: 14px; overflow: hidden; }
+  /* CART DRAWER */
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: 430px; max-width: 100vw;
+    background: var(--cream); z-index: 301; transform: translateX(110%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column;
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer-head {
+    padding: 1.4rem 1.5rem; background: var(--brown);
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(201,150,58,0.3); flex-shrink: 0;
+  }
+  .drawer-head h2 { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.25rem; }
+  .drawer-close { background: none; border: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; padding: 0 0.3rem; line-height: 1; }
+  .drawer-close:hover { color: #fff; }
 
-/* FOOTER */
-footer { background: #0d0803; padding: 28px 24px; text-align: center; border-top: 1px solid rgba(212,168,83,0.25); }
-footer p { color: rgba(255,255,255,0.45); font-size: 13px; }
-.gold { color: #D4A853; }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+  .cart-empty-msg { text-align: center; padding: 3rem 1rem; color: var(--muted); font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 0.95rem; }
 
-/* STICKY CALL */
-.sticky-call { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #C0392B; color: #ffffff; padding: 14px 22px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 20px rgba(192,57,43,0.6); display: flex; align-items: center; gap: 8px; }
+  .c-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid rgba(59,35,16,0.1); }
+  .c-item:last-child { border-bottom: none; }
+  .c-item-name { flex: 1; font-size: 0.9rem; color: var(--text); line-height: 1.3; }
+  .c-item-price { font-size: 0.85rem; color: var(--red); font-weight: 500; white-space: nowrap; }
+  .qty-wrap { display: flex; align-items: center; gap: 0.4rem; }
+  .qbtn {
+    width: 26px; height: 26px; border: 1px solid rgba(59,35,16,0.18); background: #fff;
+    cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    color: var(--brown); transition: all 0.15s; font-family: 'DM Sans', sans-serif; line-height: 1;
+  }
+  .qbtn:hover { background: var(--brown); color: var(--gold); border-color: var(--brown); }
+  .qnum { font-size: 0.88rem; min-width: 18px; text-align: center; font-weight: 500; color: var(--text); }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-.nav-links { display: none; }
-.hamburger { display: flex; }
-.about-grid, .contact-grid { grid-template-columns: 1fr; }
-.about-features { grid-template-columns: 1fr; }
-section { padding: 55px 18px; }
-}
+  .drawer-foot { border-top: 1px solid rgba(59,35,16,0.12); background: #fff; flex-shrink: 0; }
+  .totals { padding: 1rem 1.5rem 0.6rem; }
+  .total-row { display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--muted); padding: 0.25rem 0; }
+  .total-row.big { font-size: 1rem; font-weight: 500; color: var(--text); padding-top: 0.5rem; border-top: 1px solid rgba(59,35,16,0.1); margin-top: 0.3rem; }
+
+  .order-form { padding: 1rem 1.5rem 1.5rem; }
+  .form-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); margin-bottom: 0.9rem; }
+  .type-toggle { display: flex; margin-bottom: 0.8rem; border: 1px solid rgba(59,35,16,0.2); overflow: hidden; }
+  .tbtn {
+    flex: 1; padding: 0.55rem; text-align: center; cursor: pointer;
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    background: #fff; color: var(--muted); font-family: 'DM Sans', sans-serif; border: none;
+    transition: all 0.2s;
+  }
+  .tbtn:first-child { border-right: 1px solid rgba(59,35,16,0.2); }
+  .tbtn.on { background: var(--brown); color: var(--gold); }
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-bottom: 0.55rem; }
+  .frow.one { grid-template-columns: 1fr; }
+  .frow input, .frow textarea, .frow select {
+    width: 100%; padding: 0.55rem 0.75rem;
+    border: 1px solid rgba(59,35,16,0.18); background: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 0.84rem; color: var(--text); outline: none;
+  }
+  .frow input:focus, .frow textarea:focus { border-color: var(--gold); }
+  .frow textarea { resize: vertical; min-height: 58px; }
+  .place-btn {
+    width: 100%; padding: 0.9rem; background: var(--gold); color: var(--dark);
+    border: none; font-size: 0.84rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, transform 0.15s; margin-top: 0.5rem;
+  }
+  .place-btn:hover { background: #E8B34A; transform: translateY(-1px); }
+
+  .success-screen { display: none; text-align: center; padding: 2.5rem 1.5rem; }
+  .success-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+  .success-screen h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); margin-bottom: 0.4rem; }
+  .success-screen .onum { font-size: 1.1rem; color: var(--red); font-weight: 500; margin: 0.8rem 0; }
+  .success-screen p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .success-screen a { color: var(--red); }
+  .new-order-btn {
+    margin-top: 1.5rem; background: var(--brown); color: var(--cream);
+    border: none; padding: 0.75rem 1.8rem; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .location-inner { grid-template-columns: 1fr; }
+    .drawer { width: 100vw; }
+    .frow { grid-template-columns: 1fr; }
+  }
 </style>
-
 </head>
 <body>
 
 <nav>
-  <a href="#home" class="nav-logo">
-    <div class="nav-logo-icon">AC</div>
-    <span class="nav-logo-text">Aden Cafe</span>
-  </a>
+  <div class="nav-logo">Soul Good</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
     <li><a href="#menu">Menu</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="tel:7704536088" class="nav-cta">📞 Call Now</a></li>
+    <li><a href="#location">Location</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <button class="nav-cart-btn" onclick="openCart()">
+    Order Now
+    <span class="cart-badge" id="nav-count">0</span>
+  </button>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#menu" onclick="toggleMenu()">Menu</a>
-  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="tel:7704536088" style="color:#D4A853;">📞 (770) 453-6088</a>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div style="position:relative;z-index:1;">
+    <p class="hero-eyebrow">Atlanta's Finest Soul Food</p>
+    <h1>Soul <em>Good</em><br>Fine Food</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Breakfast all day &middot; Lunch &middot; Full Soul Food Dinner</p>
+    <p class="hero-address">890 Joseph E. Boone Blvd NW &middot; Atlanta, GA 30314</p>
+    <button class="hero-cta" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+      View Menu &amp; Order
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</section>
+
+<div class="hours-strip">
+  <div class="hours-item"><strong>Mon–Tue</strong> &nbsp;6am–6pm</div><span class="sep"></span>
+  <div class="hours-item"><strong>Wed–Thu</strong> &nbsp;6am–10pm</div><span class="sep"></span>
+  <div class="hours-item"><strong>Fri</strong> &nbsp;6am–12am</div><span class="sep"></span>
+  <div class="hours-item"><strong>Sat</strong> &nbsp;24 Hours</div><span class="sep"></span>
+  <div class="hours-item"><strong>Sun</strong> &nbsp;12am–9pm</div>
 </div>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="hero-badge">📍 Norcross, Georgia</div>
-    <h1>Authentic <em>Yemeni</em> &amp;<br>Middle Eastern<br>Cuisine</h1>
-    <p>Experience the rich flavors and traditional spices of Aden, prepared fresh daily with authentic recipes passed down through generations.</p>
-    <div class="hero-btns">
-      <a href="#menu" class="btn-red">🍽️ View Full Menu</a>
-      <a href="tel:7704536088" class="btn-gold">📞 Call to Order</a>
-      <a href="https://maps.google.com/?q=4935+Jimmy+Carter+Blvd+%23130+Norcross+GA+30093" target="_blank" class="btn-outline">📍 Get Directions</a>
-    </div>
-    <div class="hero-info">
-      <span class="hero-info-item">🕐 Open Daily</span>
-      <span class="hero-info-item">🍖 Halal Food</span>
-      <span class="hero-info-item">🥡 Dine-in &amp; Takeout</span>
-      <span class="hero-info-item">⭐ Highly Rated</span>
-    </div>
+<section id="menu">
+  <div class="section-header">
+    <p class="section-label" style="color:var(--red);">Our Menu</p>
+    <h2 class="section-title" style="color:var(--brown);">Made with <em>love</em><br>from scratch</h2>
+    <div class="section-rule"></div>
   </div>
-</section>
 
-<div class="info-strip">
-  <span class="info-strip-item">📍 4935 Jimmy Carter Blvd #130, Norcross, GA 30093</span>
-  <span class="info-strip-item">📞 (770) 453-6088</span>
-  <span class="info-strip-item">🕐 Open Daily – Dine-in &amp; Takeout</span>
-</div>
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="showTab('breakfast',this)">Breakfast</button>
+    <button class="menu-tab" onclick="showTab('sandwiches',this)">Sandwiches</button>
+    <button class="menu-tab" onclick="showTab('lunch',this)">Lunch</button>
+    <button class="menu-tab" onclick="showTab('dinner',this)">Dinner</button>
+    <button class="menu-tab" onclick="showTab('sides',this)">Sides</button>
+  </div>
 
-<section class="about" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <div class="section-label">Our Story</div>
-        <h2 class="section-title">A Taste of Yemen in the Heart of Norcross</h2>
-        <p class="section-desc">Aden Cafe brings the authentic flavors of Yemen and the Middle East to Georgia. Every dish is prepared with traditional spices, fresh ingredients, and the warmth of true Yemeni hospitality.</p>
-        <div class="about-features">
-          <div class="about-feature"><h4>🌿 Fresh Daily</h4><p>All dishes made fresh every day</p></div>
-          <div class="about-feature"><h4>✅ 100% Halal</h4><p>All meats are certified halal</p></div>
-          <div class="about-feature"><h4>🫙 Authentic Spices</h4><p>Traditional Yemeni recipes</p></div>
-          <div class="about-feature"><h4>👨‍👩‍👧 Family Friendly</h4><p>Kids menu available</p></div>
+  <div class="menu-container">
+
+    <div id="tab-breakfast" class="menu-panel active">
+      <div class="menu-note">All breakfast meals served with grits, eggs, toast or biscuit &middot; +$1.00 homefries &middot; +$0.75 cheese</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-title">🍳 Breakfast Plates</div>
+          <p class="menu-card-sub">With grits, eggs, toast or biscuit</p>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Red Hot Link</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Red Hot Link',10.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty (2pc)</div><div class="menu-item-price">$13.50</div></div><button class="add-btn" onclick="add('Salmon Patty (2pc)',13.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Whole Wings (4pc)</div><div class="menu-item-price">$13.50</div></div><button class="add-btn" onclick="add('Fried Wings Breakfast',13.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty (Pork/Turkey)</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Sausage Patty Plate',10.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links (Beef/Chicken/Turkey)</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Sausage Links Plate',10.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Bacon (Pork/Turkey)</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Bacon Plate (4pc)',10.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken &amp; Waffles</div><div class="menu-item-price">$19.00</div></div><button class="add-btn" onclick="add('Chicken & Waffles',19.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Shrimp &amp; Grits</div><div class="menu-item-price">$19.00</div></div><button class="add-btn" onclick="add('Shrimp & Grits',19.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Whiting</div><div class="menu-item-price">$11.00</div></div><button class="add-btn" onclick="add('Whiting Plate (2pc)',11.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Tilapia</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Tilapia Plate (2pc)',14.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Catfish</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Catfish Plate (2pc)',14.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Fried Pork Chop</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Fried Pork Chop Plate',14.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Grilled Pork Chop</div><div class="menu-item-price">$16.00</div></div><button class="add-btn" onclick="add('Grilled Pork Chop Plate',16.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle, Sausage, Eggs, Grits</div><div class="menu-item-price">$15.00</div></div><button class="add-btn" onclick="add('Waffle, Sausage, Eggs, Grits',15.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">French Toast, Sausage, Eggs, Grits</div><div class="menu-item-price">$15.00</div></div><button class="add-btn" onclick="add('French Toast Combo',15.00)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🧇 À La Carte</div>
+          <p class="menu-card-sub">Price without egg / with egg</p>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Red Hot Link</div><div class="menu-item-price">$6.50 / w/Egg $7.50</div></div><button class="add-btn" onclick="add('Red Hot Link (à la carte)',6.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty</div><div class="menu-item-price">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Sausage Patty (à la carte)',7.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links</div><div class="menu-item-price">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Sausage Links (à la carte)',6.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bacon (Pork/Turkey)</div><div class="menu-item-price">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Bacon (à la carte)',7.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Tender</div><div class="menu-item-price">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Chicken Tender (à la carte)',6.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fish</div><div class="menu-item-price">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Fish (à la carte)',6.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty</div><div class="menu-item-price">$6.50 / w/Egg $7.50</div></div><button class="add-btn" onclick="add('Salmon Patty (à la carte)',6.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pork Chop</div><div class="menu-item-price">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Pork Chop (à la carte)',7.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Wings (4pc)</div><div class="menu-item-price">$5.25 / w/Egg $6.25</div></div><button class="add-btn" onclick="add('Wings (à la carte, 4pc)',5.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Single Egg</div><div class="menu-item-price">$4.75</div></div><button class="add-btn" onclick="add('Single Egg',4.75)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle Sandwich</div><div class="menu-item-price">$18.00</div></div><button class="add-btn" onclick="add('Waffle Sandwich',18.00)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🥐 Biscuit Sandwiches</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Plain Biscuit</div><div class="menu-item-price">$1.75 / w/Egg $3.00</div></div><button class="add-btn" onclick="add('Plain Biscuit',1.75)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty Biscuit</div><div class="menu-item-price">$4.00 / w/Egg $5.50</div></div><button class="add-btn" onclick="add('Salmon Patty Biscuit',4.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty Biscuit</div><div class="menu-item-price">$3.25 / w/Egg $4.25</div></div><button class="add-btn" onclick="add('Sausage Patty Biscuit',3.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links Biscuit</div><div class="menu-item-price">$3.50 / w/Egg $4.50</div></div><button class="add-btn" onclick="add('Sausage Links Biscuit',3.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bacon Biscuit (Pork/Turkey)</div><div class="menu-item-price">$3.50 / w/Egg $4.50</div></div><button class="add-btn" onclick="add('Bacon Biscuit',3.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Tender Biscuit</div><div class="menu-item-price">$5.50 / w/Egg $6.50</div></div><button class="add-btn" onclick="add('Chicken Tender Biscuit',5.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage &amp; White Gravy Biscuit</div><div class="menu-item-price">$7.50 / w/Egg $9.50</div></div><button class="add-btn" onclick="add('Sausage & Gravy Biscuit',7.50)">+</button></div>
         </div>
       </div>
-      <div class="about-image-box">
-        <div class="big-icon">🫕</div>
-        <h3>Aden Cafe</h3>
-        <p class="sub">Yemeni &amp; Middle Eastern Restaurant<br>Serving the Norcross community</p>
-        <div class="address-box">
-          <p>📍 4935 Jimmy Carter Blvd #130</p>
-          <p>Norcross, GA 30093</p>
-          <p style="margin-top:8px;">📞 (770) 453-6088</p>
+    </div>
+
+    <div id="tab-sandwiches" class="menu-panel">
+      <div class="menu-grid" style="max-width:640px;margin:0 auto;">
+        <div class="menu-card">
+          <div class="menu-card-title">🥪 Sandwiches</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">BLT</div><div class="menu-item-price">SM $2.25 / LG $3.25</div></div><button class="add-btn" onclick="add('BLT',2.25)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Porkchop Sandwich</div><div class="menu-item-price">$3.00</div></div><button class="add-btn" onclick="add('Porkchop Sandwich',3.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Red Hot Link Sandwich</div><div class="menu-item-price">$1.75</div></div><button class="add-btn" onclick="add('Red Hot Link Sandwich',1.75)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty Sandwich</div><div class="menu-item-price">$4.50</div></div><button class="add-btn" onclick="add('Salmon Patty Sandwich',4.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty Sandwich</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Sausage Patty Sandwich',6.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links Sandwich</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Sausage Links Sandwich',6.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bacon Sandwich (Pork/Turkey)</div><div class="menu-item-price">$3.00</div></div><button class="add-btn" onclick="add('Bacon Sandwich',3.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Tender Sandwich</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Chicken Tender Sandwich',6.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fish Sandwich</div><div class="menu-item-price">$6.50</div></div><button class="add-btn" onclick="add('Fish Sandwich',6.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Grilled Cheese</div><div class="menu-item-price">$4.50</div></div><button class="add-btn" onclick="add('Grilled Cheese',4.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Egg Sandwich</div><div class="menu-item-price">$4.50</div></div><button class="add-btn" onclick="add('Egg Sandwich',4.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle Sandwich</div><div class="menu-item-price">$18.00</div></div><button class="add-btn" onclick="add('Waffle Sandwich',18.00)">+</button></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="menu-section" id="menu">
-  <div class="container">
-    <div class="section-label">What We Serve</div>
-    <h2 class="section-title">Our Full Menu</h2>
-    <p class="section-desc">Discover the rich flavors of traditional Yemeni and Middle Eastern cuisine, prepared with authentic spices and fresh ingredients.</p>
-    <div class="menu-tabs">
-      <button class="menu-tab active" onclick="showCategory(event,'cat-breakfast')">Breakfast</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-platters')">Authentic Platters</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-shawarma')">Chicken Shawarma</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-appetizers')">Appetizers</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-salads')">Salads &amp; Soup</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-sides')">Sides</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-kids')">Kids Menu</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-drinks')">Drinks</button>
-      <button class="menu-tab" onclick="showCategory(event,'cat-dessert')">Dessert</button>
+    <div id="tab-lunch" class="menu-panel">
+      <div class="menu-note">Served with fries, onion rings, or okra and potato salad or coleslaw &middot; Sub Fried Green Tomatoes +$2 &middot; Rice +$1</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-title">🍔 Burger Dinners</div>
+          <p class="menu-card-sub">Add: Lettuce, Tomato, Onions, Cheese, Pickles +$1.00 each</p>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Burger</div><div class="menu-item-price">$8.99</div></div><button class="add-btn" onclick="add('Beef Burger',8.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Burger</div><div class="menu-item-price">$9.99</div></div><button class="add-btn" onclick="add('Turkey Burger',9.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Grilled Chicken Breast</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Grilled Chicken Breast',10.99)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🍗 Wing Dinners</div>
+          <p class="menu-card-sub">Flavors: Hot, Mild, Teriyaki, Lemon Pepper, Honey Hot, Honey Garlic, BBQ</p>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">10pc Wings Only</div><div class="menu-item-price">$10.00</div></div><button class="add-btn" onclick="add('10pc Wings Only',10.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">10pc Wing Dinner</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('10pc Wing Dinner',14.00)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🐷 Pork Chop Dinners</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Fried Pork Chop</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Fried Pork Chop Dinner',14.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Grilled Pork Chop</div><div class="menu-item-price">$15.00</div></div><button class="add-btn" onclick="add('Grilled Pork Chop Dinner',15.00)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🐟 Fish Dinners</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Whiting</div><div class="menu-item-price">$11.00</div></div><button class="add-btn" onclick="add('Whiting Dinner',11.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Tilapia</div><div class="menu-item-price">$13.00</div></div><button class="add-btn" onclick="add('Tilapia Dinner',13.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Catfish</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Catfish Dinner',14.00)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🍗 Chicken Dinners</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Whole Wing</div><div class="menu-item-price">$12.00</div></div><button class="add-btn" onclick="add('Whole Wing Dinner (4pc)',12.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Chicken Tender</div><div class="menu-item-price">$8.50</div></div><button class="add-btn" onclick="add('Chicken Tender Dinner (4pc)',8.50)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🍤 Shrimp Dinners</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">8pc Fried Shrimp</div><div class="menu-item-price">$17.00</div></div><button class="add-btn" onclick="add('Fried Shrimp Dinner',17.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">8pc Grilled Shrimp</div><div class="menu-item-price">$18.00</div></div><button class="add-btn" onclick="add('Grilled Shrimp Dinner',18.00)">+</button></div>
+        </div>
+      </div>
     </div>
 
-```
-<div class="menu-category active" id="cat-breakfast"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Falafel 5 Pcs</h4><p>Cooked fava beans or chickpeas, mixed with fresh herbs and spices</p></div><div class="menu-item-price">$6.99</div></div>
-  <div class="menu-item"><div><h4>Foul</h4><p>Cooked fava beans with tomato, garlic, onion and spices served with olive oil. Comes with 1 bread</p></div><div class="menu-item-price">$10.99</div></div>
-  <div class="menu-item"><div><h4>Fassolia – Dry</h4><p>Thick red kidney beans sautéed with onion, garlic, chilli and herbs. Comes with 1 bread</p></div><div class="menu-item-price">$10.99</div></div>
-  <div class="menu-item"><div><h4>Shak-Shookah</h4><p>Scrambled eggs with tomato, pepper, onion and chilies. Comes with 1 bread</p></div><div class="menu-item-price">$10.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-platters"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Seltah Vegetable</h4><p>Fresh roasted vegetables, rice, onion, peppers with whipped fenugreek. Comes with 1 bread</p></div><div class="menu-item-price">$12.99</div></div>
-  <div class="menu-item"><div><h4>Mushakal Mix Vegetable</h4><p>Mix vegetable potato, zucchini, celery, carrots and a rich savory broth. Comes with 1 bread</p></div><div class="menu-item-price">$10.99</div></div>
-  <div class="menu-item"><div><h4>Lamb Fahsan</h4><p>Lamb saddle sautéed with onions, garlic and chilies. Comes with 1 bread</p></div><div class="menu-item-price">$17.99</div></div>
-  <div class="menu-item"><div><h4>Tuna Fahsan</h4><p>Tuna sautéed with onions, garlic and chilies. Comes with 1 bread</p></div><div class="menu-item-price">$13.99</div></div>
-  <div class="menu-item"><div><h4>Shrimp Gallabah</h4><p>Shrimp sautéed with onions, garlic and chilies. Comes with 1 bread</p></div><div class="menu-item-price">$14.99</div></div>
-  <div class="menu-item"><div><h4>Lamb Haneeth</h4><p>Lamb marinated in aromatic blend of spices, roasted until incredibly tender. Comes with rice</p></div><div class="menu-item-price">$25.99</div></div>
-  <div class="menu-item"><div><h4>Adeni Zurbian</h4><p>Chicken, potato and mixture of spices. Comes with rice</p></div><div class="menu-item-price">$11.99</div></div>
-  <div class="menu-item"><div><h4>Chicken Mandi</h4><p>¼ chicken Yemeni slow cooked mandi. Comes with rice</p></div><div class="menu-item-price">$9.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-shawarma"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Chicken Shawarma Wrap</h4><p>Chicken shawarma with pickle, tomato, onion and lettuce</p></div><div class="menu-item-price">$9.00</div></div>
-  <div class="menu-item"><div><h4>Chicken Shawarma Over Rice</h4><p>Chicken shawarma with rice, hot sauce, garlic sauce and special sauce</p></div><div class="menu-item-price">$11.99</div></div>
-  <div class="menu-item"><div><h4>Chicken Shawarma Over Salad</h4><p>Chicken shawarma with salad</p></div><div class="menu-item-price">$9.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-appetizers"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Falafel 5 Pcs</h4><p>Chickpeas blend with tahini</p></div><div class="menu-item-price">$6.99</div></div>
-  <div class="menu-item"><div><h4>Hummus</h4><p>Chickpeas blend with tahini</p></div><div class="menu-item-price">$5.99</div></div>
-  <div class="menu-item"><div><h4>Beef Samosa 1 Pc</h4><p>Spiced ground beef, onions, peppers, and fresh herbs</p></div><div class="menu-item-price">$2.49</div></div>
-  <div class="menu-item"><div><h4>Chicken Samosa 1 Pc</h4><p>Spiced ground chicken, onions, peppers, and fresh herbs</p></div><div class="menu-item-price">$2.49</div></div>
-  <div class="menu-item"><div><h4>Cheese Samosa 1 Pc</h4><p>Spiced cheese, onions, peppers, and fresh herbs</p></div><div class="menu-item-price">$1.50</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-salads"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Adeni Style Salad</h4><p>Lettuce, cucumbers, onion, tomatoes with zesty lemon, herbs and olive oil</p></div><div class="menu-item-price">$6.99</div></div>
-  <div class="menu-item"><div><h4>Lentil Soup</h4><p>Red &amp; yellow lentil with onion and cumin served with fresh lemon on the side</p></div><div class="menu-item-price">$2.99</div></div>
-  <div class="menu-item"><div><h4>Falafel with Rice</h4><p>Falafel over rice with hot sauce, garlic sauce and special sauce</p></div><div class="menu-item-price">$10.99</div></div>
-  <div class="menu-item"><div><h4>Falafel Wrap</h4><p>Falafel wrap with pickle, tomato, onion and lettuce</p></div><div class="menu-item-price">$8.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-sides"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Rice</h4><p>Steamed white rice</p></div><div class="menu-item-price">$4.00</div></div>
-  <div class="menu-item"><div><h4>Bread</h4><p>Freshly baked bread</p></div><div class="menu-item-price">$1.99</div></div>
-  <div class="menu-item"><div><h4>Fries</h4><p>Crispy golden fries</p></div><div class="menu-item-price">$3.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-kids"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Chicken Nuggets</h4><p>6 pcs chicken nuggets comes with fries</p></div><div class="menu-item-price">$7.99</div></div>
-  <div class="menu-item"><div><h4>Chicken Tenders</h4><p>4 chicken tenders comes with fries</p></div><div class="menu-item-price">$7.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-drinks"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Adeni Tea With Milk</h4><p>Traditional Yemeni spiced tea with milk</p></div><div class="menu-item-price">$2.49</div></div>
-  <div class="menu-item"><div><h4>Regular Red Tea With Yemeni Spices</h4><p>Classic Yemeni spiced red tea</p></div><div class="menu-item-price">$1.99</div></div>
-  <div class="menu-item"><div><h4>Soft Drink</h4><p>Assorted soft drinks</p></div><div class="menu-item-price">$1.99</div></div>
-  <div class="menu-item"><div><h4>Water</h4><p>Bottled water</p></div><div class="menu-item-price">$1.49</div></div>
-  <div class="menu-item"><div><h4>Lemonade</h4><p>Fresh lemonade</p></div><div class="menu-item-price">$2.99</div></div>
-  <div class="menu-item"><div><h4>Mango</h4><p>Fresh mango drink</p></div><div class="menu-item-price">$4.99</div></div>
-</div></div>
-
-<div class="menu-category" id="cat-dessert"><div class="menu-grid">
-  <div class="menu-item"><div><h4>Maasoob With Banana</h4><p>Traditional Yemeni bread dessert with banana</p></div><div class="menu-item-price">$12.99</div></div>
-  <div class="menu-item"><div><h4>Honey Comb</h4><p>Pure natural honeycomb</p></div><div class="menu-item-price">$5.99</div></div>
-  <div class="menu-item"><div><h4>Harissah/Basboosah</h4><p>Traditional Middle Eastern sweet semolina cake</p></div><div class="menu-item-price">$9.99</div></div>
-</div></div>
-```
-
-  </div>
-</section>
-
-<section class="reviews" id="reviews">
-  <div class="container">
-    <div class="section-label">What People Say</div>
-    <h2 class="section-title">Customer Reviews</h2>
-    <div class="reviews-grid">
-      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Best Yemeni food in Georgia! The Lamb Haneeth is absolutely incredible. Authentic flavors that remind me of home."</p><div class="reviewer">— Google Review</div></div>
-      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Amazing food, great portions and very friendly staff. The chicken mandi and Adeni tea are a must-try!"</p><div class="reviewer">— Google Review</div></div>
-      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Hidden gem in Norcross! The shawarma and falafel are fresh and delicious. Will definitely be coming back."</p><div class="reviewer">— Google Review</div></div>
+    <div id="tab-dinner" class="menu-panel">
+      <div class="menu-note">Full Soul Food — Fri, Sat &amp; Sun 11am–10pm &middot; All dinners served with 1 meat over rice, 2 sides &amp; cornbread</div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-title">🍽️ Dinners from $13.99</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Veggie Plate (4 Sides)</div><div class="menu-item-price">$13.99</div></div><button class="add-btn" onclick="add('Veggie Plate',13.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Chicken</div><div class="menu-item-price">$14.99</div></div><button class="add-btn" onclick="add('Fried Chicken Dinner',14.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Baked Chicken</div><div class="menu-item-price">$15.99</div></div><button class="add-btn" onclick="add('Baked Chicken Dinner',15.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Meatloaf</div><div class="menu-item-price">$17.99</div></div><button class="add-btn" onclick="add('Meatloaf Dinner',17.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pig Feet</div><div class="menu-item-price">$17.99</div></div><button class="add-btn" onclick="add('Pig Feet Dinner',17.99)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🍽️ Dinners from $18.99</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Pork Chop</div><div class="menu-item-price">$18.99</div></div><button class="add-btn" onclick="add('Pork Chop Dinner',18.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Catfish</div><div class="menu-item-price">$18.99</div></div><button class="add-btn" onclick="add('Catfish Dinner',18.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Salisbury Steak</div><div class="menu-item-price">$19.99</div></div><button class="add-btn" onclick="add('Turkey Salisbury Steak',19.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Salisbury Steak</div><div class="menu-item-price">$19.99</div></div><button class="add-btn" onclick="add('Beef Salisbury Steak',19.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon</div><div class="menu-item-price">$19.99</div></div><button class="add-btn" onclick="add('Salmon Dinner',19.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Tips</div><div class="menu-item-price">$20.99</div></div><button class="add-btn" onclick="add('Beef Tips Dinner',20.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Wing</div><div class="menu-item-price">$20.99</div></div><button class="add-btn" onclick="add('Turkey Wing Dinner',20.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">BBQ Pork Ribs</div><div class="menu-item-price">$20.99</div></div><button class="add-btn" onclick="add('BBQ Pork Ribs Dinner',20.99)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">👑 Premium Dinners</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Short Ribs</div><div class="menu-item-price">$32.99</div></div><button class="add-btn" onclick="add('Short Ribs Dinner',32.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chitterlings</div><div class="menu-item-price">$33.99</div></div><button class="add-btn" onclick="add('Chitterlings Dinner',33.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oxtails</div><div class="menu-item-price">$33.99</div></div><button class="add-btn" onclick="add('Oxtails Dinner',33.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lamb Chops</div><div class="menu-item-price">$36.99</div></div><button class="add-btn" onclick="add('Lamb Chops Dinner',36.99)">+</button></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-title">🍚 1 Meat Over Rice</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Chicken</div><div class="menu-item-price">$7.99</div></div><button class="add-btn" onclick="add('Fried Chicken Over Rice',7.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Baked Chicken</div><div class="menu-item-price">$8.99</div></div><button class="add-btn" onclick="add('Baked Chicken Over Rice',8.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Wings</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Turkey Wings Over Rice',10.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pig Feet</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Pig Feet Over Rice',10.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey/Beef Salisbury Steak</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Salisbury Steak Over Rice',10.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Meatloaf</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Meatloaf Over Rice',10.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon</div><div class="menu-item-price">$12.99</div></div><button class="add-btn" onclick="add('Salmon Over Rice',12.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Catfish</div><div class="menu-item-price">$11.99</div></div><button class="add-btn" onclick="add('Catfish Over Rice',11.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pork Chops</div><div class="menu-item-price">$13.99</div></div><button class="add-btn" onclick="add('Pork Chops Over Rice',13.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Tips</div><div class="menu-item-price">$14.99</div></div><button class="add-btn" onclick="add('Beef Tips Over Rice',14.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">BBQ Pork Ribs</div><div class="menu-item-price">$14.99</div></div><button class="add-btn" onclick="add('BBQ Ribs Over Rice',14.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Short Ribs</div><div class="menu-item-price">$23.99</div></div><button class="add-btn" onclick="add('Short Ribs Over Rice',23.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oxtails</div><div class="menu-item-price">$23.99</div></div><button class="add-btn" onclick="add('Oxtails Over Rice',23.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chitterlings</div><div class="menu-item-price">$23.99</div></div><button class="add-btn" onclick="add('Chitterlings Over Rice',23.99)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lamb Chops</div><div class="menu-item-price">$24.99</div></div><button class="add-btn" onclick="add('Lamb Chops Over Rice',24.99)">+</button></div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
-<section class="contact-section" id="contact">
-  <div class="container">
-    <div class="section-label contact-label">Find Us</div>
-    <h2 class="section-title contact-title">Visit Aden Cafe</h2>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div><h4>Address</h4><a href="https://maps.google.com/?q=4935+Jimmy+Carter+Blvd+%23130+Norcross+GA+30093" target="_blank">4935 Jimmy Carter Blvd #130<br>Norcross, GA 30093</a></div>
+    <div id="tab-sides" class="menu-panel">
+      <div class="menu-grid" style="max-width:900px;margin:0 auto;">
+        <div class="menu-card">
+          <div class="menu-card-title">🥣 Breakfast Sides</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Grits</div></div><button class="add-btn" onclick="add('Grits',2.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rice</div></div><button class="add-btn" onclick="add('Rice',2.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Biscuit / Toast</div></div><button class="add-btn" onclick="add('Biscuit/Toast',1.75)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2 Eggs / 2 Boiled Eggs</div></div><button class="add-btn" onclick="add('2 Eggs',3.50)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle</div></div><button class="add-btn" onclick="add('Waffle',4.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc French Toast</div></div><button class="add-btn" onclick="add('French Toast (4pc)',5.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cinnamon Toast</div></div><button class="add-btn" onclick="add('Cinnamon Toast',3.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Home Fried Potatoes</div></div><button class="add-btn" onclick="add('Home Fried Potatoes',4.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Green Tomatoes</div></div><button class="add-btn" onclick="add('Fried Green Tomatoes',4.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fries / Okra / Onion Rings</div></div><button class="add-btn" onclick="add('Fries/Okra/Onion Rings',4.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oatmeal</div></div><button class="add-btn" onclick="add('Oatmeal',3.50)">+</button></div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div><h4>Phone</h4><a href="tel:7704536088">(770) 453-6088</a></div>
+        <div class="menu-card">
+          <div class="menu-card-title">🍗 Protein Sides</div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Fried Wings</div><div class="menu-item-price">$10.00</div></div><button class="add-btn" onclick="add('Fried Wings (4pc side)',10.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">1pc Pork Chop</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Pork Chop (1pc side)',6.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Whiting</div><div class="menu-item-price">$7.00</div></div><button class="add-btn" onclick="add('Whiting (2pc side)',7.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Tilapia</div><div class="menu-item-price">$9.00</div></div><button class="add-btn" onclick="add('Tilapia (2pc side)',9.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Catfish</div><div class="menu-item-price">$10.00</div></div><button class="add-btn" onclick="add('Catfish (2pc side)',10.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Salmon Patty</div><div class="menu-item-price">$7.00</div></div><button class="add-btn" onclick="add('Salmon Patty (2pc side)',7.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Bacon (Pork/Turkey)</div><div class="menu-item-price">$5.00</div></div><button class="add-btn" onclick="add('Bacon (4pc side)',5.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty (Pork/Turkey)</div><div class="menu-item-price">$5.00</div></div><button class="add-btn" onclick="add('Sausage Patty (side)',5.00)">+</button></div>
+          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links (Chicken/Beef/Turkey)</div><div class="menu-item-price">$5.00</div></div><button class="add-btn" onclick="add('Sausage Links (side)',5.00)">+</button></div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">🕐</div>
-          <div>
-            <h4>Hours</h4>
-            <table class="hours-table">
-              <tr><td class="hours-day">Monday – Friday</td><td class="hours-time">10:00 AM – 10:00 PM</td></tr>
-              <tr><td class="hours-day">Saturday</td><td class="hours-time">10:00 AM – 10:00 PM</td></tr>
-              <tr><td class="hours-day">Sunday</td><td class="hours-time">11:00 AM – 9:00 PM</td></tr>
-            </table>
+        <div class="menu-card" style="grid-column:1/-1;">
+          <div class="menu-card-title">🥬 Soul Food Sides — $5.00 each</div>
+          <p class="menu-card-sub" style="margin-bottom:0.8rem;">Tap to add to your order</p>
+          <div class="sides-grid">
+            <div class="side-chip" onclick="add('Collard Greens',5)">Collard Greens</div>
+            <div class="side-chip" onclick="add('Lima Beans',5)">Lima Beans</div>
+            <div class="side-chip" onclick="add('Mac N Cheese',5)">Mac N Cheese</div>
+            <div class="side-chip" onclick="add('Pinto Beans',5)">Pinto Beans</div>
+            <div class="side-chip" onclick="add('Green Beans',5)">Green Beans</div>
+            <div class="side-chip" onclick="add('Mashed Potatoes',5)">Mashed Potatoes</div>
+            <div class="side-chip" onclick="add('Cabbage',5)">Cabbage</div>
+            <div class="side-chip" onclick="add('Butter Beans',5)">Butter Beans</div>
+            <div class="side-chip" onclick="add('Dressing',5)">Dressing</div>
+            <div class="side-chip" onclick="add('Sweet Corn',5)">Sweet Corn</div>
+            <div class="side-chip" onclick="add('Black Eye Peas',5)">Black Eye Peas</div>
+            <div class="side-chip" onclick="add('Yams',5)">Yams</div>
+            <div class="side-chip" onclick="add('White Rice',5)">White Rice</div>
+            <div class="side-chip" onclick="add('Yellow Rice',5)">Yellow Rice</div>
           </div>
         </div>
-        <a href="tel:7704536088" class="btn-gold" style="display:inline-block;margin-top:8px;">📞 Call (770) 453-6088</a>
       </div>
-      <div>
-        <div class="map-embed">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.5!2d-84.0956!3d33.9412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s4935+Jimmy+Carter+Blvd+%23130+Norcross+GA+30093!5e0!3m2!1sen!2sus!4v1" width="100%" height="300" style="border:0;border-radius:14px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:2.5rem;font-size:0.75rem;color:var(--muted);">* All prices are subject to change</p>
+</section>
+
+<section id="location">
+  <div class="section-header">
+    <p class="section-label">Find Us</p>
+    <h2 class="section-title" style="color:var(--cream);">Come see us in <em>Atlanta</em></h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="location-inner">
+    <div>
+      <div class="info-block">
+        <p class="info-label">Address</p>
+        <p class="info-value">890 Joseph E. Boone Blvd NW<br>Atlanta, GA 30314</p>
+      </div>
+      <div class="info-block">
+        <p class="info-label">Phone</p>
+        <p class="info-value"><a href="tel:4043977203">(404) 397-7203</a></p>
+      </div>
+      <div class="info-block">
+        <p class="info-label">Hours</p>
+        <div>
+          <div class="hours-row"><span class="hours-day">Monday – Tuesday</span><span class="hours-time">6:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Wednesday – Thursday</span><span class="hours-time">6:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">6:00 AM – 12:00 AM</span></div>
+          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">Open 24 Hours</span></div>
+          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">12:00 AM – 9:00 PM</span></div>
         </div>
-        <a href="https://maps.google.com/?q=4935+Jimmy+Carter+Blvd+%23130+Norcross+GA+30093" target="_blank" class="btn-red" style="display:inline-block;margin-top:16px;">📍 Get Directions</a>
       </div>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d835.0!2d-84.42508!3d33.75504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f504ead5b6c575%3A0x3b7aefc2f1e9f0e1!2s890%20Joseph%20E%20Boone%20Blvd%20NW%2C%20Atlanta%2C%20GA%2030314!5e0!3m2!1sen!2sus!4v1700000000000" allowfullscreen loading="lazy" title="Soul Good Fine Food location"></iframe>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 <span class="gold">Aden Cafe</span> – Authentic Yemeni &amp; Middle Eastern Restaurant | Norcross, GA | <a href="tel:7704536088" class="gold">(770) 453-6088</a></p>
+  <p><strong>Soul Good Fine Food</strong> &middot; 890 Joseph E. Boone Blvd NW, Atlanta, GA 30314 &middot; (404) 397-7203</p>
+  <p style="margin-top:0.5rem;">All prices are subject to change.</p>
 </footer>
 
-<a href="tel:7704536088" class="sticky-call">📞 Call to Order</a>
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Your Order</h2>
+    <button class="drawer-close" onclick="closeCart()">&#x2715;</button>
+  </div>
+
+  <div class="drawer-body" id="drawer-body">
+    <div class="cart-empty-msg" id="empty-msg">Your cart is empty.<br>Browse the menu and tap + to add items!</div>
+  </div>
+
+  <div class="drawer-foot" id="drawer-foot" style="display:none;">
+    <div class="totals">
+      <div class="total-row"><span>Subtotal</span><span id="subtotal-val">$0.00</span></div>
+      <div class="total-row big"><span>Total</span><span id="total-val">$0.00</span></div>
+    </div>
+    <div class="order-form">
+      <p class="form-title">Your Details</p>
+      <div class="type-toggle">
+        <button class="tbtn on" id="tbtn-pickup" onclick="setType('pickup')">Pickup</button>
+        <button class="tbtn" id="tbtn-delivery" onclick="setType('delivery')">Delivery</button>
+      </div>
+      <div class="frow">
+        <input type="text" id="f-name" placeholder="First name" />
+        <input type="text" id="f-last" placeholder="Last name" />
+      </div>
+      <div class="frow one">
+        <input type="tel" id="f-phone" placeholder="Phone number *" />
+      </div>
+      <div id="delivery-addr" style="display:none;">
+        <div class="frow one">
+          <input type="text" id="f-addr" placeholder="Delivery address" />
+        </div>
+      </div>
+      <div class="frow one">
+        <textarea id="f-notes" placeholder="Special requests, allergies, notes..."></textarea>
+      </div>
+      <button class="place-btn" onclick="placeOrder()">Place Order</button>
+    </div>
+  </div>
+
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">✅</div>
+    <h3>Order Received!</h3>
+    <p class="onum" id="onum"></p>
+    <p>Thank you! We'll call you at <strong id="c-phone"></strong> to confirm your order and pickup time.<br><br>
+    Questions? Call us:<br><a href="tel:4043977203">(404) 397-7203</a></p>
+    <button class="new-order-btn" onclick="resetOrder()">Start New Order</button>
+  </div>
+</div>
 
 <script>
-function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-function showCategory(e, id) {
-  document.querySelectorAll('.menu-category').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.menu-tab').forEach(el => el.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  e.target.classList.add('active');
-}
-document.addEventListener('click', function(e) {
-  var menu = document.getElementById('mobileMenu');
-  var ham = document.querySelector('.hamburger');
-  if (!menu.contains(e.target) && !ham.contains(e.target)) menu.classList.remove('open');
-});
-</script>
+  let cart = [], orderType = 'pickup';
 
+  function add(name, price) {
+    const ex = cart.find(i => i.name === name);
+    if (ex) ex.qty++; else cart.push({name, price, qty:1});
+    renderCart(); openCart();
+  }
+
+  function renderCart() {
+    const count = cart.reduce((s,i) => s+i.qty, 0);
+    document.getElementById('nav-count').textContent = count;
+    const body = document.getElementById('drawer-body');
+    const foot = document.getElementById('drawer-foot');
+    const empty = document.getElementById('empty-msg');
+    body.querySelectorAll('.c-item').forEach(el => el.remove());
+    if (!cart.length) { empty.style.display=''; foot.style.display='none'; return; }
+    empty.style.display = 'none'; foot.style.display = '';
+    cart.forEach((item, idx) => {
+      const d = document.createElement('div');
+      d.className = 'c-item';
+      d.innerHTML = `<div class="c-item-name">${item.name}</div>
+        <div class="qty-wrap">
+          <button class="qbtn" onclick="chg(${idx},-1)">&#x2212;</button>
+          <span class="qnum">${item.qty}</span>
+          <button class="qbtn" onclick="chg(${idx},1)">+</button>
+        </div>
+        <div class="c-item-price">$${(item.price * item.qty).toFixed(2)}</div>`;
+      body.insertBefore(d, empty);
+    });
+    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    document.getElementById('subtotal-val').textContent = '$'+total.toFixed(2);
+    document.getElementById('total-val').textContent = '$'+total.toFixed(2);
+  }
+
+  function chg(idx, d) {
+    cart[idx].qty += d;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    renderCart();
+  }
+
+  function openCart() {
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('drawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('overlay').classList.remove('open');
+    document.getElementById('drawer').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function setType(t) {
+    orderType = t;
+    document.getElementById('tbtn-pickup').classList.toggle('on', t==='pickup');
+    document.getElementById('tbtn-delivery').classList.toggle('on', t==='delivery');
+    document.getElementById('delivery-addr').style.display = t==='delivery' ? '' : 'none';
+  }
+
+  function placeOrder() {
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    if (!phone) { alert('Please enter your phone number so we can confirm your order.'); return; }
+    if (!cart.length) { alert('Please add items to your order first!'); return; }
+    const num = 'SG-' + (1000 + Math.floor(Math.random()*9000));
+    document.getElementById('onum').textContent = 'Order #' + num;
+    document.getElementById('c-phone').textContent = phone;
+    document.getElementById('drawer-foot').style.display = 'none';
+    document.getElementById('drawer-body').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+    cart = []; document.getElementById('nav-count').textContent = '0';
+  }
+
+  function resetOrder() {
+    document.getElementById('drawer-foot').style.display = 'none';
+    document.getElementById('drawer-body').style.display = '';
+    document.getElementById('success-screen').style.display = 'none';
+    ['f-name','f-last','f-phone','f-addr','f-notes'].forEach(id => { document.getElementById(id).value = ''; });
+    renderCart(); closeCart();
+  }
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  renderCart();
+</script>
 </body>
 </html>
