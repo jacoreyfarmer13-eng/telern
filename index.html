@@ -2,532 +2,586 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Soul Good Fine Food | Atlanta, GA</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --gold: #C9963A; --dark: #1A1208; --brown: #3B2310;
-    --cream: #FAF6EE; --text: #2C1A0E; --muted: #7A6353; --red: #8B2012;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9963A;--dark:#1A1208;--brown:#3B2310;
+  --cream:#FAF6EE;--text:#2C1A0E;--muted:#7A6353;--red:#8B2012;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;-webkit-text-size-adjust:100%}
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 3rem; background: rgba(26,18,8,0.95); backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(201,150,58,0.2);
-  }
-  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: rgba(250,246,238,0.75); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-cart-btn {
-    display: flex; align-items: center; gap: 0.5rem;
-    background: var(--gold); color: var(--dark); padding: 0.55rem 1.3rem;
-    border: none; cursor: pointer; font-size: 0.8rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
-  }
-  .nav-cart-btn:hover { background: #E8B34A; }
-  .cart-badge {
-    background: var(--dark); color: var(--gold); border-radius: 50%;
-    width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
-    font-size: 0.72rem; font-weight: 500;
-  }
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1rem;height:58px;
+  background:rgba(26,18,8,0.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(201,150,58,0.2);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold);white-space:nowrap}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(250,246,238,0.7);text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.cart-btn{
+  display:flex;align-items:center;gap:0.45rem;flex-shrink:0;
+  background:var(--gold);color:var(--dark);padding:0.5rem 1rem;
+  border:none;cursor:pointer;font-size:0.78rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;font-family:'DM Sans',sans-serif;
+  border-radius:3px;transition:background 0.2s;white-space:nowrap;
+}
+.cart-btn:hover{background:#e8b34a}
+.badge{
+  background:var(--dark);color:var(--gold);border-radius:50%;
+  width:19px;height:19px;display:flex;align-items:center;justify-content:center;
+  font-size:0.68rem;font-weight:700;
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  nav{padding:0 0.85rem}
+}
 
-  .hero {
-    min-height: 100vh; background: var(--dark);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden; text-align: center; padding: 6rem 2rem 4rem;
-  }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,150,58,0.12) 0%, transparent 70%); }
-  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem auto; position: relative; }
-  .hero-divider::before, .hero-divider::after { content: ''; position: absolute; top: 50%; transform: translateY(-50%); width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-  .hero-divider::before { left: -8px; }
-  .hero-divider::after { right: -8px; }
-  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0; color: var(--cream); }
-  .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero-sub { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 1.1rem; color: rgba(250,246,238,0.6); margin-top: 0.8rem; }
-  .hero-address { margin-top: 1.2rem; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,246,238,0.45); }
-  .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 2.5rem;
-    background: var(--gold); color: var(--dark); padding: 1rem 2.5rem;
-    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-    border: 2px solid var(--gold); transition: all 0.2s; font-family: 'DM Sans', sans-serif; cursor: pointer;
-  }
-  .hero-cta:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;text-align:center;
+  padding:80px 1.5rem 3rem;
+}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 55%,rgba(201,150,58,0.13) 0%,transparent 70%)}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,10vw,6.5rem);line-height:1.0;color:var(--cream)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-div{width:50px;height:1px;background:var(--gold);margin:1.2rem auto;position:relative}
+.hero-div::before,.hero-div::after{content:'';position:absolute;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.hero-div::before{left:-7px}.hero-div::after{right:-7px}
+.hero-sub{font-size:0.95rem;color:rgba(250,246,238,0.55);margin-top:0.6rem;line-height:1.6}
+.hero-addr{margin-top:0.9rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,246,238,0.35)}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:0.5rem;margin-top:2rem;
+  background:var(--gold);color:var(--dark);padding:0.9rem 2rem;
+  font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  border:2px solid var(--gold);cursor:pointer;font-family:'DM Sans',sans-serif;
+  border-radius:3px;transition:all 0.2s;
+}
+.hero-cta:hover{background:transparent;color:var(--gold);transform:translateY(-2px)}
 
-  .hours-strip {
-    background: var(--brown); padding: 1.2rem 2rem;
-    display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
-    border-top: 1px solid rgba(201,150,58,0.25); border-bottom: 1px solid rgba(201,150,58,0.25);
-  }
-  .hours-item { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,246,238,0.65); }
-  .hours-item strong { color: var(--gold); font-weight: 500; }
-  .sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(201,150,58,0.35); }
+/* ===== HOURS STRIP ===== */
+.hours-strip{
+  background:var(--brown);padding:1rem 1rem;
+  display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;
+  border-top:1px solid rgba(201,150,58,0.2);border-bottom:1px solid rgba(201,150,58,0.2);
+}
+.h-item{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,246,238,0.6);padding:0.25rem 0.8rem;text-align:center}
+.h-item strong{color:var(--gold);display:block;font-weight:600;margin-bottom:1px}
+@media(max-width:500px){.h-item{padding:0.2rem 0.55rem;font-size:0.65rem}}
 
-  #menu { background: var(--cream); padding: 5rem 2rem; }
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 0.8rem; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; }
-  .section-title em { font-style: italic; color: var(--gold); }
-  .section-rule { width: 50px; height: 1px; background: rgba(59,35,16,0.2); margin: 1.2rem auto 0; }
+/* ===== MENU SECTION ===== */
+#menu{background:var(--cream);padding:3.5rem 1rem}
+@media(min-width:768px){#menu{padding:5rem 2rem}}
+.sec-head{text-align:center;margin-bottom:2.5rem}
+.sec-label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:0.6rem;color:var(--red)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;color:var(--brown)}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-rule{width:40px;height:1px;background:rgba(59,35,16,0.2);margin:1rem auto 0}
 
-  .menu-tabs {
-    display: flex; justify-content: center; width: fit-content; margin: 0 auto 3rem;
-    border: 1px solid rgba(59,35,16,0.15); overflow: hidden;
-  }
-  .menu-tab {
-    padding: 0.75rem 1.6rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-    background: transparent; border: none; border-right: 1px solid rgba(59,35,16,0.15);
-    cursor: pointer; color: var(--muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-  }
-  .menu-tab:last-child { border-right: none; }
-  .menu-tab.active { background: var(--brown); color: var(--gold); }
-  .menu-panel { display: none; }
-  .menu-panel.active { display: block; }
-  .menu-container { max-width: 1100px; margin: 0 auto; }
-  .menu-note {
-    text-align: center; font-family: 'Libre Baskerville', serif; font-style: italic;
-    font-size: 0.88rem; color: var(--muted); padding: 1rem;
-    border: 1px solid rgba(59,35,16,0.1); background: rgba(255,255,255,0.6);
-    max-width: 700px; margin: 0 auto 2.5rem;
-  }
-  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-  .menu-card { background: #fff; border: 1px solid rgba(59,35,16,0.1); padding: 1.5rem; }
-  .menu-card-title {
-    font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--brown);
-    padding-bottom: 0.65rem; border-bottom: 1px solid rgba(59,35,16,0.1); margin-bottom: 0.4rem;
-  }
-  .menu-card-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.9rem; }
-  .menu-item {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.48rem 0; border-bottom: 1px dotted rgba(59,35,16,0.1);
-  }
-  .menu-item:last-child { border-bottom: none; }
-  .menu-item-info { flex: 1; }
-  .menu-item-name { font-size: 0.87rem; color: var(--text); line-height: 1.35; }
-  .menu-item-price { font-size: 0.8rem; color: var(--red); font-weight: 500; }
-  .add-btn {
-    background: var(--brown); color: var(--gold); border: none; cursor: pointer;
-    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; font-weight: 300; flex-shrink: 0; transition: all 0.15s;
-    font-family: 'DM Sans', sans-serif; line-height: 1;
-  }
-  .add-btn:hover { background: var(--gold); color: var(--dark); }
-  .sides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.35rem; margin-top: 0.5rem; }
-  .side-chip {
-    font-size: 0.82rem; color: var(--text); padding: 0.35rem 0.6rem;
-    border: 1px solid rgba(59,35,16,0.12); background: var(--cream); cursor: pointer;
-    transition: all 0.15s; display: flex; align-items: center; gap: 0.4rem;
-  }
-  .side-chip:hover { background: var(--brown); color: var(--gold); border-color: var(--brown); }
-  .side-chip::before { content: '+'; font-size: 0.9rem; color: var(--gold); }
+/* TABS — scrollable on mobile */
+.tab-wrap{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  margin:0 -1rem 2rem;padding:0 1rem;
+}
+.tab-wrap::-webkit-scrollbar{display:none}
+.tabs{
+  display:inline-flex;border:1px solid rgba(59,35,16,0.15);min-width:100%;
+  width:max-content;
+}
+.tab{
+  padding:0.7rem 1.2rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+  background:transparent;border:none;border-right:1px solid rgba(59,35,16,0.15);
+  cursor:pointer;color:var(--muted);font-family:'DM Sans',sans-serif;white-space:nowrap;
+  transition:all 0.2s;
+}
+.tab:last-child{border-right:none}
+.tab.on{background:var(--brown);color:var(--gold)}
 
-  #location { background: var(--dark); padding: 5rem 2rem; }
-  .location-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-  .info-block { margin-bottom: 2rem; }
-  .info-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
-  .info-value { font-size: 0.95rem; color: rgba(250,246,238,0.8); line-height: 1.7; }
-  .info-value a { color: var(--gold); text-decoration: none; }
-  .hours-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(201,150,58,0.1); font-size: 0.88rem; }
-  .hours-day { color: rgba(250,246,238,0.5); }
-  .hours-time { color: rgba(250,246,238,0.9); font-weight: 500; }
-  .map-embed { border: 1px solid rgba(201,150,58,0.2); height: 350px; overflow: hidden; }
-  .map-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+.panel{display:none}.panel.on{display:block}
+.mc{max-width:1100px;margin:0 auto}
+.note{
+  text-align:center;font-style:italic;font-size:0.82rem;color:var(--muted);
+  padding:0.85rem 1rem;border:1px solid rgba(59,35,16,0.1);background:rgba(255,255,255,0.6);
+  max-width:680px;margin:0 auto 2rem;border-radius:2px;line-height:1.5;
+}
 
-  footer { background: #0D0900; padding: 2rem; text-align: center; border-top: 1px solid rgba(201,150,58,0.15); }
-  footer p { font-size: 0.75rem; color: rgba(250,246,238,0.3); }
-  footer strong { color: var(--gold); font-weight: 400; }
+/* MENU GRID */
+.mgrid{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:600px){.mgrid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 
-  /* CART DRAWER */
-  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .overlay.open { opacity: 1; pointer-events: all; }
-  .drawer {
-    position: fixed; top: 0; right: 0; bottom: 0; width: 430px; max-width: 100vw;
-    background: var(--cream); z-index: 301; transform: translateX(110%);
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-    display: flex; flex-direction: column;
-  }
-  .drawer.open { transform: translateX(0); }
-  .drawer-head {
-    padding: 1.4rem 1.5rem; background: var(--brown);
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(201,150,58,0.3); flex-shrink: 0;
-  }
-  .drawer-head h2 { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.25rem; }
-  .drawer-close { background: none; border: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; padding: 0 0.3rem; line-height: 1; }
-  .drawer-close:hover { color: #fff; }
+.mcard{background:#fff;border:1px solid rgba(59,35,16,0.1);padding:1.1rem;border-radius:3px}
+.mcard-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--brown);padding-bottom:0.6rem;border-bottom:1px solid rgba(59,35,16,0.1);margin-bottom:0.4rem}
+.mcard-sub{font-size:0.68rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.8rem;line-height:1.4}
 
-  .drawer-body { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
-  .cart-empty-msg { text-align: center; padding: 3rem 1rem; color: var(--muted); font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 0.95rem; }
+.mitem{display:flex;align-items:center;gap:0.5rem;padding:0.42rem 0;border-bottom:1px dotted rgba(59,35,16,0.1)}
+.mitem:last-child{border-bottom:none}
+.minfo{flex:1;min-width:0}
+.mname{font-size:0.84rem;color:var(--text);line-height:1.3}
+.mprice{font-size:0.76rem;color:var(--red);font-weight:500;margin-top:1px}
+.add-btn{
+  background:var(--brown);color:var(--gold);border:none;cursor:pointer;
+  min-width:30px;height:30px;width:30px;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:300;flex-shrink:0;transition:all 0.15s;
+  font-family:'DM Sans',sans-serif;line-height:1;border-radius:2px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.add-btn:hover,.add-btn:active{background:var(--gold);color:var(--dark)}
 
-  .c-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid rgba(59,35,16,0.1); }
-  .c-item:last-child { border-bottom: none; }
-  .c-item-name { flex: 1; font-size: 0.9rem; color: var(--text); line-height: 1.3; }
-  .c-item-price { font-size: 0.85rem; color: var(--red); font-weight: 500; white-space: nowrap; }
-  .qty-wrap { display: flex; align-items: center; gap: 0.4rem; }
-  .qbtn {
-    width: 26px; height: 26px; border: 1px solid rgba(59,35,16,0.18); background: #fff;
-    cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
-    color: var(--brown); transition: all 0.15s; font-family: 'DM Sans', sans-serif; line-height: 1;
-  }
-  .qbtn:hover { background: var(--brown); color: var(--gold); border-color: var(--brown); }
-  .qnum { font-size: 0.88rem; min-width: 18px; text-align: center; font-weight: 500; color: var(--text); }
+/* SOUL FOOD SIDE CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.6rem}
+.chip{
+  font-size:0.78rem;color:var(--text);padding:0.38rem 0.7rem;
+  border:1px solid rgba(59,35,16,0.15);background:var(--cream);
+  cursor:pointer;transition:all 0.15s;border-radius:2px;display:flex;align-items:center;gap:0.3rem;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.chip::before{content:'+';font-size:0.85rem;color:var(--gold)}
+.chip:hover,.chip:active{background:var(--brown);color:var(--gold);border-color:var(--brown)}
 
-  .drawer-foot { border-top: 1px solid rgba(59,35,16,0.12); background: #fff; flex-shrink: 0; }
-  .totals { padding: 1rem 1.5rem 0.6rem; }
-  .total-row { display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--muted); padding: 0.25rem 0; }
-  .total-row.big { font-size: 1rem; font-weight: 500; color: var(--text); padding-top: 0.5rem; border-top: 1px solid rgba(59,35,16,0.1); margin-top: 0.3rem; }
+/* ===== LOCATION ===== */
+#location{background:var(--dark);padding:3.5rem 1rem}
+@media(min-width:768px){#location{padding:5rem 2rem}}
+.loc-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:2rem}
+@media(min-width:700px){.loc-inner{grid-template-columns:1fr 1fr}}
+.sec-title-lt{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;color:var(--cream);text-align:center;margin-bottom:2.5rem}
+.sec-title-lt em{font-style:italic;color:var(--gold)}
+.il{margin-bottom:1.6rem}
+.ilabel{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.ival{font-size:0.9rem;color:rgba(250,246,238,0.78);line-height:1.7}
+.ival a{color:var(--gold);text-decoration:none}
+.hrow{display:flex;justify-content:space-between;padding:0.38rem 0;border-bottom:1px solid rgba(201,150,58,0.1);font-size:0.84rem}
+.hday{color:rgba(250,246,238,0.45)}.htime{color:rgba(250,246,238,0.88);font-weight:500}
+.map-box{border:1px solid rgba(201,150,58,0.2);border-radius:3px;overflow:hidden;height:280px}
+@media(min-width:700px){.map-box{height:100%;min-height:300px}}
+.map-box iframe{width:100%;height:100%;border:none;display:block}
 
-  .order-form { padding: 1rem 1.5rem 1.5rem; }
-  .form-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); margin-bottom: 0.9rem; }
-  .type-toggle { display: flex; margin-bottom: 0.8rem; border: 1px solid rgba(59,35,16,0.2); overflow: hidden; }
-  .tbtn {
-    flex: 1; padding: 0.55rem; text-align: center; cursor: pointer;
-    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-    background: #fff; color: var(--muted); font-family: 'DM Sans', sans-serif; border: none;
-    transition: all 0.2s;
-  }
-  .tbtn:first-child { border-right: 1px solid rgba(59,35,16,0.2); }
-  .tbtn.on { background: var(--brown); color: var(--gold); }
-  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-bottom: 0.55rem; }
-  .frow.one { grid-template-columns: 1fr; }
-  .frow input, .frow textarea, .frow select {
-    width: 100%; padding: 0.55rem 0.75rem;
-    border: 1px solid rgba(59,35,16,0.18); background: #fff;
-    font-family: 'DM Sans', sans-serif; font-size: 0.84rem; color: var(--text); outline: none;
-  }
-  .frow input:focus, .frow textarea:focus { border-color: var(--gold); }
-  .frow textarea { resize: vertical; min-height: 58px; }
-  .place-btn {
-    width: 100%; padding: 0.9rem; background: var(--gold); color: var(--dark);
-    border: none; font-size: 0.84rem; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s, transform 0.15s; margin-top: 0.5rem;
-  }
-  .place-btn:hover { background: #E8B34A; transform: translateY(-1px); }
+/* ===== FOOTER ===== */
+footer{background:#0D0900;padding:1.5rem 1rem;text-align:center;border-top:1px solid rgba(201,150,58,0.12)}
+footer p{font-size:0.72rem;color:rgba(250,246,238,0.28);line-height:1.7}
+footer strong{color:var(--gold);font-weight:400}
 
-  .success-screen { display: none; text-align: center; padding: 2.5rem 1.5rem; }
-  .success-icon { font-size: 2.8rem; margin-bottom: 1rem; }
-  .success-screen h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); margin-bottom: 0.4rem; }
-  .success-screen .onum { font-size: 1.1rem; color: var(--red); font-weight: 500; margin: 0.8rem 0; }
-  .success-screen p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
-  .success-screen a { color: var(--red); }
-  .new-order-btn {
-    margin-top: 1.5rem; background: var(--brown); color: var(--cream);
-    border: none; padding: 0.75rem 1.8rem; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-  }
+/* ===== CART DRAWER ===== */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:600;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.overlay.on{opacity:1;pointer-events:all}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;
+  width:min(420px,100vw);
+  background:var(--cream);z-index:700;transform:translateX(110%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.drawer.on{transform:translateX(0)}
+.dhead{
+  padding:1.1rem 1.2rem;background:var(--brown);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+  border-bottom:1px solid rgba(201,150,58,0.25);
+}
+.dhead h2{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.15rem}
+.dclose{background:none;border:none;color:var(--gold);font-size:1.5rem;cursor:pointer;padding:0 0.3rem;line-height:1}
+.dbody{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0.8rem 1.1rem}
+.empty-msg{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-style:italic;font-size:0.9rem;line-height:1.6}
 
-  @media (max-width: 700px) {
-    nav { padding: 1rem 1.2rem; }
-    .nav-links { display: none; }
-    .location-inner { grid-template-columns: 1fr; }
-    .drawer { width: 100vw; }
-    .frow { grid-template-columns: 1fr; }
-  }
+.ci{display:flex;align-items:center;gap:0.6rem;padding:0.75rem 0;border-bottom:1px solid rgba(59,35,16,0.1)}
+.ci:last-child{border-bottom:none}
+.ci-name{flex:1;font-size:0.87rem;color:var(--text);line-height:1.3}
+.ci-price{font-size:0.83rem;color:var(--red);font-weight:500;white-space:nowrap}
+.qwrap{display:flex;align-items:center;gap:0.35rem}
+.qb{
+  width:27px;height:27px;border:1px solid rgba(59,35,16,0.18);background:#fff;
+  cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  color:var(--brown);transition:all 0.15s;font-family:'DM Sans',sans-serif;line-height:1;border-radius:2px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.qb:hover,.qb:active{background:var(--brown);color:var(--gold);border-color:var(--brown)}
+.qn{font-size:0.86rem;min-width:16px;text-align:center;font-weight:500;color:var(--text)}
+
+.dfoot{border-top:1px solid rgba(59,35,16,0.1);background:#fff;flex-shrink:0;overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:60vh}
+.dtotals{padding:0.9rem 1.2rem 0.5rem}
+.trow{display:flex;justify-content:space-between;font-size:0.86rem;color:var(--muted);padding:0.2rem 0}
+.trow.big{font-size:0.98rem;font-weight:600;color:var(--text);border-top:1px solid rgba(59,35,16,0.1);padding-top:0.5rem;margin-top:0.3rem}
+
+/* ORDER FORM */
+.oform{padding:0.9rem 1.2rem 1.2rem}
+.oform-title{font-family:'Playfair Display',serif;font-size:0.98rem;color:var(--brown);margin-bottom:0.8rem}
+.ttoggle{display:flex;border:1px solid rgba(59,35,16,0.18);overflow:hidden;margin-bottom:0.75rem;border-radius:2px}
+.tb{
+  flex:1;padding:0.52rem;text-align:center;cursor:pointer;
+  font-size:0.75rem;letter-spacing:0.07em;text-transform:uppercase;
+  background:#fff;color:var(--muted);font-family:'DM Sans',sans-serif;border:none;transition:all 0.2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tb:first-child{border-right:1px solid rgba(59,35,16,0.18)}
+.tb.on{background:var(--brown);color:var(--gold)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.5rem}
+.frow.one{grid-template-columns:1fr}
+.frow input,.frow textarea,.frow select{
+  width:100%;padding:0.52rem 0.7rem;
+  border:1px solid rgba(59,35,16,0.18);background:#fff;
+  font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--text);
+  outline:none;border-radius:2px;-webkit-appearance:none;
+}
+.frow input:focus,.frow textarea:focus{border-color:var(--gold)}
+.frow textarea{resize:vertical;min-height:55px}
+.place-btn{
+  width:100%;padding:0.85rem;background:var(--gold);color:var(--dark);
+  border:none;font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;font-family:'DM Sans',sans-serif;border-radius:3px;
+  transition:background 0.2s,transform 0.15s;margin-top:0.5rem;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.place-btn:hover,.place-btn:active{background:#e8b34a}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:2rem 1.2rem}
+.sicon{font-size:2.8rem;margin-bottom:0.8rem}
+.success h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--brown);margin-bottom:0.4rem}
+.onum{font-size:1.05rem;color:var(--red);font-weight:600;margin:0.7rem 0}
+.success p{font-size:0.86rem;color:var(--muted);line-height:1.7}
+.success a{color:var(--red)}
+.new-btn{
+  margin-top:1.3rem;background:var(--brown);color:var(--cream);
+  border:none;padding:0.7rem 1.5rem;cursor:pointer;border-radius:3px;
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;
+}
+
+/* ===== ORDER NOTIFICATION TOAST ===== */
+.toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--brown);color:var(--cream);padding:0.8rem 1.4rem;
+  border-radius:6px;font-size:0.84rem;text-align:center;z-index:800;
+  border:1px solid rgba(201,150,58,0.4);box-shadow:0 8px 30px rgba(0,0,0,0.4);
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);max-width:90vw;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast strong{color:var(--gold)}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Soul Good</div>
   <ul class="nav-links">
     <li><a href="#menu">Menu</a></li>
     <li><a href="#location">Location</a></li>
   </ul>
-  <button class="nav-cart-btn" onclick="openCart()">
+  <button class="cart-btn" onclick="openCart()">
     Order Now
-    <span class="cart-badge" id="nav-count">0</span>
+    <span class="badge" id="badge">0</span>
   </button>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div style="position:relative;z-index:1;">
+  <div style="position:relative;z-index:1;width:100%">
     <p class="hero-eyebrow">Atlanta's Finest Soul Food</p>
     <h1>Soul <em>Good</em><br>Fine Food</h1>
-    <div class="hero-divider"></div>
+    <div class="hero-div"></div>
     <p class="hero-sub">Breakfast all day &middot; Lunch &middot; Full Soul Food Dinner</p>
-    <p class="hero-address">890 Joseph E. Boone Blvd NW &middot; Atlanta, GA 30314</p>
+    <p class="hero-addr">890 Joseph E. Boone Blvd NW &middot; Atlanta, GA 30314</p>
     <button class="hero-cta" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
       View Menu &amp; Order
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
 </section>
 
+<!-- HOURS -->
 <div class="hours-strip">
-  <div class="hours-item"><strong>Mon–Tue</strong> &nbsp;6am–6pm</div><span class="sep"></span>
-  <div class="hours-item"><strong>Wed–Thu</strong> &nbsp;6am–10pm</div><span class="sep"></span>
-  <div class="hours-item"><strong>Fri</strong> &nbsp;6am–12am</div><span class="sep"></span>
-  <div class="hours-item"><strong>Sat</strong> &nbsp;24 Hours</div><span class="sep"></span>
-  <div class="hours-item"><strong>Sun</strong> &nbsp;12am–9pm</div>
+  <div class="h-item"><strong>Mon–Tue</strong>6am–6pm</div>
+  <div class="h-item"><strong>Wed–Thu</strong>6am–10pm</div>
+  <div class="h-item"><strong>Friday</strong>6am–12am</div>
+  <div class="h-item"><strong>Saturday</strong>24 Hours</div>
+  <div class="h-item"><strong>Sunday</strong>12am–9pm</div>
 </div>
 
+<!-- MENU -->
 <section id="menu">
-  <div class="section-header">
-    <p class="section-label" style="color:var(--red);">Our Menu</p>
-    <h2 class="section-title" style="color:var(--brown);">Made with <em>love</em><br>from scratch</h2>
-    <div class="section-rule"></div>
+  <div class="sec-head">
+    <p class="sec-label">Our Menu</p>
+    <h2 class="sec-title">Made with <em>love</em><br>from scratch</h2>
+    <div class="sec-rule"></div>
   </div>
 
-  <div class="menu-tabs">
-    <button class="menu-tab active" onclick="showTab('breakfast',this)">Breakfast</button>
-    <button class="menu-tab" onclick="showTab('sandwiches',this)">Sandwiches</button>
-    <button class="menu-tab" onclick="showTab('lunch',this)">Lunch</button>
-    <button class="menu-tab" onclick="showTab('dinner',this)">Dinner</button>
-    <button class="menu-tab" onclick="showTab('sides',this)">Sides</button>
+  <div class="tab-wrap">
+    <div class="tabs">
+      <button class="tab on" onclick="showTab('breakfast',this)">Breakfast</button>
+      <button class="tab" onclick="showTab('sandwiches',this)">Sandwiches</button>
+      <button class="tab" onclick="showTab('lunch',this)">Lunch</button>
+      <button class="tab" onclick="showTab('dinner',this)">Dinner</button>
+      <button class="tab" onclick="showTab('sides',this)">Sides</button>
+    </div>
   </div>
 
-  <div class="menu-container">
-
-    <div id="tab-breakfast" class="menu-panel active">
-      <div class="menu-note">All breakfast meals served with grits, eggs, toast or biscuit &middot; +$1.00 homefries &middot; +$0.75 cheese</div>
-      <div class="menu-grid">
-        <div class="menu-card">
-          <div class="menu-card-title">🍳 Breakfast Plates</div>
-          <p class="menu-card-sub">With grits, eggs, toast or biscuit</p>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Red Hot Link</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Red Hot Link',10.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty (2pc)</div><div class="menu-item-price">$13.50</div></div><button class="add-btn" onclick="add('Salmon Patty (2pc)',13.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Whole Wings (4pc)</div><div class="menu-item-price">$13.50</div></div><button class="add-btn" onclick="add('Fried Wings Breakfast',13.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty (Pork/Turkey)</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Sausage Patty Plate',10.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links (Beef/Chicken/Turkey)</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Sausage Links Plate',10.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Bacon (Pork/Turkey)</div><div class="menu-item-price">$10.50</div></div><button class="add-btn" onclick="add('Bacon Plate (4pc)',10.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken &amp; Waffles</div><div class="menu-item-price">$19.00</div></div><button class="add-btn" onclick="add('Chicken & Waffles',19.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Shrimp &amp; Grits</div><div class="menu-item-price">$19.00</div></div><button class="add-btn" onclick="add('Shrimp & Grits',19.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Whiting</div><div class="menu-item-price">$11.00</div></div><button class="add-btn" onclick="add('Whiting Plate (2pc)',11.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Tilapia</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Tilapia Plate (2pc)',14.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Catfish</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Catfish Plate (2pc)',14.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Fried Pork Chop</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Fried Pork Chop Plate',14.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Grilled Pork Chop</div><div class="menu-item-price">$16.00</div></div><button class="add-btn" onclick="add('Grilled Pork Chop Plate',16.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle, Sausage, Eggs, Grits</div><div class="menu-item-price">$15.00</div></div><button class="add-btn" onclick="add('Waffle, Sausage, Eggs, Grits',15.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">French Toast, Sausage, Eggs, Grits</div><div class="menu-item-price">$15.00</div></div><button class="add-btn" onclick="add('French Toast Combo',15.00)">+</button></div>
+  <!-- BREAKFAST -->
+  <div id="p-breakfast" class="panel on">
+    <div class="mc">
+      <p class="note">All breakfast meals served with grits, eggs, toast or biscuit &middot; +$1.00 homefries &middot; +$0.75 cheese</p>
+      <div class="mgrid">
+        <div class="mcard">
+          <div class="mcard-title">🍳 Breakfast Plates</div>
+          <p class="mcard-sub">With grits, eggs, toast or biscuit</p>
+          <div class="mitem"><div class="minfo"><div class="mname">Red Hot Link</div><div class="mprice">$10.50</div></div><button class="add-btn" onclick="add('Red Hot Link',10.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salmon Patty (2pc)</div><div class="mprice">$13.50</div></div><button class="add-btn" onclick="add('Salmon Patty (2pc)',13.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fried Whole Wings (4pc)</div><div class="mprice">$13.50</div></div><button class="add-btn" onclick="add('Fried Wings Bkfst (4pc)',13.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Patty (Pork/Turkey)</div><div class="mprice">$10.50</div></div><button class="add-btn" onclick="add('Sausage Patty Plate',10.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Links (Beef/Chicken/Turkey)</div><div class="mprice">$10.50</div></div><button class="add-btn" onclick="add('Sausage Links Plate',10.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">4pc Bacon (Pork/Turkey)</div><div class="mprice">$10.50</div></div><button class="add-btn" onclick="add('Bacon Plate (4pc)',10.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Chicken &amp; Waffles</div><div class="mprice">$19.00</div></div><button class="add-btn" onclick="add('Chicken & Waffles',19.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Shrimp &amp; Grits</div><div class="mprice">$19.00</div></div><button class="add-btn" onclick="add('Shrimp & Grits',19.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Whiting</div><div class="mprice">$11.00</div></div><button class="add-btn" onclick="add('Whiting Plate (2pc)',11.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Tilapia</div><div class="mprice">$14.00</div></div><button class="add-btn" onclick="add('Tilapia Plate (2pc)',14.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Catfish</div><div class="mprice">$14.00</div></div><button class="add-btn" onclick="add('Catfish Plate (2pc)',14.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Fried Pork Chop</div><div class="mprice">$14.00</div></div><button class="add-btn" onclick="add('Fried Pork Chop Plate',14.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Grilled Pork Chop</div><div class="mprice">$16.00</div></div><button class="add-btn" onclick="add('Grilled Pork Chop Plate',16.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Waffle, Sausage, Eggs, Grits</div><div class="mprice">$15.00</div></div><button class="add-btn" onclick="add('Waffle Sausage Combo',15.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">French Toast, Sausage, Eggs, Grits</div><div class="mprice">$15.00</div></div><button class="add-btn" onclick="add('French Toast Combo',15.00)">+</button></div>
         </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🧇 À La Carte</div>
-          <p class="menu-card-sub">Price without egg / with egg</p>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Red Hot Link</div><div class="menu-item-price">$6.50 / w/Egg $7.50</div></div><button class="add-btn" onclick="add('Red Hot Link (à la carte)',6.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty</div><div class="menu-item-price">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Sausage Patty (à la carte)',7.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links</div><div class="menu-item-price">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Sausage Links (à la carte)',6.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bacon (Pork/Turkey)</div><div class="menu-item-price">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Bacon (à la carte)',7.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Tender</div><div class="menu-item-price">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Chicken Tender (à la carte)',6.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fish</div><div class="menu-item-price">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Fish (à la carte)',6.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty</div><div class="menu-item-price">$6.50 / w/Egg $7.50</div></div><button class="add-btn" onclick="add('Salmon Patty (à la carte)',6.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pork Chop</div><div class="menu-item-price">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Pork Chop (à la carte)',7.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Wings (4pc)</div><div class="menu-item-price">$5.25 / w/Egg $6.25</div></div><button class="add-btn" onclick="add('Wings (à la carte, 4pc)',5.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Single Egg</div><div class="menu-item-price">$4.75</div></div><button class="add-btn" onclick="add('Single Egg',4.75)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle Sandwich</div><div class="menu-item-price">$18.00</div></div><button class="add-btn" onclick="add('Waffle Sandwich',18.00)">+</button></div>
+        <div class="mcard">
+          <div class="mcard-title">🧇 À La Carte</div>
+          <p class="mcard-sub">Without egg / with egg</p>
+          <div class="mitem"><div class="minfo"><div class="mname">Red Hot Link</div><div class="mprice">$6.50 / w/Egg $7.50</div></div><button class="add-btn" onclick="add('Red Hot Link (à la carte)',6.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Patty</div><div class="mprice">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Sausage Patty (à la carte)',7.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Links</div><div class="mprice">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Sausage Links (à la carte)',6.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Bacon (Pork/Turkey)</div><div class="mprice">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Bacon (à la carte)',7.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Chicken Tender</div><div class="mprice">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Chicken Tender (à la carte)',6.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fish</div><div class="mprice">$6.25 / w/Egg $7.25</div></div><button class="add-btn" onclick="add('Fish (à la carte)',6.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salmon Patty</div><div class="mprice">$6.50 / w/Egg $7.50</div></div><button class="add-btn" onclick="add('Salmon Patty (à la carte)',6.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Pork Chop</div><div class="mprice">$7.25 / w/Egg $8.25</div></div><button class="add-btn" onclick="add('Pork Chop (à la carte)',7.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Wings (4pc)</div><div class="mprice">$5.25 / w/Egg $6.25</div></div><button class="add-btn" onclick="add('Wings 4pc (à la carte)',5.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Single Egg</div><div class="mprice">$4.75</div></div><button class="add-btn" onclick="add('Single Egg',4.75)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Waffle Sandwich</div><div class="mprice">$18.00</div></div><button class="add-btn" onclick="add('Waffle Sandwich',18.00)">+</button></div>
         </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🥐 Biscuit Sandwiches</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Plain Biscuit</div><div class="menu-item-price">$1.75 / w/Egg $3.00</div></div><button class="add-btn" onclick="add('Plain Biscuit',1.75)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty Biscuit</div><div class="menu-item-price">$4.00 / w/Egg $5.50</div></div><button class="add-btn" onclick="add('Salmon Patty Biscuit',4.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty Biscuit</div><div class="menu-item-price">$3.25 / w/Egg $4.25</div></div><button class="add-btn" onclick="add('Sausage Patty Biscuit',3.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links Biscuit</div><div class="menu-item-price">$3.50 / w/Egg $4.50</div></div><button class="add-btn" onclick="add('Sausage Links Biscuit',3.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bacon Biscuit (Pork/Turkey)</div><div class="menu-item-price">$3.50 / w/Egg $4.50</div></div><button class="add-btn" onclick="add('Bacon Biscuit',3.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Tender Biscuit</div><div class="menu-item-price">$5.50 / w/Egg $6.50</div></div><button class="add-btn" onclick="add('Chicken Tender Biscuit',5.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage &amp; White Gravy Biscuit</div><div class="menu-item-price">$7.50 / w/Egg $9.50</div></div><button class="add-btn" onclick="add('Sausage & Gravy Biscuit',7.50)">+</button></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tab-sandwiches" class="menu-panel">
-      <div class="menu-grid" style="max-width:640px;margin:0 auto;">
-        <div class="menu-card">
-          <div class="menu-card-title">🥪 Sandwiches</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">BLT</div><div class="menu-item-price">SM $2.25 / LG $3.25</div></div><button class="add-btn" onclick="add('BLT',2.25)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Porkchop Sandwich</div><div class="menu-item-price">$3.00</div></div><button class="add-btn" onclick="add('Porkchop Sandwich',3.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Red Hot Link Sandwich</div><div class="menu-item-price">$1.75</div></div><button class="add-btn" onclick="add('Red Hot Link Sandwich',1.75)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon Patty Sandwich</div><div class="menu-item-price">$4.50</div></div><button class="add-btn" onclick="add('Salmon Patty Sandwich',4.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty Sandwich</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Sausage Patty Sandwich',6.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links Sandwich</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Sausage Links Sandwich',6.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bacon Sandwich (Pork/Turkey)</div><div class="menu-item-price">$3.00</div></div><button class="add-btn" onclick="add('Bacon Sandwich',3.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Tender Sandwich</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Chicken Tender Sandwich',6.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fish Sandwich</div><div class="menu-item-price">$6.50</div></div><button class="add-btn" onclick="add('Fish Sandwich',6.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Grilled Cheese</div><div class="menu-item-price">$4.50</div></div><button class="add-btn" onclick="add('Grilled Cheese',4.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Egg Sandwich</div><div class="menu-item-price">$4.50</div></div><button class="add-btn" onclick="add('Egg Sandwich',4.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle Sandwich</div><div class="menu-item-price">$18.00</div></div><button class="add-btn" onclick="add('Waffle Sandwich',18.00)">+</button></div>
+        <div class="mcard">
+          <div class="mcard-title">🥐 Biscuit Sandwiches</div>
+          <div class="mitem"><div class="minfo"><div class="mname">Plain Biscuit</div><div class="mprice">$1.75 / w/Egg $3.00</div></div><button class="add-btn" onclick="add('Plain Biscuit',1.75)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salmon Patty Biscuit</div><div class="mprice">$4.00 / w/Egg $5.50</div></div><button class="add-btn" onclick="add('Salmon Patty Biscuit',4.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Patty Biscuit</div><div class="mprice">$3.25 / w/Egg $4.25</div></div><button class="add-btn" onclick="add('Sausage Patty Biscuit',3.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Links Biscuit</div><div class="mprice">$3.50 / w/Egg $4.50</div></div><button class="add-btn" onclick="add('Sausage Links Biscuit',3.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Bacon Biscuit (Pork/Turkey)</div><div class="mprice">$3.50 / w/Egg $4.50</div></div><button class="add-btn" onclick="add('Bacon Biscuit',3.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Chicken Tender Biscuit</div><div class="mprice">$5.50 / w/Egg $6.50</div></div><button class="add-btn" onclick="add('Chicken Tender Biscuit',5.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage &amp; White Gravy Biscuit</div><div class="mprice">$7.50 / w/Egg $9.50</div></div><button class="add-btn" onclick="add('Sausage & Gravy Biscuit',7.50)">+</button></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="tab-lunch" class="menu-panel">
-      <div class="menu-note">Served with fries, onion rings, or okra and potato salad or coleslaw &middot; Sub Fried Green Tomatoes +$2 &middot; Rice +$1</div>
-      <div class="menu-grid">
-        <div class="menu-card">
-          <div class="menu-card-title">🍔 Burger Dinners</div>
-          <p class="menu-card-sub">Add: Lettuce, Tomato, Onions, Cheese, Pickles +$1.00 each</p>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Burger</div><div class="menu-item-price">$8.99</div></div><button class="add-btn" onclick="add('Beef Burger',8.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Burger</div><div class="menu-item-price">$9.99</div></div><button class="add-btn" onclick="add('Turkey Burger',9.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Grilled Chicken Breast</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Grilled Chicken Breast',10.99)">+</button></div>
-        </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🍗 Wing Dinners</div>
-          <p class="menu-card-sub">Flavors: Hot, Mild, Teriyaki, Lemon Pepper, Honey Hot, Honey Garlic, BBQ</p>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">10pc Wings Only</div><div class="menu-item-price">$10.00</div></div><button class="add-btn" onclick="add('10pc Wings Only',10.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">10pc Wing Dinner</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('10pc Wing Dinner',14.00)">+</button></div>
-        </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🐷 Pork Chop Dinners</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Fried Pork Chop</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Fried Pork Chop Dinner',14.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Grilled Pork Chop</div><div class="menu-item-price">$15.00</div></div><button class="add-btn" onclick="add('Grilled Pork Chop Dinner',15.00)">+</button></div>
-        </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🐟 Fish Dinners</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Whiting</div><div class="menu-item-price">$11.00</div></div><button class="add-btn" onclick="add('Whiting Dinner',11.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Tilapia</div><div class="menu-item-price">$13.00</div></div><button class="add-btn" onclick="add('Tilapia Dinner',13.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Catfish</div><div class="menu-item-price">$14.00</div></div><button class="add-btn" onclick="add('Catfish Dinner',14.00)">+</button></div>
-        </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🍗 Chicken Dinners</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Whole Wing</div><div class="menu-item-price">$12.00</div></div><button class="add-btn" onclick="add('Whole Wing Dinner (4pc)',12.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Chicken Tender</div><div class="menu-item-price">$8.50</div></div><button class="add-btn" onclick="add('Chicken Tender Dinner (4pc)',8.50)">+</button></div>
-        </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🍤 Shrimp Dinners</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">8pc Fried Shrimp</div><div class="menu-item-price">$17.00</div></div><button class="add-btn" onclick="add('Fried Shrimp Dinner',17.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">8pc Grilled Shrimp</div><div class="menu-item-price">$18.00</div></div><button class="add-btn" onclick="add('Grilled Shrimp Dinner',18.00)">+</button></div>
+  <!-- SANDWICHES -->
+  <div id="p-sandwiches" class="panel">
+    <div class="mc">
+      <div class="mgrid" style="max-width:560px;margin:0 auto">
+        <div class="mcard" style="grid-column:1/-1">
+          <div class="mcard-title">🥪 Sandwiches</div>
+          <div class="mitem"><div class="minfo"><div class="mname">BLT</div><div class="mprice">SM $2.25 / LG $3.25</div></div><button class="add-btn" onclick="add('BLT',2.25)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Porkchop Sandwich</div><div class="mprice">$3.00</div></div><button class="add-btn" onclick="add('Porkchop Sandwich',3.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Red Hot Link Sandwich</div><div class="mprice">$1.75</div></div><button class="add-btn" onclick="add('Red Hot Link Sandwich',1.75)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salmon Patty Sandwich</div><div class="mprice">$4.50</div></div><button class="add-btn" onclick="add('Salmon Patty Sandwich',4.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Patty Sandwich</div><div class="mprice">$6.00</div></div><button class="add-btn" onclick="add('Sausage Patty Sandwich',6.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Links Sandwich</div><div class="mprice">$6.00</div></div><button class="add-btn" onclick="add('Sausage Links Sandwich',6.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Bacon Sandwich (Pork/Turkey)</div><div class="mprice">$3.00</div></div><button class="add-btn" onclick="add('Bacon Sandwich',3.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Chicken Tender Sandwich</div><div class="mprice">$6.00</div></div><button class="add-btn" onclick="add('Chicken Tender Sandwich',6.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fish Sandwich</div><div class="mprice">$6.50</div></div><button class="add-btn" onclick="add('Fish Sandwich',6.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Grilled Cheese</div><div class="mprice">$4.50</div></div><button class="add-btn" onclick="add('Grilled Cheese',4.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Egg Sandwich</div><div class="mprice">$4.50</div></div><button class="add-btn" onclick="add('Egg Sandwich',4.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Waffle Sandwich</div><div class="mprice">$18.00</div></div><button class="add-btn" onclick="add('Waffle Sandwich',18.00)">+</button></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="tab-dinner" class="menu-panel">
-      <div class="menu-note">Full Soul Food — Fri, Sat &amp; Sun 11am–10pm &middot; All dinners served with 1 meat over rice, 2 sides &amp; cornbread</div>
-      <div class="menu-grid">
-        <div class="menu-card">
-          <div class="menu-card-title">🍽️ Dinners from $13.99</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Veggie Plate (4 Sides)</div><div class="menu-item-price">$13.99</div></div><button class="add-btn" onclick="add('Veggie Plate',13.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Chicken</div><div class="menu-item-price">$14.99</div></div><button class="add-btn" onclick="add('Fried Chicken Dinner',14.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Baked Chicken</div><div class="menu-item-price">$15.99</div></div><button class="add-btn" onclick="add('Baked Chicken Dinner',15.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Meatloaf</div><div class="menu-item-price">$17.99</div></div><button class="add-btn" onclick="add('Meatloaf Dinner',17.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pig Feet</div><div class="menu-item-price">$17.99</div></div><button class="add-btn" onclick="add('Pig Feet Dinner',17.99)">+</button></div>
+  <!-- LUNCH -->
+  <div id="p-lunch" class="panel">
+    <div class="mc">
+      <p class="note">Served with fries, onion rings, or okra and potato salad or coleslaw &middot; Upcharge: Fried Green Tomatoes +$2 &middot; Rice +$1</p>
+      <div class="mgrid">
+        <div class="mcard">
+          <div class="mcard-title">🍔 Burgers</div>
+          <p class="mcard-sub">Add: Lettuce, Tomato, Onions, Cheese, Pickles +$1 each</p>
+          <div class="mitem"><div class="minfo"><div class="mname">Beef Burger</div><div class="mprice">$8.99</div></div><button class="add-btn" onclick="add('Beef Burger',8.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Turkey Burger</div><div class="mprice">$9.99</div></div><button class="add-btn" onclick="add('Turkey Burger',9.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Grilled Chicken Breast</div><div class="mprice">$10.99</div></div><button class="add-btn" onclick="add('Grilled Chicken Breast',10.99)">+</button></div>
         </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🍽️ Dinners from $18.99</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Pork Chop</div><div class="menu-item-price">$18.99</div></div><button class="add-btn" onclick="add('Pork Chop Dinner',18.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Catfish</div><div class="menu-item-price">$18.99</div></div><button class="add-btn" onclick="add('Catfish Dinner',18.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Salisbury Steak</div><div class="menu-item-price">$19.99</div></div><button class="add-btn" onclick="add('Turkey Salisbury Steak',19.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Salisbury Steak</div><div class="menu-item-price">$19.99</div></div><button class="add-btn" onclick="add('Beef Salisbury Steak',19.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon</div><div class="menu-item-price">$19.99</div></div><button class="add-btn" onclick="add('Salmon Dinner',19.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Tips</div><div class="menu-item-price">$20.99</div></div><button class="add-btn" onclick="add('Beef Tips Dinner',20.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Wing</div><div class="menu-item-price">$20.99</div></div><button class="add-btn" onclick="add('Turkey Wing Dinner',20.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">BBQ Pork Ribs</div><div class="menu-item-price">$20.99</div></div><button class="add-btn" onclick="add('BBQ Pork Ribs Dinner',20.99)">+</button></div>
+        <div class="mcard">
+          <div class="mcard-title">🍗 Wing Dinners</div>
+          <p class="mcard-sub">Flavors: Hot, Mild, Teriyaki, Lemon Pepper, Honey Hot, Honey Garlic, BBQ</p>
+          <div class="mitem"><div class="minfo"><div class="mname">10pc Wings Only</div><div class="mprice">$10.00</div></div><button class="add-btn" onclick="add('10pc Wings Only',10.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">10pc Wing Dinner</div><div class="mprice">$14.00</div></div><button class="add-btn" onclick="add('10pc Wing Dinner',14.00)">+</button></div>
         </div>
-        <div class="menu-card">
-          <div class="menu-card-title">👑 Premium Dinners</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Short Ribs</div><div class="menu-item-price">$32.99</div></div><button class="add-btn" onclick="add('Short Ribs Dinner',32.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chitterlings</div><div class="menu-item-price">$33.99</div></div><button class="add-btn" onclick="add('Chitterlings Dinner',33.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oxtails</div><div class="menu-item-price">$33.99</div></div><button class="add-btn" onclick="add('Oxtails Dinner',33.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lamb Chops</div><div class="menu-item-price">$36.99</div></div><button class="add-btn" onclick="add('Lamb Chops Dinner',36.99)">+</button></div>
+        <div class="mcard">
+          <div class="mcard-title">🐷 Pork Chop Dinners</div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Fried Pork Chop</div><div class="mprice">$14.00</div></div><button class="add-btn" onclick="add('Fried Pork Chop Dinner',14.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Grilled Pork Chop</div><div class="mprice">$15.00</div></div><button class="add-btn" onclick="add('Grilled Pork Chop Dinner',15.00)">+</button></div>
         </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🍚 1 Meat Over Rice</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Chicken</div><div class="menu-item-price">$7.99</div></div><button class="add-btn" onclick="add('Fried Chicken Over Rice',7.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Baked Chicken</div><div class="menu-item-price">$8.99</div></div><button class="add-btn" onclick="add('Baked Chicken Over Rice',8.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey Wings</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Turkey Wings Over Rice',10.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pig Feet</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Pig Feet Over Rice',10.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Turkey/Beef Salisbury Steak</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Salisbury Steak Over Rice',10.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Meatloaf</div><div class="menu-item-price">$10.99</div></div><button class="add-btn" onclick="add('Meatloaf Over Rice',10.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon</div><div class="menu-item-price">$12.99</div></div><button class="add-btn" onclick="add('Salmon Over Rice',12.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Catfish</div><div class="menu-item-price">$11.99</div></div><button class="add-btn" onclick="add('Catfish Over Rice',11.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pork Chops</div><div class="menu-item-price">$13.99</div></div><button class="add-btn" onclick="add('Pork Chops Over Rice',13.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Beef Tips</div><div class="menu-item-price">$14.99</div></div><button class="add-btn" onclick="add('Beef Tips Over Rice',14.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">BBQ Pork Ribs</div><div class="menu-item-price">$14.99</div></div><button class="add-btn" onclick="add('BBQ Ribs Over Rice',14.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Short Ribs</div><div class="menu-item-price">$23.99</div></div><button class="add-btn" onclick="add('Short Ribs Over Rice',23.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oxtails</div><div class="menu-item-price">$23.99</div></div><button class="add-btn" onclick="add('Oxtails Over Rice',23.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chitterlings</div><div class="menu-item-price">$23.99</div></div><button class="add-btn" onclick="add('Chitterlings Over Rice',23.99)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lamb Chops</div><div class="menu-item-price">$24.99</div></div><button class="add-btn" onclick="add('Lamb Chops Over Rice',24.99)">+</button></div>
+        <div class="mcard">
+          <div class="mcard-title">🐟 Fish Dinners</div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Whiting</div><div class="mprice">$11.00</div></div><button class="add-btn" onclick="add('Whiting Dinner',11.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Tilapia</div><div class="mprice">$13.00</div></div><button class="add-btn" onclick="add('Tilapia Dinner',13.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Catfish</div><div class="mprice">$14.00</div></div><button class="add-btn" onclick="add('Catfish Dinner',14.00)">+</button></div>
+        </div>
+        <div class="mcard">
+          <div class="mcard-title">🍗 Chicken Dinners</div>
+          <div class="mitem"><div class="minfo"><div class="mname">4pc Whole Wing</div><div class="mprice">$12.00</div></div><button class="add-btn" onclick="add('Whole Wing Dinner (4pc)',12.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">4pc Chicken Tender</div><div class="mprice">$8.50</div></div><button class="add-btn" onclick="add('Chicken Tender Dinner (4pc)',8.50)">+</button></div>
+        </div>
+        <div class="mcard">
+          <div class="mcard-title">🍤 Shrimp Dinners</div>
+          <div class="mitem"><div class="minfo"><div class="mname">8pc Fried Shrimp</div><div class="mprice">$17.00</div></div><button class="add-btn" onclick="add('Fried Shrimp (8pc)',17.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">8pc Grilled Shrimp</div><div class="mprice">$18.00</div></div><button class="add-btn" onclick="add('Grilled Shrimp (8pc)',18.00)">+</button></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="tab-sides" class="menu-panel">
-      <div class="menu-grid" style="max-width:900px;margin:0 auto;">
-        <div class="menu-card">
-          <div class="menu-card-title">🥣 Breakfast Sides</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Grits</div></div><button class="add-btn" onclick="add('Grits',2.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rice</div></div><button class="add-btn" onclick="add('Rice',2.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Biscuit / Toast</div></div><button class="add-btn" onclick="add('Biscuit/Toast',1.75)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2 Eggs / 2 Boiled Eggs</div></div><button class="add-btn" onclick="add('2 Eggs',3.50)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Waffle</div></div><button class="add-btn" onclick="add('Waffle',4.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc French Toast</div></div><button class="add-btn" onclick="add('French Toast (4pc)',5.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cinnamon Toast</div></div><button class="add-btn" onclick="add('Cinnamon Toast',3.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Home Fried Potatoes</div></div><button class="add-btn" onclick="add('Home Fried Potatoes',4.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Green Tomatoes</div></div><button class="add-btn" onclick="add('Fried Green Tomatoes',4.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fries / Okra / Onion Rings</div></div><button class="add-btn" onclick="add('Fries/Okra/Onion Rings',4.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oatmeal</div></div><button class="add-btn" onclick="add('Oatmeal',3.50)">+</button></div>
+  <!-- DINNER -->
+  <div id="p-dinner" class="panel">
+    <div class="mc">
+      <p class="note">Full Soul Food — Fri, Sat &amp; Sun 11am–10pm &middot; Served with 1 meat over rice, 2 sides &amp; cornbread</p>
+      <div class="mgrid">
+        <div class="mcard">
+          <div class="mcard-title">🍽️ Dinners from $13.99</div>
+          <div class="mitem"><div class="minfo"><div class="mname">Veggie Plate (4 Sides)</div><div class="mprice">$13.99</div></div><button class="add-btn" onclick="add('Veggie Plate',13.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fried Chicken</div><div class="mprice">$14.99</div></div><button class="add-btn" onclick="add('Fried Chicken Dinner',14.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Baked Chicken</div><div class="mprice">$15.99</div></div><button class="add-btn" onclick="add('Baked Chicken Dinner',15.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Meatloaf</div><div class="mprice">$17.99</div></div><button class="add-btn" onclick="add('Meatloaf Dinner',17.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Pig Feet</div><div class="mprice">$17.99</div></div><button class="add-btn" onclick="add('Pig Feet Dinner',17.99)">+</button></div>
         </div>
-        <div class="menu-card">
-          <div class="menu-card-title">🍗 Protein Sides</div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Fried Wings</div><div class="menu-item-price">$10.00</div></div><button class="add-btn" onclick="add('Fried Wings (4pc side)',10.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">1pc Pork Chop</div><div class="menu-item-price">$6.00</div></div><button class="add-btn" onclick="add('Pork Chop (1pc side)',6.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Whiting</div><div class="menu-item-price">$7.00</div></div><button class="add-btn" onclick="add('Whiting (2pc side)',7.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Tilapia</div><div class="menu-item-price">$9.00</div></div><button class="add-btn" onclick="add('Tilapia (2pc side)',9.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Catfish</div><div class="menu-item-price">$10.00</div></div><button class="add-btn" onclick="add('Catfish (2pc side)',10.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">2pc Salmon Patty</div><div class="menu-item-price">$7.00</div></div><button class="add-btn" onclick="add('Salmon Patty (2pc side)',7.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">4pc Bacon (Pork/Turkey)</div><div class="menu-item-price">$5.00</div></div><button class="add-btn" onclick="add('Bacon (4pc side)',5.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Patty (Pork/Turkey)</div><div class="menu-item-price">$5.00</div></div><button class="add-btn" onclick="add('Sausage Patty (side)',5.00)">+</button></div>
-          <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sausage Links (Chicken/Beef/Turkey)</div><div class="menu-item-price">$5.00</div></div><button class="add-btn" onclick="add('Sausage Links (side)',5.00)">+</button></div>
+        <div class="mcard">
+          <div class="mcard-title">🍽️ Dinners from $18.99</div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Pork Chop</div><div class="mprice">$18.99</div></div><button class="add-btn" onclick="add('Pork Chop Dinner',18.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Catfish</div><div class="mprice">$18.99</div></div><button class="add-btn" onclick="add('Catfish Dinner',18.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Turkey Salisbury Steak</div><div class="mprice">$19.99</div></div><button class="add-btn" onclick="add('Turkey Salisbury Steak',19.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Beef Salisbury Steak</div><div class="mprice">$19.99</div></div><button class="add-btn" onclick="add('Beef Salisbury Steak',19.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salmon</div><div class="mprice">$19.99</div></div><button class="add-btn" onclick="add('Salmon Dinner',19.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Beef Tips</div><div class="mprice">$20.99</div></div><button class="add-btn" onclick="add('Beef Tips Dinner',20.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Turkey Wing</div><div class="mprice">$20.99</div></div><button class="add-btn" onclick="add('Turkey Wing Dinner',20.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">BBQ Pork Ribs</div><div class="mprice">$20.99</div></div><button class="add-btn" onclick="add('BBQ Pork Ribs Dinner',20.99)">+</button></div>
         </div>
-        <div class="menu-card" style="grid-column:1/-1;">
-          <div class="menu-card-title">🥬 Soul Food Sides — $5.00 each</div>
-          <p class="menu-card-sub" style="margin-bottom:0.8rem;">Tap to add to your order</p>
-          <div class="sides-grid">
-            <div class="side-chip" onclick="add('Collard Greens',5)">Collard Greens</div>
-            <div class="side-chip" onclick="add('Lima Beans',5)">Lima Beans</div>
-            <div class="side-chip" onclick="add('Mac N Cheese',5)">Mac N Cheese</div>
-            <div class="side-chip" onclick="add('Pinto Beans',5)">Pinto Beans</div>
-            <div class="side-chip" onclick="add('Green Beans',5)">Green Beans</div>
-            <div class="side-chip" onclick="add('Mashed Potatoes',5)">Mashed Potatoes</div>
-            <div class="side-chip" onclick="add('Cabbage',5)">Cabbage</div>
-            <div class="side-chip" onclick="add('Butter Beans',5)">Butter Beans</div>
-            <div class="side-chip" onclick="add('Dressing',5)">Dressing</div>
-            <div class="side-chip" onclick="add('Sweet Corn',5)">Sweet Corn</div>
-            <div class="side-chip" onclick="add('Black Eye Peas',5)">Black Eye Peas</div>
-            <div class="side-chip" onclick="add('Yams',5)">Yams</div>
-            <div class="side-chip" onclick="add('White Rice',5)">White Rice</div>
-            <div class="side-chip" onclick="add('Yellow Rice',5)">Yellow Rice</div>
+        <div class="mcard">
+          <div class="mcard-title">👑 Premium Dinners</div>
+          <div class="mitem"><div class="minfo"><div class="mname">Short Ribs</div><div class="mprice">$32.99</div></div><button class="add-btn" onclick="add('Short Ribs Dinner',32.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Chitterlings</div><div class="mprice">$33.99</div></div><button class="add-btn" onclick="add('Chitterlings Dinner',33.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Oxtails</div><div class="mprice">$33.99</div></div><button class="add-btn" onclick="add('Oxtails Dinner',33.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Lamb Chops</div><div class="mprice">$36.99</div></div><button class="add-btn" onclick="add('Lamb Chops Dinner',36.99)">+</button></div>
+        </div>
+        <div class="mcard">
+          <div class="mcard-title">🍚 1 Meat Over Rice</div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fried Chicken</div><div class="mprice">$7.99</div></div><button class="add-btn" onclick="add('Fried Chicken Over Rice',7.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Baked Chicken</div><div class="mprice">$8.99</div></div><button class="add-btn" onclick="add('Baked Chicken Over Rice',8.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Turkey Wings</div><div class="mprice">$10.99</div></div><button class="add-btn" onclick="add('Turkey Wings Over Rice',10.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Pig Feet</div><div class="mprice">$10.99</div></div><button class="add-btn" onclick="add('Pig Feet Over Rice',10.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salisbury Steak (Turkey/Beef)</div><div class="mprice">$10.99</div></div><button class="add-btn" onclick="add('Salisbury Steak Over Rice',10.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Meatloaf</div><div class="mprice">$10.99</div></div><button class="add-btn" onclick="add('Meatloaf Over Rice',10.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Salmon</div><div class="mprice">$12.99</div></div><button class="add-btn" onclick="add('Salmon Over Rice',12.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Catfish</div><div class="mprice">$11.99</div></div><button class="add-btn" onclick="add('Catfish Over Rice',11.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Pork Chops</div><div class="mprice">$13.99</div></div><button class="add-btn" onclick="add('Pork Chops Over Rice',13.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Beef Tips</div><div class="mprice">$14.99</div></div><button class="add-btn" onclick="add('Beef Tips Over Rice',14.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">BBQ Pork Ribs</div><div class="mprice">$14.99</div></div><button class="add-btn" onclick="add('BBQ Ribs Over Rice',14.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Short Ribs</div><div class="mprice">$23.99</div></div><button class="add-btn" onclick="add('Short Ribs Over Rice',23.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Oxtails</div><div class="mprice">$23.99</div></div><button class="add-btn" onclick="add('Oxtails Over Rice',23.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Chitterlings</div><div class="mprice">$23.99</div></div><button class="add-btn" onclick="add('Chitterlings Over Rice',23.99)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Lamb Chops</div><div class="mprice">$24.99</div></div><button class="add-btn" onclick="add('Lamb Chops Over Rice',24.99)">+</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDES -->
+  <div id="p-sides" class="panel">
+    <div class="mc">
+      <div class="mgrid">
+        <div class="mcard">
+          <div class="mcard-title">🥣 Breakfast Sides</div>
+          <div class="mitem"><div class="minfo"><div class="mname">Grits</div></div><button class="add-btn" onclick="add('Grits',2.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Rice</div></div><button class="add-btn" onclick="add('Rice',2.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Biscuit / Toast</div></div><button class="add-btn" onclick="add('Biscuit/Toast',1.75)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2 Eggs / 2 Boiled Eggs</div></div><button class="add-btn" onclick="add('2 Eggs',3.50)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Waffle</div></div><button class="add-btn" onclick="add('Waffle',4.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">4pc French Toast</div></div><button class="add-btn" onclick="add('French Toast (4pc)',5.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Cinnamon Toast</div></div><button class="add-btn" onclick="add('Cinnamon Toast',3.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Home Fried Potatoes</div></div><button class="add-btn" onclick="add('Home Fried Potatoes',4.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fried Green Tomatoes</div></div><button class="add-btn" onclick="add('Fried Green Tomatoes',4.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Fries / Okra / Onion Rings</div></div><button class="add-btn" onclick="add('Fries/Okra/Onion Rings',4.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Oatmeal</div></div><button class="add-btn" onclick="add('Oatmeal',3.50)">+</button></div>
+        </div>
+        <div class="mcard">
+          <div class="mcard-title">🍗 Protein Sides</div>
+          <div class="mitem"><div class="minfo"><div class="mname">4pc Fried Wings</div><div class="mprice">$10.00</div></div><button class="add-btn" onclick="add('Fried Wings Side (4pc)',10.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">1pc Pork Chop</div><div class="mprice">$6.00</div></div><button class="add-btn" onclick="add('Pork Chop Side (1pc)',6.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Whiting</div><div class="mprice">$7.00</div></div><button class="add-btn" onclick="add('Whiting Side (2pc)',7.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Tilapia</div><div class="mprice">$9.00</div></div><button class="add-btn" onclick="add('Tilapia Side (2pc)',9.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Catfish</div><div class="mprice">$10.00</div></div><button class="add-btn" onclick="add('Catfish Side (2pc)',10.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">2pc Salmon Patty</div><div class="mprice">$7.00</div></div><button class="add-btn" onclick="add('Salmon Patty Side (2pc)',7.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">4pc Bacon (Pork/Turkey)</div><div class="mprice">$5.00</div></div><button class="add-btn" onclick="add('Bacon Side (4pc)',5.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Patty</div><div class="mprice">$5.00</div></div><button class="add-btn" onclick="add('Sausage Patty Side',5.00)">+</button></div>
+          <div class="mitem"><div class="minfo"><div class="mname">Sausage Links</div><div class="mprice">$5.00</div></div><button class="add-btn" onclick="add('Sausage Links Side',5.00)">+</button></div>
+        </div>
+        <div class="mcard" style="grid-column:1/-1">
+          <div class="mcard-title">🥬 Soul Food Sides — $5.00 each</div>
+          <p class="mcard-sub" style="margin-bottom:0.7rem">Tap any item to add to your order</p>
+          <div class="chips">
+            <div class="chip" onclick="add('Collard Greens',5)">Collard Greens</div>
+            <div class="chip" onclick="add('Lima Beans',5)">Lima Beans</div>
+            <div class="chip" onclick="add('Mac N Cheese',5)">Mac N Cheese</div>
+            <div class="chip" onclick="add('Pinto Beans',5)">Pinto Beans</div>
+            <div class="chip" onclick="add('Green Beans',5)">Green Beans</div>
+            <div class="chip" onclick="add('Mashed Potatoes',5)">Mashed Potatoes</div>
+            <div class="chip" onclick="add('Cabbage',5)">Cabbage</div>
+            <div class="chip" onclick="add('Butter Beans',5)">Butter Beans</div>
+            <div class="chip" onclick="add('Dressing',5)">Dressing</div>
+            <div class="chip" onclick="add('Sweet Corn',5)">Sweet Corn</div>
+            <div class="chip" onclick="add('Black Eye Peas',5)">Black Eye Peas</div>
+            <div class="chip" onclick="add('Yams',5)">Yams</div>
+            <div class="chip" onclick="add('White Rice',5)">White Rice</div>
+            <div class="chip" onclick="add('Yellow Rice',5)">Yellow Rice</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <p style="text-align:center;margin-top:2.5rem;font-size:0.75rem;color:var(--muted);">* All prices are subject to change</p>
+
+  <p style="text-align:center;margin-top:2rem;font-size:0.72rem;color:var(--muted)">* All prices subject to change</p>
 </section>
 
+<!-- LOCATION -->
 <section id="location">
-  <div class="section-header">
-    <p class="section-label">Find Us</p>
-    <h2 class="section-title" style="color:var(--cream);">Come see us in <em>Atlanta</em></h2>
-    <div class="section-rule"></div>
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <p class="sec-label" style="color:var(--gold);font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:0.6rem">Find Us</p>
+    <h2 class="sec-title-lt">Come see us in <em>Atlanta</em></h2>
   </div>
-  <div class="location-inner">
+  <div class="loc-inner">
     <div>
-      <div class="info-block">
-        <p class="info-label">Address</p>
-        <p class="info-value">890 Joseph E. Boone Blvd NW<br>Atlanta, GA 30314</p>
+      <div class="il">
+        <p class="ilabel">Address</p>
+        <p class="ival">890 Joseph E. Boone Blvd NW<br>Atlanta, GA 30314</p>
       </div>
-      <div class="info-block">
-        <p class="info-label">Phone</p>
-        <p class="info-value"><a href="tel:4043977203">(404) 397-7203</a></p>
+      <div class="il">
+        <p class="ilabel">Phone</p>
+        <p class="ival"><a href="tel:4043977203">(404) 397-7203</a></p>
       </div>
-      <div class="info-block">
-        <p class="info-label">Hours</p>
+      <div class="il">
+        <p class="ilabel">Hours</p>
         <div>
-          <div class="hours-row"><span class="hours-day">Monday – Tuesday</span><span class="hours-time">6:00 AM – 6:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Wednesday – Thursday</span><span class="hours-time">6:00 AM – 10:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">6:00 AM – 12:00 AM</span></div>
-          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">Open 24 Hours</span></div>
-          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">12:00 AM – 9:00 PM</span></div>
+          <div class="hrow"><span class="hday">Mon – Tue</span><span class="htime">6:00 AM – 6:00 PM</span></div>
+          <div class="hrow"><span class="hday">Wed – Thu</span><span class="htime">6:00 AM – 10:00 PM</span></div>
+          <div class="hrow"><span class="hday">Friday</span><span class="htime">6:00 AM – 12:00 AM</span></div>
+          <div class="hrow"><span class="hday">Saturday</span><span class="htime">Open 24 Hours</span></div>
+          <div class="hrow"><span class="hday">Sunday</span><span class="htime">12:00 AM – 9:00 PM</span></div>
         </div>
       </div>
     </div>
-    <div class="map-embed">
+    <div class="map-box">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d835.0!2d-84.42508!3d33.75504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f504ead5b6c575%3A0x3b7aefc2f1e9f0e1!2s890%20Joseph%20E%20Boone%20Blvd%20NW%2C%20Atlanta%2C%20GA%2030314!5e0!3m2!1sen!2sus!4v1700000000000" allowfullscreen loading="lazy" title="Soul Good Fine Food location"></iframe>
     </div>
   </div>
@@ -535,151 +589,163 @@
 
 <footer>
   <p><strong>Soul Good Fine Food</strong> &middot; 890 Joseph E. Boone Blvd NW, Atlanta, GA 30314 &middot; (404) 397-7203</p>
-  <p style="margin-top:0.5rem;">All prices are subject to change.</p>
+  <p>All prices are subject to change.</p>
 </footer>
 
-<!-- CART DRAWER -->
+<!-- OVERLAY + DRAWER -->
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
 <div class="drawer" id="drawer">
-  <div class="drawer-head">
+  <div class="dhead">
     <h2>Your Order</h2>
-    <button class="drawer-close" onclick="closeCart()">&#x2715;</button>
+    <button class="dclose" onclick="closeCart()">&#x2715;</button>
   </div>
-
-  <div class="drawer-body" id="drawer-body">
-    <div class="cart-empty-msg" id="empty-msg">Your cart is empty.<br>Browse the menu and tap + to add items!</div>
+  <div class="dbody" id="dbody">
+    <div class="empty-msg" id="emptyMsg">Nothing here yet!<br>Browse the menu and tap <strong style="color:var(--gold)">+</strong> to add items.</div>
   </div>
-
-  <div class="drawer-foot" id="drawer-foot" style="display:none;">
-    <div class="totals">
-      <div class="total-row"><span>Subtotal</span><span id="subtotal-val">$0.00</span></div>
-      <div class="total-row big"><span>Total</span><span id="total-val">$0.00</span></div>
+  <div class="dfoot" id="dfoot" style="display:none">
+    <div class="dtotals">
+      <div class="trow"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="trow big"><span>Total</span><span id="total">$0.00</span></div>
     </div>
-    <div class="order-form">
-      <p class="form-title">Your Details</p>
-      <div class="type-toggle">
-        <button class="tbtn on" id="tbtn-pickup" onclick="setType('pickup')">Pickup</button>
-        <button class="tbtn" id="tbtn-delivery" onclick="setType('delivery')">Delivery</button>
+    <div class="oform">
+      <p class="oform-title">Your Details</p>
+      <div class="ttoggle">
+        <button class="tb on" id="tb-pickup" onclick="setType('pickup')">🏪 Pickup</button>
+        <button class="tb" id="tb-delivery" onclick="setType('delivery')">🛵 Delivery</button>
       </div>
       <div class="frow">
-        <input type="text" id="f-name" placeholder="First name" />
-        <input type="text" id="f-last" placeholder="Last name" />
+        <input type="text" id="fname" placeholder="First name *" />
+        <input type="text" id="flast" placeholder="Last name" />
       </div>
       <div class="frow one">
-        <input type="tel" id="f-phone" placeholder="Phone number *" />
+        <input type="tel" id="fphone" placeholder="📞 Phone number *" />
       </div>
-      <div id="delivery-addr" style="display:none;">
+      <div id="addr-wrap" style="display:none">
         <div class="frow one">
-          <input type="text" id="f-addr" placeholder="Delivery address" />
+          <input type="text" id="faddr" placeholder="📍 Delivery address *" />
         </div>
       </div>
       <div class="frow one">
-        <textarea id="f-notes" placeholder="Special requests, allergies, notes..."></textarea>
+        <textarea id="fnotes" placeholder="Special requests, allergies, modifications..."></textarea>
       </div>
-      <button class="place-btn" onclick="placeOrder()">Place Order</button>
+      <button class="place-btn" onclick="placeOrder()">✓ Place Order</button>
     </div>
   </div>
-
-  <div class="success-screen" id="success-screen">
-    <div class="success-icon">✅</div>
-    <h3>Order Received!</h3>
+  <div class="success" id="success">
+    <div class="sicon">🎉</div>
+    <h3>Order Placed!</h3>
     <p class="onum" id="onum"></p>
-    <p>Thank you! We'll call you at <strong id="c-phone"></strong> to confirm your order and pickup time.<br><br>
-    Questions? Call us:<br><a href="tel:4043977203">(404) 397-7203</a></p>
-    <button class="new-order-btn" onclick="resetOrder()">Start New Order</button>
+    <p>We got your order and will call you at<br><strong id="cphone" style="color:var(--brown)"></strong><br>to confirm and give you a pickup time.<br><br>
+    Any questions? Give us a call:<br><a href="tel:4043977203">(404) 397-7203</a></p>
+    <button class="new-btn" onclick="resetOrder()">Start New Order</button>
   </div>
 </div>
 
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
 <script>
-  let cart = [], orderType = 'pickup';
+let cart = [], orderType = 'pickup', toastTimer;
 
-  function add(name, price) {
-    const ex = cart.find(i => i.name === name);
-    if (ex) ex.qty++; else cart.push({name, price, qty:1});
-    renderCart(); openCart();
-  }
+function add(name, price) {
+  const ex = cart.find(i => i.name === name);
+  if (ex) ex.qty++; else cart.push({name, price, qty:1});
+  render();
+  showToast('Added: ' + name);
+}
 
-  function renderCart() {
-    const count = cart.reduce((s,i) => s+i.qty, 0);
-    document.getElementById('nav-count').textContent = count;
-    const body = document.getElementById('drawer-body');
-    const foot = document.getElementById('drawer-foot');
-    const empty = document.getElementById('empty-msg');
-    body.querySelectorAll('.c-item').forEach(el => el.remove());
-    if (!cart.length) { empty.style.display=''; foot.style.display='none'; return; }
-    empty.style.display = 'none'; foot.style.display = '';
-    cart.forEach((item, idx) => {
-      const d = document.createElement('div');
-      d.className = 'c-item';
-      d.innerHTML = `<div class="c-item-name">${item.name}</div>
-        <div class="qty-wrap">
-          <button class="qbtn" onclick="chg(${idx},-1)">&#x2212;</button>
-          <span class="qnum">${item.qty}</span>
-          <button class="qbtn" onclick="chg(${idx},1)">+</button>
-        </div>
-        <div class="c-item-price">$${(item.price * item.qty).toFixed(2)}</div>`;
-      body.insertBefore(d, empty);
-    });
-    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
-    document.getElementById('subtotal-val').textContent = '$'+total.toFixed(2);
-    document.getElementById('total-val').textContent = '$'+total.toFixed(2);
-  }
+function render() {
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('badge').textContent = count;
+  const body = document.getElementById('dbody');
+  const foot = document.getElementById('dfoot');
+  const empty = document.getElementById('emptyMsg');
+  body.querySelectorAll('.ci').forEach(e=>e.remove());
+  if (!cart.length) { empty.style.display=''; foot.style.display='none'; return; }
+  empty.style.display='none'; foot.style.display='';
+  cart.forEach((item,i)=>{
+    const d = document.createElement('div');
+    d.className='ci';
+    d.innerHTML=`<div class="ci-name">${item.name}</div>
+      <div class="qwrap">
+        <button class="qb" onclick="chg(${i},-1)">&#x2212;</button>
+        <span class="qn">${item.qty}</span>
+        <button class="qb" onclick="chg(${i},1)">+</button>
+      </div>
+      <div class="ci-price">$${(item.price*item.qty).toFixed(2)}</div>`;
+    body.insertBefore(d, empty);
+  });
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('subtotal').textContent='$'+total.toFixed(2);
+  document.getElementById('total').textContent='$'+total.toFixed(2);
+}
 
-  function chg(idx, d) {
-    cart[idx].qty += d;
-    if (cart[idx].qty <= 0) cart.splice(idx, 1);
-    renderCart();
-  }
+function chg(i,d){
+  cart[i].qty+=d;
+  if(cart[i].qty<=0) cart.splice(i,1);
+  render();
+}
 
-  function openCart() {
-    document.getElementById('overlay').classList.add('open');
-    document.getElementById('drawer').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function openCart(){
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('drawer').classList.add('on');
+  document.body.style.overflow='hidden';
+}
 
-  function closeCart() {
-    document.getElementById('overlay').classList.remove('open');
-    document.getElementById('drawer').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+function closeCart(){
+  document.getElementById('overlay').classList.remove('on');
+  document.getElementById('drawer').classList.remove('on');
+  document.body.style.overflow='';
+}
 
-  function setType(t) {
-    orderType = t;
-    document.getElementById('tbtn-pickup').classList.toggle('on', t==='pickup');
-    document.getElementById('tbtn-delivery').classList.toggle('on', t==='delivery');
-    document.getElementById('delivery-addr').style.display = t==='delivery' ? '' : 'none';
-  }
+function setType(t){
+  orderType=t;
+  document.getElementById('tb-pickup').classList.toggle('on',t==='pickup');
+  document.getElementById('tb-delivery').classList.toggle('on',t==='delivery');
+  document.getElementById('addr-wrap').style.display=t==='delivery'?'':'none';
+}
 
-  function placeOrder() {
-    const name = document.getElementById('f-name').value.trim();
-    const phone = document.getElementById('f-phone').value.trim();
-    if (!phone) { alert('Please enter your phone number so we can confirm your order.'); return; }
-    if (!cart.length) { alert('Please add items to your order first!'); return; }
-    const num = 'SG-' + (1000 + Math.floor(Math.random()*9000));
-    document.getElementById('onum').textContent = 'Order #' + num;
-    document.getElementById('c-phone').textContent = phone;
-    document.getElementById('drawer-foot').style.display = 'none';
-    document.getElementById('drawer-body').style.display = 'none';
-    document.getElementById('success-screen').style.display = 'block';
-    cart = []; document.getElementById('nav-count').textContent = '0';
-  }
+function placeOrder(){
+  const name=document.getElementById('fname').value.trim();
+  const phone=document.getElementById('fphone').value.trim();
+  const addr=document.getElementById('faddr').value.trim();
+  if(!phone){alert('Please enter your phone number so we can confirm your order.');return;}
+  if(!name){alert('Please enter your name.');return;}
+  if(orderType==='delivery'&&!addr){alert('Please enter your delivery address.');return;}
+  if(!cart.length){alert('Please add items to your order first!');return;}
+  const num='SG-'+(1000+Math.floor(Math.random()*9000));
+  document.getElementById('onum').textContent='Order #'+num;
+  document.getElementById('cphone').textContent=phone;
+  document.getElementById('dfoot').style.display='none';
+  document.getElementById('dbody').style.display='none';
+  document.getElementById('success').style.display='block';
+  cart=[]; render();
+}
 
-  function resetOrder() {
-    document.getElementById('drawer-foot').style.display = 'none';
-    document.getElementById('drawer-body').style.display = '';
-    document.getElementById('success-screen').style.display = 'none';
-    ['f-name','f-last','f-phone','f-addr','f-notes'].forEach(id => { document.getElementById(id).value = ''; });
-    renderCart(); closeCart();
-  }
+function resetOrder(){
+  document.getElementById('dfoot').style.display='none';
+  document.getElementById('dbody').style.display='';
+  document.getElementById('success').style.display='none';
+  ['fname','flast','fphone','faddr','fnotes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  render(); closeCart();
+}
 
-  function showTab(id, btn) {
-    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-'+id).classList.add('active');
-    btn.classList.add('active');
-  }
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  btn.classList.add('on');
+}
 
-  renderCart();
+function showToast(msg){
+  clearTimeout(toastTimer);
+  const t=document.getElementById('toast');
+  t.innerHTML='<strong>✓</strong> '+msg;
+  t.classList.add('show');
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+render();
 </script>
 </body>
 </html>
