@@ -1036,21 +1036,88 @@
       <div class="checkout-section">
         <h3>Your Details</h3>
         <div class="pickup-delivery">
-          <button class="pd-btn active" id="pickupBtn" onclick="selectMode('pickup')">🏪 Pickup</button>
-          <button class="pd-btn" id="deliveryBtn" onclick="selectMode('delivery')">🛵 Delivery</button>
+          <button class="pd-btn active" id="pickupBtn" onclick="selectMode('pickup')">🏪 PICKUP</button>
+          <button class="pd-btn" id="deliveryBtn" onclick="selectMode('delivery')">🛵 DELIVERY</button>
         </div>
-        <div class="form-grid">
-          <input class="field" id="firstName" placeholder="First name" type="text">
-          <input class="field" id="lastName" placeholder="Last name" type="text">
+
+        <!-- PICKUP FIELDS -->
+        <div id="pickupFields">
+          <div class="form-grid">
+            <input class="field" id="firstName" placeholder="First name *" type="text">
+            <input class="field" id="lastName" placeholder="Last name" type="text">
+          </div>
+          <div class="form-grid full">
+            <input class="field" id="phone" placeholder="📞 Phone number *" type="tel">
+          </div>
+          <div class="form-grid full">
+            <textarea class="field" id="special" placeholder="Special requests, allergies, modifications..." rows="2" style="resize:none"></textarea>
+          </div>
         </div>
-        <div class="form-grid full">
-          <input class="field" id="phone" placeholder="Phone number" type="tel">
-        </div>
-        <div class="form-grid full" id="addressField" style="display:none">
-          <input class="field" id="address" placeholder="Delivery address" type="text">
-        </div>
-        <div class="form-grid full">
-          <textarea class="field" id="special" placeholder="Special requests, allergies, modifications..." rows="2" style="resize:none"></textarea>
+
+        <!-- DELIVERY FIELDS — DoorDash, Uber Eats, GrubHub, Too Good To Go -->
+        <div id="deliveryFields" style="display:none;">
+          <div style="background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:4px;">
+            <p style="font-size:0.85rem;color:var(--text-mid);text-align:center;margin-bottom:14px;line-height:1.5;">
+              Order delivery through one of our partners below. Your food will be delivered right to your door! 🚗
+            </p>
+
+            <!-- DoorDash -->
+            <a href="https://www.doordash.com/search/store/soul%20good%20fine%20food" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;justify-content:space-between;background:#ff3008;color:white;padding:14px 18px;border-radius:10px;text-decoration:none;margin-bottom:10px;font-weight:700;font-family:'DM Sans',sans-serif;font-size:0.95rem;"
+              onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.15)"/><text x="6" y="27" font-family="Arial" font-weight="900" font-size="16" fill="white">DD</text></svg>
+                <div>
+                  <div style="font-size:1rem;font-weight:700;">DoorDash</div>
+                  <div style="font-size:0.75rem;opacity:0.85;font-weight:400;">Tap to order delivery</div>
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+
+            <!-- Uber Eats -->
+            <a href="https://www.ubereats.com/search?q=soul%20good%20fine%20food" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;justify-content:space-between;background:#000;color:white;padding:14px 18px;border-radius:10px;text-decoration:none;margin-bottom:10px;font-weight:700;font-family:'DM Sans',sans-serif;font-size:0.95rem;"
+              onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.15)"/><text x="5" y="27" font-family="Arial" font-weight="900" font-size="13" fill="white">UE</text></svg>
+                <div>
+                  <div style="font-size:1rem;font-weight:700;">Uber Eats</div>
+                  <div style="font-size:0.75rem;opacity:0.75;font-weight:400;">Tap to order delivery</div>
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+
+            <!-- GrubHub -->
+            <a href="https://www.grubhub.com/search?queryText=soul%20good%20fine%20food" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;justify-content:space-between;background:#f63440;color:white;padding:14px 18px;border-radius:10px;text-decoration:none;margin-bottom:10px;font-weight:700;font-family:'DM Sans',sans-serif;font-size:0.95rem;"
+              onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.15)"/><text x="5" y="27" font-family="Arial" font-weight="900" font-size="13" fill="white">GH</text></svg>
+                <div>
+                  <div style="font-size:1rem;font-weight:700;">Grubhub</div>
+                  <div style="font-size:0.75rem;opacity:0.85;font-weight:400;">Tap to order delivery</div>
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+
+            <!-- Too Good To Go -->
+            <a href="https://www.toogoodtogo.com/en-us/search#soul%20good%20fine%20food" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;justify-content:space-between;background:#578f3a;color:white;padding:14px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-family:'DM Sans',sans-serif;font-size:0.95rem;"
+              onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.15)"/><text x="5" y="27" font-family="Arial" font-weight="900" font-size="11" fill="white">TGTG</text></svg>
+                <div>
+                  <div style="font-size:1rem;font-weight:700;">Too Good To Go</div>
+                  <div style="font-size:0.75rem;opacity:0.85;font-weight:400;">Tap to find surprise bags</div>
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+
+          </div>
         </div>
       </div>
 
@@ -1446,7 +1513,14 @@ function closeCart() {
 function selectMode(mode) {
   document.getElementById('pickupBtn').classList.toggle('active', mode === 'pickup');
   document.getElementById('deliveryBtn').classList.toggle('active', mode === 'delivery');
-  document.getElementById('addressField').style.display = mode === 'delivery' ? 'grid' : 'none';
+
+  const isPickup = mode === 'pickup';
+  document.getElementById('pickupFields').style.display  = isPickup ? 'block' : 'none';
+  document.getElementById('deliveryFields').style.display = isPickup ? 'none'  : 'block';
+
+  // Hide payment + place order button when delivery selected (they pay on DoorDash/UberEats)
+  document.querySelector('.payment-section').style.display = isPickup ? 'block' : 'none';
+  document.getElementById('placeOrderBtn').style.display   = isPickup ? 'block' : 'none';
 }
 
 // ─── PAYMENT ─────────────────────────────────────────────────────────────────
@@ -1493,8 +1567,8 @@ function resetOrder() {
   document.getElementById('firstName').value = '';
   document.getElementById('lastName').value = '';
   document.getElementById('phone').value = '';
-  document.getElementById('address').value = '';
   document.getElementById('special').value = '';
+  selectMode('pickup');
   closeCart();
 }
 
