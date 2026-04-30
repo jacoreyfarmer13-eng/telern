@@ -1702,6 +1702,16 @@ function triggerApplePay() {
 
   document.getElementById('applePayAmount').textContent = '$' + total.toFixed(2);
 
+  // Reset Face ID state first
+  const ring = document.getElementById('faceIdRing');
+  const arc  = document.getElementById('scanArc');
+  const text = document.getElementById('faceIdText');
+  const icon = document.getElementById('faceIdIcon');
+  if (ring) ring.style.borderColor = 'rgba(255,255,255,0.2)';
+  if (arc)  { arc.style.opacity='0'; arc.innerHTML = `<circle cx="40" cy="40" r="38" fill="none" stroke="#30d158" stroke-width="2.5" stroke-dasharray="60 180" stroke-linecap="round" style="transform-origin:center;transform:rotate(-90deg);"/>`; }
+  if (text) { text.style.color='rgba(255,255,255,0.55)'; text.textContent='Double-click side button to pay'; }
+  if (icon) icon.style.animation='';
+
   // Show overlay + sheet
   const overlay = document.getElementById('applePayOverlay');
   const sheet   = document.getElementById('applePaySheet');
@@ -1713,37 +1723,54 @@ function triggerApplePay() {
     });
   });
 
-  // Auto-trigger Face ID after 1.4s
-  setTimeout(startFaceId, 1400);
+  // Auto-trigger Face ID after 1.2s
+  setTimeout(startFaceId, 1200);
 }
 
 function startFaceId() {
-  const ring    = document.getElementById('faceIdRing');
-  const arc     = document.getElementById('scanArc');
-  const text    = document.getElementById('faceIdText');
-  const icon    = document.getElementById('faceIdIcon');
+  const ring = document.getElementById('faceIdRing');
+  const arc  = document.getElementById('scanArc');
+  const text = document.getElementById('faceIdText');
+  const icon = document.getElementById('faceIdIcon');
+  if (!ring || !arc || !text || !icon) return;
 
-  // Turn ring green, show scanning arc
-  ring.style.borderColor = '#30d158';
-  arc.style.opacity = '1';
-  arc.querySelector('circle').style.animation = 'scanRotate 0.9s linear 2';
-  icon.style.animation = 'faceIdPulse 0.9s ease-in-out 2';
-  text.style.color = '#30d158';
-  text.textContent = 'Scanning…';
+  // Step 1 — ring pulses, text changes
+  text.textContent = 'Double-click side button to pay';
 
-  // After scan completes show checkmark + trigger success
+  // Step 2 — after 400ms start scanning
+  setTimeout(() => {
+    ring.style.borderColor = '#30d158';
+    ring.style.transition = 'border-color 0.3s';
+    arc.style.opacity = '1';
+    const circle = arc.querySelector('circle');
+    if (circle) {
+      circle.style.animation = 'scanRotate 0.8s linear';
+      circle.style.animationFillMode = 'forwards';
+    }
+    icon.style.animation = 'faceIdPulse 0.8s ease-in-out';
+    text.style.color = '#30d158';
+    text.textContent = 'Scanning…';
+  }, 400);
+
+  // Step 3 — after scanning done, show checkmark
   setTimeout(() => {
     arc.innerHTML = `
       <circle cx="40" cy="40" r="38" fill="none" stroke="#30d158" stroke-width="2.5"/>
-      <path d="M26 40 l10 10 l16-18" fill="none" stroke="#30d158" stroke-width="3"
+      <path d="M26 40 l10 10 l16-18" fill="none" stroke="#30d158" stroke-width="3.5"
         stroke-linecap="round" stroke-linejoin="round"
         stroke-dasharray="60" stroke-dashoffset="60"
-        style="animation:checkDraw 0.4s ease forwards;"/>
+        style="animation:checkDraw 0.35s ease forwards;"/>
     `;
-    text.textContent = 'Authenticated';
+    text.textContent = 'Authenticated ✓';
+    text.style.color = '#30d158';
+    text.style.fontWeight = '600';
     playSuccessSound();
-    setTimeout(applePaySuccess, 700);
-  }, 1900);
+  }, 1700);
+
+  // Step 4 — close and confirm order
+  setTimeout(() => {
+    applePaySuccess();
+  }, 2500);
 }
 
 function playSuccessSound() {
@@ -1766,10 +1793,7 @@ function playSuccessSound() {
 
 function applePaySuccess() {
   closeApplePay();
-  document.getElementById('checkoutForm').style.display = 'none';
-  document.getElementById('orderSuccess').classList.add('show');
-  cart = [];
-  updateCart();
+  orderSuccess();
 }
 
 function closeApplePay() {
@@ -1925,6 +1949,37 @@ function simulateProcessing(btn) {
 
 function orderSuccess() {
   playSuccessSound();
+
+  // ── Build order details text to send to restaurant ──────────
+  const first    = document.getElementById('firstName')?.value.trim() || '';
+  const last     = document.getElementById('lastName')?.value.trim()  || '';
+  const phone    = document.getElementById('phone')?.value.trim()     || '';
+  const special  = document.getElementById('special')?.value.trim()   || '';
+  const isPickup = document.getElementById('pickupBtn')?.classList.contains('active');
+  const mode     = isPickup ? 'PICKUP' : 'DELIVERY';
+  const total    = cart.reduce((s,i) => s + i.price * i.qty, 0).toFixed(2);
+
+  let itemsList = cart.map(i => `${i.qty}x ${i.name} - $${(i.price * i.qty).toFixed(2)}`).join('\n');
+
+  const msg = encodeURIComponent(
+    `🍽️ NEW ORDER - Soul Good Fine Food\n` +
+    `━━━━━━━━━━━━━━━━━━\n` +
+    `Customer: ${first} ${last}\n` +
+    `Phone: ${phone}\n` +
+    `Mode: ${mode}\n` +
+    `━━━━━━━━━━━━━━━━━━\n` +
+    `ITEMS:\n${itemsList}\n` +
+    `━━━━━━━━━━━━━━━━━━\n` +
+    `TOTAL: $${total}\n` +
+    (special ? `Special: ${special}` : '')
+  );
+
+  // ── Open SMS to restaurant automatically ─────────────────────
+  // Restaurant number: (404) 397-7203
+  const restaurantPhone = '14043977203';
+  window.open(`sms:${restaurantPhone}&body=${msg}`, '_blank');
+
+  // ── Show success screen ───────────────────────────────────────
   document.getElementById('checkoutForm').style.display = 'none';
   document.getElementById('orderSuccess').classList.add('show');
   cart = [];
