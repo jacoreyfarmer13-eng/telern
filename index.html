@@ -775,7 +775,6 @@
     display: none;
     padding: 20px 0 20px;
   }
-  .order-success.show { display: block; }
 
   @media (max-width: 600px) {
     .nav-links { display: none; }
@@ -1500,9 +1499,13 @@ function updateCart() {
 }
 
 function renderCart() {
-  const itemsEl = document.getElementById('cartItems');
-  const emptyEl = document.getElementById('cartEmpty');
+  const itemsEl  = document.getElementById('cartItems');
+  const emptyEl  = document.getElementById('cartEmpty');
   const footerEl = document.getElementById('cartFooter');
+  const successEl = document.getElementById('orderSuccess');
+
+  // Don't touch footer visibility if success screen is showing
+  if (successEl && successEl.style.display === 'block') return;
 
   if (cart.length === 0) {
     itemsEl.innerHTML = '';
@@ -1528,7 +1531,7 @@ function renderCart() {
 
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-  document.getElementById('total').textContent = '$' + subtotal.toFixed(2);
+  document.getElementById('total').textContent    = '$' + subtotal.toFixed(2);
 }
 
 // ─── CART OPEN/CLOSE ──────────────────────────────────────────────────────────
@@ -1595,13 +1598,17 @@ function showToast(msg) {
 
 function resetOrder() {
   cart = [];
-  updateCart();
-  document.getElementById('orderSuccess').classList.remove('show');
+  document.getElementById('cartCount').textContent = '0';
+  document.getElementById('cartItems').innerHTML = '';
+  document.getElementById('cartEmpty').style.display = 'block';
+  document.getElementById('orderSuccess').style.display = 'none';
   document.getElementById('checkoutForm').style.display = 'block';
+  document.getElementById('cartFooter').style.display = 'none';
   document.getElementById('firstName').value = '';
   document.getElementById('lastName').value = '';
   document.getElementById('phone').value = '';
   document.getElementById('special').value = '';
+  updateBtnTotal();
   selectMode('pickup');
   closeCart();
 }
@@ -1912,17 +1919,18 @@ function simulateProcessing(btn) {
 function orderSuccess() {
   playSuccessSound();
 
-  // ── Grab order details ────────────────────────────────────────
-  const first   = document.getElementById('firstName')?.value.trim() || '';
-  const last    = document.getElementById('lastName')?.value.trim()  || '';
-  const phone   = document.getElementById('phone')?.value.trim()     || '';
-  const special = document.getElementById('special')?.value.trim()   || '';
+  // ── Grab order details BEFORE clearing cart ───────────────────
+  const first    = document.getElementById('firstName')?.value.trim() || '';
+  const last     = document.getElementById('lastName')?.value.trim()  || '';
+  const phone    = document.getElementById('phone')?.value.trim()     || '';
+  const special  = document.getElementById('special')?.value.trim()   || '';
   const isPickup = document.getElementById('pickupBtn')?.classList.contains('active');
-  const mode    = isPickup ? 'PICKUP' : 'DELIVERY';
-  const total   = cart.reduce((s,i) => s + i.price * i.qty, 0).toFixed(2);
-  const now     = new Date();
-  const dateStr = now.toLocaleDateString('en-US', {weekday:'short',month:'short',day:'numeric',year:'numeric'});
-  const timeStr = now.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+  const mode     = isPickup ? 'PICKUP' : 'DELIVERY';
+  const total    = cart.reduce((s,i) => s + i.price * i.qty, 0).toFixed(2);
+  const now      = new Date();
+  const dateStr  = now.toLocaleDateString('en-US', {weekday:'short',month:'short',day:'numeric',year:'numeric'});
+  const timeStr  = now.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+  const savedCart = [...cart];
 
   // ── Populate e-receipt ────────────────────────────────────────
   document.getElementById('receiptDate').textContent = `${dateStr} · ${timeStr}`;
@@ -1933,41 +1941,47 @@ function orderSuccess() {
     `<div><strong>Order Type:</strong> ${mode}</div>` +
     (special ? `<div><strong>Special:</strong> ${special}</div>` : '');
 
-  document.getElementById('receiptItems').innerHTML = cart.map(i => `
-    <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,217,197,0.4);font-size:0.88rem;">
+  document.getElementById('receiptItems').innerHTML = savedCart.map(i => `
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(232,217,197,0.4);font-size:0.88rem;">
       <span style="color:var(--text-dark);">${i.qty}x ${i.name}</span>
       <span style="color:var(--red-price);font-weight:600;">$${(i.price*i.qty).toFixed(2)}</span>
     </div>
   `).join('');
 
-  // ── Build SMS text for restaurant ─────────────────────────────
-  let itemsList = cart.map(i => `${i.qty}x ${i.name} - $${(i.price*i.qty).toFixed(2)}`).join('\n');
-  const msg = encodeURIComponent(
-    `🍽️ NEW ORDER!\n` +
-    `━━━━━━━━━━━━━━━\n` +
-    `${first} ${last}\n` +
-    `📞 ${phone}\n` +
-    `📦 ${mode}\n` +
-    `━━━━━━━━━━━━━━━\n` +
-    `${itemsList}\n` +
-    `━━━━━━━━━━━━━━━\n` +
-    `💰 TOTAL: $${total}\n` +
-    (special ? `📝 ${special}` : '')
-  );
-
-  // ── Fire SMS to restaurant ─────────────────────────────────────
-  const restaurantPhone = '16788099846';
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const smsLink = isIOS
-    ? `sms:${restaurantPhone}&body=${msg}`
-    : `sms:${restaurantPhone}?body=${msg}`;
-  window.open(smsLink, '_blank');
-
-  // ── Show success screen ────────────────────────────────────────
+  // ── Show success screen BEFORE clearing cart ──────────────────
+  const footer = document.getElementById('cartFooter');
+  footer.style.display = 'block';
   document.getElementById('checkoutForm').style.display = 'none';
-  document.getElementById('orderSuccess').classList.add('show');
+  document.getElementById('orderSuccess').style.display = 'block';
+
+  // ── Clear cart ────────────────────────────────────────────────
   cart = [];
-  updateCart();
+  const count = 0;
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartItems').innerHTML = '';
+  document.getElementById('cartEmpty').style.display = 'none';
+  updateBtnTotal();
+
+  // ── Send WhatsApp notification to restaurant ──────────────────
+  // WhatsApp works reliably on every phone and browser
+  let itemsList = savedCart.map(i => `${i.qty}x ${i.name} - $${(i.price*i.qty).toFixed(2)}`).join('%0A');
+  const waMsg =
+    `%F0%9F%8D%BD%EF%B8%8F NEW ORDER - Soul Good Fine Food%0A` +
+    `%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A` +
+    `Name: ${encodeURIComponent(first + ' ' + last)}%0A` +
+    `Phone: ${encodeURIComponent(phone)}%0A` +
+    `Mode: ${mode}%0A` +
+    `%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A` +
+    `${itemsList}%0A` +
+    `%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A` +
+    `TOTAL: $${total}` +
+    (special ? `%0ASpecial: ${encodeURIComponent(special)}` : '');
+
+  // Opens WhatsApp in a new tab — restaurant receives the full order as a message
+  const restaurantPhone = '16788099846';
+  setTimeout(() => {
+    window.open(`https://wa.me/${restaurantPhone}?text=${waMsg}`, '_blank');
+  }, 500);
 }
 
 // ─── UPDATE BUTTON TOTAL ──────────────────────────────────────────────────────
