@@ -1813,26 +1813,23 @@ function orderSuccess() {
   document.getElementById('cartEmpty').style.display = 'none';
   updateBtnTotal();
 
-  // ── Send WhatsApp notification to restaurant ──────────────────
-  // WhatsApp works reliably on every phone and browser
-  let itemsList = savedCart.map(i => `${i.qty}x ${i.name} - $${(i.price*i.qty).toFixed(2)}`).join('%0A');
-  const waMsg =
-    `%F0%9F%8D%BD%EF%B8%8F NEW ORDER - Soul Good Fine Food%0A` +
-    `%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A` +
-    `Name: ${encodeURIComponent(first + ' ' + last)}%0A` +
-    `Phone: ${encodeURIComponent(phone)}%0A` +
-    `Mode: ${mode}%0A` +
-    `%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A` +
-    `${itemsList}%0A` +
-    `%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A` +
-    `TOTAL: $${total}` +
-    (special ? `%0ASpecial: ${encodeURIComponent(special)}` : '');
+  // ── Send email notification via Formspree ────────────────────
+  const itemsText = savedCart.map(i => `${i.qty}x ${i.name} - $${(i.price*i.qty).toFixed(2)}`).join('\n');
 
-  // Opens WhatsApp in a new tab — restaurant receives the full order as a message
-  const restaurantPhone = '16788099846';
-  setTimeout(() => {
-    window.open(`https://wa.me/${restaurantPhone}?text=${waMsg}`, '_blank');
-  }, 500);
+  fetch('https://formspree.io/f/mykoypjg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      _subject: `🍽️ NEW ORDER - Soul Good Fine Food - $${total}`,
+      'Customer Name':    `${first} ${last}`,
+      'Phone':            phone,
+      'Order Type':       mode,
+      'Items':            itemsText,
+      'Total':            `$${total}`,
+      'Special Requests': special || 'None',
+      'Date':             `${dateStr} at ${timeStr}`
+    })
+  }).catch(() => {});
 }
 
 // ─── UPDATE BUTTON TOTAL ──────────────────────────────────────────────────────
