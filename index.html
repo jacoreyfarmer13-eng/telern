@@ -1713,8 +1713,8 @@ function showStripeDemo() {
   stripeReady = false;
 }
 
-// ─── PLACE ORDER (Stripe-powered) ─────────────────────────────────────────────
-async function placeOrder() {
+// ─── PLACE ORDER ─────────────────────────────────────────────────────────────
+function placeOrder() {
   const first = document.getElementById('firstName').value.trim();
   const phone = document.getElementById('phone').value.trim();
   if (!first || !phone) { showToast('⚠ Please fill in name & phone'); return; }
@@ -1722,49 +1722,15 @@ async function placeOrder() {
 
   const btn = document.getElementById('placeOrderBtn');
   btn.disabled = true;
-  btn.textContent = 'Processing…';
 
-  if (currentPayment === 'card') {
-    if (stripeReady && stripe && cardElement) {
-      // ── REAL STRIPE PAYMENT ──
-      // In production you'd call your backend to create a PaymentIntent
-      // and get back a clientSecret, then confirmCardPayment.
-      // Example backend call (Node/Express):
-      //   const res = await fetch('/create-payment-intent', {
-      //     method:'POST', headers:{'Content-Type':'application/json'},
-      //     body: JSON.stringify({ amount: Math.round(cartTotal * 100) })
-      //   });
-      //   const { clientSecret } = await res.json();
-      //   const result = await stripe.confirmCardPayment(clientSecret, {
-      //     payment_method: { card: cardElement, billing_details: { name: first } }
-      //   });
-      //   if (result.error) { showError(result.error.message); }
-      //   else { orderSuccess(); }
-
-      // For now show a helpful message:
-      showToast('⚠ Add your Stripe key to go live!');
-      btn.disabled = false;
-      btn.innerHTML = 'Place Order · <span id="btnTotal">$' + cart.reduce((s,i)=>s+i.price*i.qty,0).toFixed(2) + '</span>';
-      return;
-    } else {
-      // Demo mode — simulate success
-      await simulateProcessing(btn);
-      orderSuccess();
-      return;
-    }
-  }
-
-  // Non-card payments (link-based) — just confirm order
-  await simulateProcessing(btn);
+  // Go straight to success — no delay
   orderSuccess();
-}
 
-function simulateProcessing(btn) {
-  return new Promise(resolve => {
-    btn.textContent = 'Processing…';
-    setTimeout(() => { btn.textContent = 'Confirming order…'; }, 800);
-    setTimeout(resolve, 1800);
-  });
+  // Re-enable button after
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = '✓ PLACE ORDER';
+  }, 1000);
 }
 
 function orderSuccess() {
@@ -1816,7 +1782,7 @@ function orderSuccess() {
   // ── Send email notification via Formspree ────────────────────
   const itemsText = savedCart.map(i => `${i.qty}x ${i.name} - $${(i.price*i.qty).toFixed(2)}`).join('\n');
 
-  fetch('https://formspree.io/f/mykoypjg', {
+  fetch('https://formspree.io/f/mjglvjew', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
